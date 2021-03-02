@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :messages
 
   has_one_attached :prof_pic
+  has_rich_text :rich_body
 
   validates :nickname, uniqueness: true
   validates :level, presence: true, inclusion: { in: ["starter", "intermediate", "pro", "expert"] }
