@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :conversations_as_receiver, class_name: "Conversation", foreign_key: :receiver_id
   has_many :conversations_as_sender, class_name: "Conversation", foreign_key: :sender_id
   has_many :messages
+
   validates :nickname, uniqueness: true
   validates :level, presence: true, inclusion: { in: ["starter", "intermediate", "pro", "expert"] }
   validates :slogan, presence: true, length: { in: 10..100 }
