@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'posts/new'
+  get 'posts/create'
+  get 'posts/update'
+  get 'posts/index'
+  get 'posts/show'
+  get 'posts/destroy'
+  get 'posts/test'
   devise_for :users
   root to: 'pages#home'
   get '/search', to: 'pages#index'
