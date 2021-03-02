@@ -63,9 +63,11 @@ def add_conversation # add conversations to user kilian1 and kilian2
   puts "added conversation between user_id 1 and 2 (kilian1 and kilian2"
 end
 
-def add_messages
-  (1..5).each do |x|
-    Message.create(conversation_id: 1, user_id: rand(1..2), content: "#{Faker::ChuckNorris.fact}")
+def add_messages # create in total 10 messages for the user 1 and 2
+  (1..10).each do |x|
+    y = [1, 2].sample
+    Message.create(conversation_id: 1, user_id: y, content: "#{Faker::ChuckNorris.fact}")
+    puts "added message from user_id: #{y} to conversation_id: 1"
   end
 end
 
@@ -76,5 +78,5 @@ add_users
 add_posts
 add_comments
 add_replies
-# add_conversation
-# add_messages
+add_conversation
+add_messages
