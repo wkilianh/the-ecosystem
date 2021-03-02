@@ -12,11 +12,13 @@ require 'faker'
 def add_users # creates 6 users
   (1..6).each do |x|
     puts "creating user #{x}"
-    User.create!(email: "kilian#{x}@gmail.com",
-                password: "123456",
-                nickname: "kilian#{x}",
-                level: ["starter", "intermediate", "pro", "expert"].sample,
-                slogan: "I know the REAL hacks!")
+    user = User.new(email: "kilian#{x}@gmail.com",
+                    password: "123456",
+                    nickname: "kilian#{x}",
+                    level: ["starter", "intermediate", "pro", "expert"].sample,
+                    slogan: "I know the REAL hacks!")
+    user.prof_pic.attach(io: File.open("db/seed_prof-pics/prof_pic#{x}.jpg"), filename: "#{x}.jpg", content_type: 'image/png')
+    user.save!
     puts "created user #{x}"
   end
 end
@@ -24,15 +26,18 @@ end
 def add_posts # creates 6 posts
   (1..6).each do |x|
     puts "creating post #{x}"
-    Post.create!(user_id: x,
-                category: ["hack", "don't", "project"].sample,
-                title: "Post No. #{x}, Title",
-                topic: ["household", "energy", "diy"].sample,
-                expect_co2: ["modest", "moderate", "good", "strong"].sample,
-                expect_waste: ["modest", "moderate", "good", "strong"].sample,
-                expect_resources: ["modest", "moderate", "good", "strong"].sample,
-                expect_diyeffort: ["modest", "moderate", "good", "strong"].sample,
-                expect_ecocost: ["modest", "moderate", "good", "strong"].sample)
+    post = Post.new(user_id: x,
+                    category: ["hack", "don't", "project"].sample,
+                    title: "Post No. #{x}, Title",
+                    topic: ["household", "energy", "diy"].sample,
+                    expect_co2: ["modest", "moderate", "good", "strong"].sample,
+                    expect_waste: ["modest", "moderate", "good", "strong"].sample,
+                    expect_resources: ["modest", "moderate", "good", "strong"].sample,
+                    expect_diyeffort: ["modest", "moderate", "good", "strong"].sample,
+                    expect_ecocost: ["modest", "moderate", "good", "strong"].sample)
+    post.photos.attach(io: File.open("db/seed_post-images/post#{x}.jpg"), filename: "#{x}.jpg", content_type: 'image/png')
+    post.photos.attach(io: File.open("db/seed_post-images/post#{x}a.jpg"), filename: "#{x}a.jpg", content_type: 'image/png')
+    post.save!
     puts "created post #{x}"
   end
 end
