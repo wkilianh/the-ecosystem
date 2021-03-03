@@ -1,0 +1,39 @@
+<div class="banner">
+
+
+    <div class="search-input-group">
+      <div class="search-input">
+        <!-- <label class="form-label" for="form1">Search</label> -->
+        <input type="search" value="Reduce your print" />
+
+      </div>
+      <div class="dropdown">
+        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categories
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Hacks</a>
+          <a class="dropdown-item" href="#">Don't</a>
+          <a class="dropdown-item" href="#">Projects</a>
+        </div>
+      </div>
+      <button type="button" class="btn">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+
+    <div class="filters">
+      <ul>
+        <li>Sort by:</li>
+        <li> <%= link_to "Hacks", search_path %> </li>
+        <li> <%= link_to "Don't", search_path %> </li>
+        <li> <%= link_to "Explore", search_path %> </li>
+        <li> <%= link_to "Info" %> </li>
+      </ul>
+    </div>
+
+</div>
+
+
+
+</div>
