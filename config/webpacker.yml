@@ -90,7 +90,8 @@ production:
   compile: false
 
   # Extract and emit a css file
-  extract_css: true
+  extract_css: false # TODO: no good solution, check with TA for this error
+                     # described here: https://stackoverflow.com/questions/59161189/webpacker-4-2-cant-find-application-in-app-public-packs-manifest-json-heroku
 
   # Cache manifest.json for performance
   cache_manifest: true
