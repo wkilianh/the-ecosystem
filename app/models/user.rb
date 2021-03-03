@@ -19,4 +19,12 @@ class User < ApplicationRecord
   validates :nickname, uniqueness: true
   validates :level, presence: true, inclusion: { in: ["starter", "intermediate", "pro", "expert"] }
   validates :slogan, presence: true, length: { in: 10..100 }
+
+  # after_commit :redirect_to_profile
+
+  private
+
+  def redirect_to_profile
+    redirect_to root_path
+  end
 end

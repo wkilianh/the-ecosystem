@@ -1,12 +1,10 @@
-<div class="container">
-  <h1>Posts#new</h1>
+<div class="container w-50">
+  <h1>Posts#edit</h1>
   <%= form_with model: @post do |form| %>
     <div class="field">
       <%= form.label :content %>
-      <%= form.rich_text_area :rich_body, size: "600x200", value: "Your Post here <br>" %>
+      <%= form.rich_text_area :rich_body %>
       <%= form.submit %>
     </div>
   <% end %>
 </div>
-
-
