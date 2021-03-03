@@ -17,6 +17,5 @@ class User < ApplicationRecord
   has_rich_text :rich_body
 
   validates :nickname, uniqueness: true
-  validates :level, presence: true, inclusion: { in: ["starter", "intermediate", "pro", "expert"] }
-  validates :slogan, presence: true, length: { in: 10..100 }
+  validates :level, presence: true, inclusion: { in: %w[starter intermediate pro expert] }
 end
