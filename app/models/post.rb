@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   has_many_attached :photos
   has_rich_text :rich_body
 
-  # just for testing
+  # just for testing disabled everything TODO: uncomment if forms are there
   # validates :title, :topic, :category, presence: true
   # validates :category, inclusion: { in: ["hack", "don't", "project"] }
   # validates :expect_co2, :expect_waste, :expect_resources,
