@@ -16,6 +16,7 @@ class ProfilesController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
+    authorize @user
   end
 
   private
