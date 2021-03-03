@@ -16,4 +16,10 @@ Rails.application.routes.draw do
   resources :conversations, only:[:index, :show] do
     resources :messages, only: :create
   end
+
+  # not working: have a root user path, as the user has to be read from params
+  # as :user do
+  #   get 'profiles/:id', :to => 'profiles#show', :as => :user_root # Rails 3
+  # end
+
 end
