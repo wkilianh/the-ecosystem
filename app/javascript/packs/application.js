@@ -33,3 +33,6 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   initConversationCable()
 });
+
+require("trix")
+require("@rails/actiontext")

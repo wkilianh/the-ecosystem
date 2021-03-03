@@ -14,7 +14,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def create?
-    false
+    true
   end
 
   def new?
@@ -22,7 +22,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def update?
-    false
+    @record.user == @user
   end
 
   def edit?
@@ -32,5 +32,5 @@ class PostPolicy < ApplicationPolicy
   def destroy?
     false
   end
-  
+
 end

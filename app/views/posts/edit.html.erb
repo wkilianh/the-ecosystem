@@ -1,0 +1,10 @@
+<div class="container w-50">
+  <h1>Posts#edit</h1>
+  <%= form_with model: @post do |form| %>
+    <div class="field">
+      <%= form.label :content %>
+      <%= form.rich_text_area :rich_body %>
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>
