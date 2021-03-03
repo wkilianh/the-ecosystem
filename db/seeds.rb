@@ -78,9 +78,7 @@ end
 
 def add_rich_text_to_posts
   Post.all.each do |post|
-    post.rich_body = "<div class='trix-content'><h1><strong>Saving resources with your phones</strong></h1><div>
-<<<<<<< HEAD
-<br><em>I thought I would put on here what I have redone on my phone.<br>I am interested in more info as well. I don't know a lot about it.</em><br>
+    post.rich_body = "<div class='trix-content'><h1><strong>Saving resources with your phones</strong></h1><div><br><em>I thought I would put on here what I have redone on my phone.<br>I am interested in more info as well. I don't know a lot about it.</em><br>
 Basically, people get rid of their old phones because it is <strong>'SO slowwwwwww'.</strong><br>Or the battery runs out.<br>I think it was Apple that built in to their phones to slow down after two or three years.<br>So I imagine others do it too.<br>Android wise, as I understand it, Android is an open source OS.<br>Then companies get hold of it and bolt a load of stuff on it because they can sell the space on the phone to companies with apps.<br>They also make it so that you can't remove said apps.<br>A number of apps start and are running even if you don't want them to.<br>A bunch of info is sent from your phone to somewhere on a regular basis.<br><strong>Basically you are not really in control of your phone.</strong><br><br>
 </div><ul><li>Also, I don't think one country should hold quite so much info on everyone. It can only go wrong at some point.</li>
 <li>So, I generally buy a (used) phone that it is possible (with a bit of a YT watch and a priser tool) to change the battery.</li>
