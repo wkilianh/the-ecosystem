@@ -1,7 +1,7 @@
 class PostPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      scope.where(user: user)
     end
   end
 
@@ -30,7 +30,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def destroy?
-    false
+    @record.user == @user
   end
 
 end
