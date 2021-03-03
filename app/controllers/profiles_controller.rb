@@ -2,8 +2,10 @@ class ProfilesController < ApplicationController
 
   def show
     # @user
-    @user = Post.find(1)
+    @user = User.find(params[:id])
     authorize @user
+    # authorize @profile, policy_class: ProfilePolicy
+    # authorize current_user, @user, :show?, policy_class: UserPolicy
   end
 
   def edit

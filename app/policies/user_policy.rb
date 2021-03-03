@@ -1,14 +1,11 @@
 class UserPolicy < ApplicationPolicy
-  # def initialize(user, record)
-  #   @user = user
-  #   @record = record
-  # end
-
   class Scope < Scope
     def resolve
       scope.all
     end
   end
+
+
 
   def show?
     true
@@ -16,6 +13,10 @@ class UserPolicy < ApplicationPolicy
 
   def edit?
     record == user
+  end
+
+  def create?
+    edit?
   end
 
 end
