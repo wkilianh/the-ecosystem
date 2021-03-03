@@ -1,6 +1,10 @@
 <h1>My Profile</h1>
 <h1><%= @user.slogan %></h1>
+<% if @user.prof_pic.attached? %>
   <%= cl_image_tag @user.prof_pic.key, height: 300 %><br>
+<% else %>
+  <%= image_tag "https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614812119/placeholder_avatar/1200px-Avatar_icon_green.svg_tire2w.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+<% end %>
   <%= @user.rich_body %>
 <p>
   <%= link_to "Edit profile", edit_profile_path %>
