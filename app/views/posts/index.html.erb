@@ -1,2 +1,12 @@
 <h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<% @posts.each do |post| %>
+  <div class="container w-50" style="background-color: white">
+    <%= link_to "VIEW POST", post_path(post) %><br>
+    <%= link_to "DELETE POST", post_path(post), method: :delete %><br>
+    <%= link_to "EDIT POST", edit_post_path(post) %>
+    <h1><%= post.title %></h1>
+    <p>
+      <%= post.rich_body %>
+    </p>
+  </div>
+<% end %>
