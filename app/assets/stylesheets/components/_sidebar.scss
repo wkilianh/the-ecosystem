@@ -59,6 +59,10 @@ a, a:hover, a:focus {
   transition: all 0.3s;
 }
 
+#sidebar ul li a:focus{
+  background-color: #73d58b;
+  // color: #73d58b;
+}
 
 .chat{
   background: rgb(156, 151, 151);
