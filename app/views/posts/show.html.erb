@@ -1,4 +1,11 @@
 <h1>Posts#show</h1>
 <div class="container w-50">
-  <%= @post.rich_body %>
+    <h1><%= @post.title %></h1>
+    <% if @post.photos.attached? %>
+      <%= cl_image_tag @post.photos.last.key, height: 300, width: 400 %><br>
+    <% end %>
+    <%= link_to "EDIT POST", edit_post_path(@post) %>
+    <p>
+      <%= @post.rich_body %>
+    </p>
 </div>

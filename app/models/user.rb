@@ -16,15 +16,6 @@ class User < ApplicationRecord
   has_one_attached :prof_pic
   has_rich_text :rich_body
 
-  validates :nickname, uniqueness: true
-  validates :level, presence: true, inclusion: { in: ["starter", "intermediate", "pro", "expert"] }
-  validates :slogan, presence: true, length: { in: 10..100 }
-
-  # after_commit :redirect_to_profile
-
-  private
-
-  def redirect_to_profile
-    redirect_to root_path
-  end
+  validates :nickname, presence: true, uniqueness: true
+  validates :level, presence: true, inclusion: { in: %w[starter intermediate pro expert] }
 end

@@ -1,10 +1,17 @@
 <div class="container w-50">
   <h1>Posts#edit</h1>
-  <%= form_with model: @post do |form| %>
+  <%= simple_form_for @post do |f| %>
     <div class="field">
-      <%= form.label :content %>
-      <%= form.rich_text_area :rich_body %>
-      <%= form.submit %>
+      <%= f.input :title %>
+
+        <% if @post.photos.attached? %>
+          <h3><%= "Current Preview Pic:" %></h3>
+          <%= cl_image_tag @post.photos.last.key, height: 200 %><br>
+        <% end %>
+
+      <%= f.input :photos, as: :file %>
+      <%= f.input :rich_body, as: :rich_text_area %>
+      <%= f.submit %>
     </div>
   <% end %>
 </div>

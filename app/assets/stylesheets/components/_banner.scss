@@ -1,0 +1,58 @@
+  .banner {
+    position: relative;
+    background-image: linear-gradient(rgba(131, 169, 107, 0.5), rgba(131, 169, 107, 0.5)), url("https://images.unsplash.com/photo-1442120108414-42e7ea50d0b5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=818&q=80");
+    background-position: center;
+    background-size: cover;
+    height: 300px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+    padding-bottom: 0;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+
+  .banner-slogan {
+    color: white;
+    text-align: center;
+    top: 200px;
+    left: 0;
+    width: 100%;
+    z-index: 4;
+    font-size: 3rem;
+    font-family: 'Abel', sans-serif;
+  }
+
+.search-input-group {
+    width: 600px;
+    border: 1px white solid;
+    border-radius: 5px;
+    background-color: #649d66;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+
+.filters {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  // align-self: flex-end;
+  background-color: rgba(131, 169, 107, 0.5);
+  width: 100%;
+  height: 40px;
+}
+
+.search-input {
+  display: flex;
+  flex-grow: 1;
+
+}
+
+
+

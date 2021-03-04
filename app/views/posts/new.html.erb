@@ -1,12 +1,11 @@
 <div class="container">
   <h1>Posts#new</h1>
-  <%= form_with model: @post do |form| %>
+  <%= simple_form_for @post do |f| %>
     <div class="field">
-      <%= form.label :content %>
-      <%= form.rich_text_area :rich_body, size: "600x200", value: "Your Post here <br>" %>
-      <%= form.submit %>
+      <%= f.input :title %>
+      <%= f.input :photos, as: :file %>
+      <%= f.input :rich_body, as: :rich_text_area %>
+      <%= f.submit %>
     </div>
   <% end %>
 </div>
-
-
