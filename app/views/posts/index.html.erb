@@ -1,9 +1,9 @@
 <div class="container">
   <% @posts.each do |post| %>
-    <div class="row w-100 post-view">
+    <div class="w-100 post-view">
       <div class="col-8 post-resume">
 
-        <div class="post-text">
+        <div class="post-content">
           <div class="user-data">
             <%= cl_image_tag current_user.prof_pic.key, class:"avatar-bordered" %>
             <p>Posted by <%= current_user.nickname %> </p>
@@ -15,16 +15,17 @@
               <i class="fas fa-star"></i>
             </ul>
           </div>
-          <div>
+          <div class="container post-text">
           <h3>"<%= post.title %>"</h3>
           <p>
             <%= truncate(post.rich_body.to_plain_text.squish, length: 250)  %>
           </p>
           </div>
           <div class="btn-panel-container">
-              <%= link_to "VIEW POST", post_path(post), class:"btn btn-panel"%><br>
-              <%= link_to "DELETE POST", post_path(post), method: :delete, class:"btn btn-panel" %><br>
-              <%= link_to "EDIT POST", edit_post_path(post), class:"btn btn-panel" %>
+              <%= link_to "View", post_path(post), class:"btn-panel"%>
+              <%= link_to "Edit", edit_post_path(post), class:"btn-panel" %>
+              <%= link_to "Delete", post_path(post), method: :delete, class:"btn-panel" %>
+
           </div>
         </div>
       </div>
