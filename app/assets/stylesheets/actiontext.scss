@@ -34,4 +34,11 @@
       max-width: 100% !important;
     }
   }
+
+}
+
+trix-editor {
+  &.form-control {
+    height: auto;
+  }
 }

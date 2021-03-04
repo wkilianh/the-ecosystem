@@ -5,32 +5,38 @@
       <div class="sidebar-header">
         <h3>Conversations</h3>
       </div>
+      <% if @conversations.count > 0 %>
 
-      <ul class="list-unstyled components">
-          <% @conversations.each do |conversation| %>
-            <% if conversation.sender == current_user %>
-                  <li data-action="click->conversation#refresh" data-id="<%= conversation.id %>" >
-                      <%= link_to conversation.receiver.nickname, conversation_path(conversation), remote: true%>
-                  </li>
-            <% else %>
-              <li data-action="click->conversation#refresh" data-id="<%= conversation.id %>">
-                  <%= link_to conversation.sender.nickname, conversation_path(conversation), remote: true %>
-              </li>
+        <ul class="list-unstyled components">
+            <% @conversations.each do |conversation| %>
+              <% if conversation.sender == current_user %>
+                    <li data-action="click->conversation#refresh" data-id="<%= conversation.id %>" >
+                        <%= link_to conversation.receiver.nickname, conversation_path(conversation), remote: true%>
+                    </li>
+              <% else %>
+                <li data-action="click->conversation#refresh" data-id="<%= conversation.id %>">
+                    <%= link_to conversation.sender.nickname, conversation_path(conversation), remote: true %>
+                </li>
+              <% end %>
             <% end %>
-          <% end %>
-      </ul>
-    </nav>
-    
-    <div class="chat">
-      <div style="display: flex;flex-direction: column">  
-        <div class="conversation" data-conversation-target="conversationcon">
-          <%= render 'conversation', {conversation: @conversations.first }%> 
-        </div>
+        </ul>
 
-        <span class="sendfield" id="chat-text" style="width: 800px;" data-conversation-target="sendcon">
-          <%= render 'send', {conversation: @conversations.first, message: @message }%> 
-        </span>
-      </div>
+      <% end %>
+    </nav>
+    <div id="username" type="hidden" value="<%= current_user.nickname %>"></div>
+    <div class="chat">
+      <% if @conversations.count > 0 %>
+
+          <div class="conversation" data-conversation-target="conversationcon">
+            
+          </div>
+
+          <span class="sendfield" id="chat-text" style="width: 800px;" data-conversation-target="sendcon">
+           
+          </span>
+      <% else %>
+        <div><h4>You dont have any conversations yet.</h4></div>
+      <% end %>
     </div>
   </div>
 </div>
