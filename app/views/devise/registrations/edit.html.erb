@@ -16,6 +16,7 @@
       <%= f.input :level,
                   required: true,
                   collection: %w[starter intermediate pro expert]%>
+      <%= f.input :prof_pic, as: :file %>
       <%= f.input :password,
                   hint: "leave it blank if you don't want to change it",
                   required: false,
