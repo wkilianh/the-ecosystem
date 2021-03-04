@@ -3,6 +3,13 @@
   <%= simple_form_for @post do |f| %>
     <div class="field">
       <%= f.input :title %>
+
+        <% if @post.photos.attached? %>
+          <h3><%= "Current Preview Pic:" %></h3>
+          <%= cl_image_tag @post.photos.last.key, height: 200 %><br>
+        <% end %>
+
+      <%= f.input :photos, as: :file %>
       <%= f.input :rich_body, as: :rich_text_area %>
       <%= f.submit %>
     </div>
