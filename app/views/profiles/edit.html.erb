@@ -2,6 +2,7 @@
   <h1>Edit your profile</h1>
   <%= simple_form_for @user, :url => profile_path(@user) do |f| %>
   <%= f.input :slogan %>
+  <%= f.input :prof_pic, as: :file %>
   <%= f.input :rich_body, as: :rich_text_area %>
   <%= f.submit %>
   <% end %>
