@@ -41,7 +41,6 @@ class PostsController < ApplicationController
     @comment = Comment.new
     # authorize @comment
     authorize @post
-    raise
   end
 
   def destroy
