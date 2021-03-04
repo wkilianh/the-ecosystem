@@ -6,6 +6,13 @@
     <% end %>
     <%= link_to "EDIT POST", edit_post_path(@post) %>
     <p>
-      <%= @post.rich_body %>
+      <%#= @post.rich_body %>
+
     </p>
+    <p>
+      <%= render layout: "layouts/action_text/contents/content" do %>
+        <%= @post.rich_body %>
+      <% end %>
+    </p>
+
 </div>
