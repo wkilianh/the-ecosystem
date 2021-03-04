@@ -1,18 +1,37 @@
-<h1>Posts#show</h1>
 <div class="container w-50">
-    <h1><%= @post.title %></h1>
-    <% if @post.photos.attached? %>
-      <%= cl_image_tag @post.photos.last.key, height: 300, width: 400 %><br>
-    <% end %>
-    <%= link_to "EDIT POST", edit_post_path(@post) %>
-    <p>
-      <%#= @post.rich_body %>
+  <div class="post-box">
 
-    </p>
-    <p>
-      <%= render layout: "layouts/action_text/contents/content" do %>
-        <%= @post.rich_body %>
-      <% end %>
-    </p>
+    <div class="post-headline">
+      <span id="post-title"><h1><%#= @post.title %>ddddddddddddddd ddddddddddddd dddddddddddddd ddddddd</h1></span>
+      <span id="stars">*****
+        <span id="views">(2453)</span>
+      </span>
+    </div><br>
+
+    <% if @post.photos.attached? %>
+      <%= cl_image_tag @post.photos.last.key, height: 200, width: 300, crop: :fill %><br>
+    <% end %>
+
+    <% if @post.user == current_user %>
+      <div class="post-headline">
+        <%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel", style: "margin-top: 25px"%>
+        <p>You last updated this post at the <%#= @post.created_at.strftime("%a %b %e at %l:%M%p") %></p>
+      </div>
+
+    <% end %>
+  </div>
+
+</div>
+
+<div class="container w-50">
+  <div>
+    <%= render layout: "layouts/action_text/contents/content" do %>
+      <%= @post.rich_body %>
+    <% end %>
+  </div>
+
+
+
+
 
 </div>

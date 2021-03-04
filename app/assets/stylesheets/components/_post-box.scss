@@ -1,0 +1,42 @@
+.post-box {
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  border-radius: 12px;
+  h1  {
+  font-size: 30px;
+  }
+}
+
+
+.post-headline {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  p {
+    display: inline;
+  }
+}
+
+#post-title {
+  text-align: left;
+  max-width: 70%;
+
+}
+
+#stars {
+  text-align: right;
+  font-size: 30px;
+  color: $yellow;
+
+}
+
+#post-image {
+  display: block;
+}
+
+#views {
+  font-size: 22px;
+  color: $black;
+}
