@@ -6,7 +6,7 @@
 </div>
 
 <span id="send">
-  <%= simple_form_for [ @conversation, @message ], remote: true do |f| %>
-    <%= f.input :content, label: false, placeholder: "Message" %>
+  <%= simple_form_for [ @conversation, @message ] do |f| %>
+    <%= f.input :content, label: false, placeholder: "Message", remote: true %>
   <% end %>
 </span>
