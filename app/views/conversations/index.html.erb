@@ -1,9 +1,36 @@
-<h1>Conversations</h1>
+<div data-controller="conversation">
+  <div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h3>Conversations</h3>
+      </div>
 
-<% @conversations.each do |conversation| %>
-  <% if conversation.sender == current_user %>
-    <h4><%= link_to conversation.receiver.nickname, conversation_path(conversation) %></h4>
-  <% else %>
-    <h4><%= link_to conversation.sender.nickname, conversation_path(conversation) %></h4>
-  <% end %>
-<% end %>
+      <ul class="list-unstyled components">
+          <% @conversations.each do |conversation| %>
+            <% if conversation.sender == current_user %>
+                  <li data-action="click->conversation#refresh" data-id="<%= conversation.id %>" >
+                      <%= link_to conversation.receiver.nickname, conversation_path(conversation), remote: true%>
+                  </li>
+            <% else %>
+              <li data-action="click->conversation#refresh" data-id="<%= conversation.id %>">
+                  <%= link_to conversation.sender.nickname, conversation_path(conversation), remote: true %>
+              </li>
+            <% end %>
+          <% end %>
+      </ul>
+    </nav>
+    
+    <div class="chat">
+      <div style="display: flex;flex-direction: column">  
+        <div class="conversation" data-conversation-target="conversationcon">
+          <%= render 'conversation', {conversation: @conversations.first }%> 
+        </div>
+
+        <span class="sendfield" id="chat-text" style="width: 800px;" data-conversation-target="sendcon">
+          <%= render 'send', {conversation: @conversations.first, message: @message }%> 
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

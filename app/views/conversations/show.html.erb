@@ -1,15 +1,12 @@
 <!-- app/views/conversations/show.html.erb -->
-<% if @conversation.sender == current_user %>
-    <h4><%= @conversation.receiver.nickname %></h4>
-  <% else %>
-    <h4><%= @conversation.sender.nickname  %></h4>
-  <% end %>
 <div id="messages" data-conversation-id="<%= @conversation.id %>">
   <% @conversation.messages.each do |message| %>
     <%= render "messages/message", message: message %>
   <% end %>
 </div>
 
-<%= simple_form_for [ @conversation, @message ], remote: true do |f| %>
-  <%= f.input :content, label: false, placeholder: "Message" %>
-<% end %>
+<span id="send">
+  <%= simple_form_for [ @conversation, @message ], remote: true do |f| %>
+    <%= f.input :content, label: false, placeholder: "Message" %>
+  <% end %>
+</span>

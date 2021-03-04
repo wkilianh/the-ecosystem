@@ -4,6 +4,8 @@ class ConversationsController < ApplicationController
 
   def index
     @conversations = policy_scope(Conversation)
+    @message = Message.new
+    # authorize @message
   end
 
   def show
