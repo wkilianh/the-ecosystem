@@ -29,9 +29,21 @@
       <%= @post.rich_body %>
     <% end %>
   </div>
+  
+  <br><br>
 
+  <div id="comments">
 
+    <div><h4>Comments</h4></div>
 
+    <%= simple_form_for [@post, @comment] do |f| %>
+      <%= f.input :content, label: false %>
+      <%= f.submit "Leave a comment",class: "btn btn-panel" %>
+    <% end %>
 
+    <% @post.comments.each do |comment|%>
+      <%= render "comment", comment: comment %>
+    <% end %>
+  </div>
 
 </div>
