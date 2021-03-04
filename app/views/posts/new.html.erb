@@ -3,6 +3,7 @@
   <%= simple_form_for @post do |f| %>
     <div class="field">
       <%= f.input :title %>
+      <%= f.input :photos, as: :file %>
       <%= f.input :rich_body, as: :rich_text_area %>
       <%= f.submit %>
     </div>
