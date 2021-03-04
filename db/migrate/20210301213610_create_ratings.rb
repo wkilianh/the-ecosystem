@@ -9,7 +9,7 @@ class CreateRatings < ActiveRecord::Migration[6.0]
       t.float :rating_resources
       t.float :rating_diyeffort
       t.float :rating_ecocost
-      timestamps
+      t.timestamps
     end
   end
 end
