@@ -10,7 +10,7 @@
         <ul class="list-unstyled components">
             <% @conversations.each do |conversation| %>
               <% if conversation.sender == current_user %>
-                    <li data-action="click->conversation#refresh" data-id="<%= conversation.id %>" >
+                    <li data-action="click->conversation#refresh" data-id="<%= conversation.id %>"  >
                         <%= link_to conversation.receiver.nickname, conversation_path(conversation), remote: true%>
                     </li>
               <% else %>
@@ -40,3 +40,20 @@
     </div>
   </div>
 </div>
+
+<script>
+  function clearText() {
+    var sentMsg = document.querySelector('.form-control')
+    if (sentMsg){
+      sentMsg.addEventListener('keyup', function (e) {
+        if (e.key === 'Enter') {
+          sentMsg.value = ""
+        }
+      });
+    }
+  }
+  
+  document.addEventListener('change', (event) => {
+  clearText()
+});
+</script>
