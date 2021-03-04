@@ -11,6 +11,7 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       t.string :expect_resources
       t.string :expect_diyeffort
       t.string :expect_ecocost
+      timestamps
     end
   end
 end
