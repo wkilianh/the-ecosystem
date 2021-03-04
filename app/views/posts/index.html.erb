@@ -1,12 +1,29 @@
-<h1>Posts#index</h1>
-<% @posts.each do |post| %>
-  <div class="container w-50" style="background-color: white">
-    <%= link_to "VIEW POST", post_path(post) %><br>
-    <%= link_to "DELETE POST", post_path(post), method: :delete %><br>
-    <%= link_to "EDIT POST", edit_post_path(post) %>
-    <h1><%= post.title %></h1>
-    <p>
-      <%= post.rich_body %>
-    </p>
-  </div>
-<% end %>
+<div class="container">
+  <% @posts.each do |post| %>
+
+    <div class="row w-100 post-view">
+      <div class="col-8 post-resume">
+        <div class="post-text">
+          <h1><%= post.title %></h1>
+          <p>
+            <%= truncate(post.rich_body.to_plain_text.squish, length: 300)  %>
+          </p>
+          <div class="btn-panel-container">
+              <%= link_to "VIEW POST", post_path(post), class:"btn btn-panel"%><br>
+              <%= link_to "DELETE POST", post_path(post), method: :delete, class:"btn btn-panel" %><br>
+              <%= link_to "EDIT POST", edit_post_path(post), class:"btn btn-panel" %>
+          </div>
+        </div>
+
+      </div>
+
+
+          <div class="col-4 post-img" style="background-image: url(<%= cl_image_path post.photos.last.key if post.photos.attached? %>);">
+
+
+      </div>
+
+    </div>
+
+ <% end %>
+</div>
