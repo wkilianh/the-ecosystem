@@ -1,0 +1,6 @@
+
+<div id="messages" data-conversation-id="<%= conversation.id %>">
+  <% conversation.messages.each do |message| %>
+    <%= render "messages/message", message: message %>
+  <% end %>
+</div>

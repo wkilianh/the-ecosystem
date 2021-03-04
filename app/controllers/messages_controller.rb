@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
         @conversation,
         render_to_string(partial: "message", locals: { message: @message })
       )
-      redirect_to conversation_path(@conversation, anchor: "message-#{@message.id}")
+      # redirect_to conversations_path( anchor: "message-#{@message.id}")
     else
       render "conversations/"
     end

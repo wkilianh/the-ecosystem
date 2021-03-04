@@ -1,0 +1,5 @@
+<span id="send">
+  <%= simple_form_for [ conversation, message ], remote: true do |f| %>
+    <%= f.input :content, label: false, placeholder: "Message" %>
+  <% end %>
+</span>
