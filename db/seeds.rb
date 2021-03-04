@@ -36,7 +36,7 @@ def add_posts # creates 6 posts
                     expect_diyeffort: ["modest", "moderate", "good", "strong"].sample,
                     expect_ecocost: ["modest", "moderate", "good", "strong"].sample)
     post.photos.attach(io: File.open("db/seed_post-images/post#{x}.jpg"), filename: "#{x}.jpg", content_type: 'image/png')
-    post.photos.attach(io: File.open("db/seed_post-images/post#{x}a.jpg"), filename: "#{x}a.jpg", content_type: 'image/png')
+    # post.photos.attach(io: File.open("db/seed_post-images/post#{x}a.jpg"), filename: "#{x}a.jpg", content_type: 'image/png')
     post.save!
     puts "created post #{x}"
   end

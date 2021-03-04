@@ -6,16 +6,30 @@
   border-radius: 12px;
   h1  {
   font-size: 30px;
+  img {
+    border: 4px solid yellow;
+  }
   }
 }
 
 
-.post-headline {
+#post-headline {
   width: 100%;
   display: inline-flex;
   justify-content: space-between;
   p {
     display: inline;
+  }
+}
+
+#post-subline {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  p {
+    font-size: 20px;
+    margin-bottom: 0px;
   }
 }
 

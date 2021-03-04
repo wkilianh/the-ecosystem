@@ -1,21 +1,31 @@
 <div class="container w-50">
   <div class="post-box">
 
-    <div class="post-headline">
+    <div id="post-headline">
       <span id="post-title"><h1><%#= @post.title %>ddddddddddddddd ddddddddddddd dddddddddddddd ddddddd</h1></span>
-      <span id="stars">*****
+
+
+
+
+
+
+
+
+      <span id="stars"><%= render "stars", post: post %>
         <span id="views">(2453)</span>
       </span>
+
+
     </div><br>
 
     <% if @post.photos.attached? %>
-      <%= cl_image_tag @post.photos.last.key, height: 200, width: 300, crop: :fill %><br>
+      <%= cl_image_tag @post.photos.last.key, height: 300, width: 450, crop: :fill %><br>
     <% end %>
 
     <% if @post.user == current_user %>
-      <div class="post-headline">
-        <%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel", style: "margin-top: 25px"%>
-        <p>You last updated this post at the <%#= @post.created_at.strftime("%a %b %e at %l:%M%p") %></p>
+      <div id="post-subline">
+        <span><%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel" %></span>
+        <p>You last updated this post at <%= @post.created_at.strftime("%a, %b %e at %l:%M%p") %></p>
       </div>
 
     <% end %>

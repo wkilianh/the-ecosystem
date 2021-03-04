@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 2021_03_02_201508) do
     t.bigint "post_id", null: false
     t.bigint "user_id", null: false
     t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -84,6 +86,8 @@ ActiveRecord::Schema.define(version: 2021_03_02_201508) do
     t.string "expect_resources"
     t.string "expect_diyeffort"
     t.string "expect_ecocost"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -96,6 +100,8 @@ ActiveRecord::Schema.define(version: 2021_03_02_201508) do
     t.float "rating_resources"
     t.float "rating_diyeffort"
     t.float "rating_ecocost"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_ratings_on_post_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
@@ -104,6 +110,8 @@ ActiveRecord::Schema.define(version: 2021_03_02_201508) do
     t.bigint "comment_id", null: false
     t.bigint "user_id", null: false
     t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["comment_id"], name: "index_replies_on_comment_id"
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
