@@ -7,30 +7,29 @@
         <span id="views">(2453)</span>
       </span>
     </div><br>
-    
-  <div class="post-core">
-    <% if @post.photos.attached? %>
-      <%= cl_image_tag @post.photos.last.key, height: 300, width: 400, crop: :fill %><br>
-    <% end %>
-    <div class="list-head">
-      <span><strong>Hack Expectations:</strong></span>
-      <div><br></div>
-      <div class="expectations"><span>CO2 Savings: </span><span><em><%= @post.expect_co2 %></em></span></div>
-      <div class="expectations"><span>Waste Reduction: </span><span><em><%= @post.expect_waste %></em></span></div>
-      <div class="expectations"><span>Resource Savings: </span><span><em><%= @post.expect_resources %></em></span></div>
-      <div class="expectations"><span>DIY Effort: </span><span><em><%= @post.expect_diyeffort %></em></span></div>
-      <div class="expectations"><span>Backfire Cost: </span><span><em><%= @post.expect_ecocost %></em></span></div>
-    </div>
-    <div class="single-ratings">
-      <div><strong>Goals Met?</strong></div><br>
-      <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first.co2 %></div>
-      <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first.waste %></div>
-      <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first.resources %></div>
-      <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first.diyeffort %></div>
-      <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first.ecocost %></div>
 
-    </div></span>
-  </div>
+    <div class="post-core">
+      <% if @post.photos.attached? %>
+        <%= cl_image_tag @post.photos.last.key, height: 300, width: 400, crop: :fill %><br>
+      <% end %>
+      <div class="list-head">
+        <span><strong>Hack Expectations:</strong></span>
+        <div><br></div>
+        <div class="expectations"><span>CO2 Savings: </span><span><em><%= @post.expect_co2 %></em></span></div>
+        <div class="expectations"><span>Waste Reduction: </span><span><em><%= @post.expect_waste %></em></span></div>
+        <div class="expectations"><span>Resource Savings: </span><span><em><%= @post.expect_resources %></em></span></div>
+        <div class="expectations"><span>DIY Effort: </span><span><em><%= @post.expect_diyeffort %></em></span></div>
+        <div class="expectations"><span>Backfire Cost: </span><span><em><%= @post.expect_ecocost %></em></span></div>
+      </div>
+      <div class="single-ratings">
+        <div><strong>Goals Met?</strong></div><br>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first.co2 %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first.waste %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first.resources %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first.diyeffort %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first.ecocost %></div>
+      </div>
+    </div>
 
     <% if @post.user == current_user %>
       <div id="post-subline">
@@ -38,6 +37,7 @@
         <p>You last updated this post at <%= @post.updated_at.strftime("%a, %b %e at %l:%M%p") %></p>
       </div>
     <% elsif current_user != nil && current_user.ratings.where(post_id: @post).exists? %>
+
         <div id="post-subline">
             <span><strong>You already rated this post at </strong><%= current_user.ratings.where(post_id: @post)[0].updated_at.strftime("%a, %b %e, %l:%M%p") %></span>
             <span>
@@ -52,9 +52,9 @@
               <p>Post created at <%= @post.updated_at.strftime("%a, %b %e, %l:%M%p") %> by </p><strong></strong><a href="<%= profile_path(@post.user) %>"> <%= @post.user.nickname %> <img src="<%= cl_image_path @post.user.prof_pic.key %>" class="avatar-post"/></a> <%= link_to "message", conversations_path(post_id: @post.id), method: :post %>
             </span>
         </div>
+
     <% end %>
   </div>
-
 </div>
 
 <div class="container w-50">

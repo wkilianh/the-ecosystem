@@ -3,12 +3,7 @@
   background: #0E623C;
   display: flex;
 
-.dropdown-menu {
-  background-color: rgba(211, 197, 130, 0.64) !important;
-}
-.dropdown-item {
-      color: #f8f9fa !important;
-}
+
 
   h4 {
     color: $yell;
@@ -65,6 +60,13 @@
 
 }
 
+.nav-link {
+
+    color: #ACF789 !important;
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
 .nav-search {
     background-color: #649D66;
     display: block;
