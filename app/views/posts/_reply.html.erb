@@ -1,0 +1,9 @@
+<div style="display: flex;">
+<div style="width: 50px;"></div>
+  <div class="comment reply">
+    <a href="<%= profile_path(reply.user) %>"><img src="<%= cl_image_path reply.user.prof_pic.key, height: 300 %>" class="avatar" /></a>
+    <div class="comment-content">
+      <p><%= reply.content %></p>
+    </div>
+  </div>
+</div>
