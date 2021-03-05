@@ -12,10 +12,14 @@
               <% if conversation.sender == current_user %>
                     <li data-action="click->conversation#refresh" data-id="<%= conversation.id %>"  >
                         <%= link_to conversation.receiver.nickname, conversation_path(conversation), remote: true%>
+                        <%# ################# for unseen notifications ################# %>
+                        <%# receiver_unseen_msgs = conversation.messages.where(user: conversation.receiver, seen: false).count %>
                     </li>
               <% else %>
                 <li data-action="click->conversation#refresh" data-id="<%= conversation.id %>">
                     <%= link_to conversation.sender.nickname, conversation_path(conversation), remote: true %>
+                    <%# ################# for unseen notifications ################# %>
+                    <%# sender_unseen_msgs = conversation.messages.where(user: conversation.sender, seen: false).count %>
                 </li>
               <% end %>
             <% end %>
@@ -27,13 +31,9 @@
     <div class="chat">
       <% if @conversations.count > 0 %>
 
-          <div class="conversation" data-conversation-target="conversationcon">
-            
-          </div>
+          <div class="conversation" data-conversation-target="conversationcon"></div>
+          <span class="sendfield" id="chat-text" style="width: 800px;" data-conversation-target="sendcon"></span>
 
-          <span class="sendfield" id="chat-text" style="width: 800px;" data-conversation-target="sendcon">
-           
-          </span>
       <% else %>
         <div><h4>You dont have any conversations yet.</h4></div>
       <% end %>
