@@ -1,6 +1,4 @@
 <div class="banner">
-
-
     <div class="search-input-group">
       <div class="search-input">
         <form class="">
@@ -32,9 +30,40 @@
         <li class="filter-btn"> <%= link_to "Info" %> </li>
       </ul>
     </div>
-
 </div>
+  <div class="container">
+    <% @posts.each do |post| %>
+      <div class="w-100 post-view">
+        <div class="col-8 post-resume">
+
+          <div class="post-content">
+            <div class="user-data">
+              <%= cl_image_tag post.user.prof_pic.key, class:"avatar-bordered" %>
+              <p>Posted by <%= post.user.nickname %> </p>
+              <ul class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </ul>
+            </div>
+            <div class="container post-text">
+            <h3>"<%= post.title %>"</h3>
+            <p>
+              <%= truncate(post.rich_body.to_plain_text.squish, length: 250)  %>
+            </p>
+            </div>
+            <div class="btn-panel-container">
+                <%= link_to "View", post_path(post), class:"btn-panel"%>
+            </div>
+          </div>
+        </div>
+          <div class="post-img col-4 post-img" style="background-image: url(<%= cl_image_path post.photos.last.key if post.photos.attached? %>);"></div>
+      </div>
+   <% end %>
+  </div>
 
 
 
-</div>
+
