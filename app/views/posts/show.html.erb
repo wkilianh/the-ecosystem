@@ -37,11 +37,19 @@
         <span><%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel" %></span>
         <p>You last updated this post at <%= @post.updated_at.strftime("%a, %b %e at %l:%M%p") %></p>
       </div>
-    <% elsif current_user.ratings.where(post_id: @post).exists? %>
+    <% elsif current_user != nil && current_user.ratings.where(post_id: @post).exists? %>
         <div id="post-subline">
             <span><strong>You already rated this post at </strong><%= current_user.ratings.where(post_id: @post)[0].updated_at.strftime("%a, %b %e, %l:%M%p") %></span>
             <span>
-              <p>Post created at <%= @post.updated_at.strftime("%a, %b %e, %l:%M%p") %> by </p><strong></strong><a href="<%= profile_path(@post.user) %>"><%= @post.user.nickname %><img src="<%= cl_image_path @post.user.prof_pic.key %>" class="avatar-post"/></a>
+              <p>Post created at <%= @post.updated_at.strftime("%a, %b %e, %l:%M%p") %> by </p><strong></strong><a href="<%= profile_path(@post.user) %>"><%= @post.user.nickname %><img src="<%= cl_image_path @post.user.prof_pic.key %>" class="avatar-post"/></a><%= link_to "message", conversations_path(post_id: @post.id), method: :post %>
+            </span>
+        </div>
+      <% else %>
+        <div id="post-subline">
+        <span><%= link_to "RATE POST", edit_post_path(@post), class: "btn btn-panel" %></span>
+            <span>
+              <%# <% @conversation.receiver = @post.user %> %>
+              <p>Post created at <%= @post.updated_at.strftime("%a, %b %e, %l:%M%p") %> by </p><strong></strong><a href="<%= profile_path(@post.user) %>"> <%= @post.user.nickname %> <img src="<%= cl_image_path @post.user.prof_pic.key %>" class="avatar-post"/></a> <%= link_to "message", conversations_path(post_id: @post.id), method: :post %>
             </span>
         </div>
     <% end %>

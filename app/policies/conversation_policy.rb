@@ -5,8 +5,13 @@ class ConversationPolicy < ApplicationPolicy
     end
   end
 
+
   def show?
     record.sender == user || record.receiver == user
+  end
+
+  def create?
+    true
   end
 
 end
