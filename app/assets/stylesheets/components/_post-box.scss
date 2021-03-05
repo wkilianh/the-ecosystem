@@ -4,6 +4,7 @@
   margin-bottom: 50px;
   margin-top: 50px;
   border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   h1  {
   font-size: 30px;
   img {
@@ -30,20 +31,62 @@
   p {
     font-size: 20px;
     margin-bottom: 0px;
+    display: inline;
+  }
+  a {
+    font-size: 20px;
   }
 }
+
+.post-core {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  p {
+    display: inline;
+  }
+}
+
+.expectations {
+  list-style: none;
+  font-size: 1em;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.single-ratings {
+  font-size: 1.2em;
+  list-style: none;
+  margin-left: 25px;
+}
+
+.list-head {
+  font-size: 1.2em;
+  margin-left: 20px;
+}
+
 
 #post-title {
   text-align: left;
   max-width: 70%;
+  margin-bottom: 25px;
 
+}
+
+.list-right {
+  text-align: right;
 }
 
 #stars {
   text-align: right;
   font-size: 30px;
   color: $yellow;
+}
 
+.single-stars {
+  color: $yellow;
+  font-size: 1.13em;
 }
 
 #post-image {
@@ -53,4 +96,17 @@
 #views {
   font-size: 22px;
   color: $black;
+}
+
+.star-grey {
+  color: grey;
+  font-size: 20px;
+}
+
+.star-green {
+  font-size: 20px;
+}
+
+.rating-post {
+  display: inline;
 }

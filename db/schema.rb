@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2021_03_02_201508) do
     t.string "expect_resources"
     t.string "expect_diyeffort"
     t.string "expect_ecocost"
+    t.float "rating_avg"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -94,12 +95,12 @@ ActiveRecord::Schema.define(version: 2021_03_02_201508) do
   create_table "ratings", force: :cascade do |t|
     t.bigint "post_id", null: false
     t.bigint "user_id", null: false
-    t.float "rating_avg"
-    t.float "rating_co2"
-    t.float "rating_waste"
-    t.float "rating_resources"
-    t.float "rating_diyeffort"
-    t.float "rating_ecocost"
+    t.float "avg"
+    t.float "co2"
+    t.float "waste"
+    t.float "resources"
+    t.float "diyeffort"
+    t.float "ecocost"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_ratings_on_post_id"

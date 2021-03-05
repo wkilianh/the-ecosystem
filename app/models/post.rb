@@ -12,6 +12,6 @@ class Post < ApplicationRecord
   # validates :category, inclusion: { in: ["hack", "don't", "project"] }
   # validates :expect_co2, :expect_waste, :expect_resources,
   #           :expect_diyeffort, :expect_ecocost, presence: true,
-  #           inclusion: { in: ["modest", "moderate", "good", "strong"] }
+  #           inclusion: { in: ["low", "moderate", "medium", "high", "very high"] }
 
 end

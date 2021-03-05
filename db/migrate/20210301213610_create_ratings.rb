@@ -3,12 +3,12 @@ class CreateRatings < ActiveRecord::Migration[6.0]
     create_table :ratings do |t|
       t.references :post, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
-      t.float :rating_avg
-      t.float :rating_co2
-      t.float :rating_waste
-      t.float :rating_resources
-      t.float :rating_diyeffort
-      t.float :rating_ecocost
+      t.float :avg
+      t.float :co2
+      t.float :waste
+      t.float :resources
+      t.float :diyeffort
+      t.float :ecocost
       t.timestamps
     end
   end
