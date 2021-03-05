@@ -1,10 +1,11 @@
 .post-view {
-  position: relative;
-  border: 1px solid grey;
-  border-radius: 3px;
-  box-shadow: 1px 1px 1px ;
-  height: 200px;
-  margin-top: 30px;
+      display: flex;
+    position: relative;
+    /* border: 1px solid grey; */
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.4);
+    height: 200px;
+    margin-top: 30px;
 }
 
 .post-resume {
@@ -12,7 +13,7 @@
 }
 
 
-.post-text{
+.post-content{
   position: relative;
   background-color: #feeb8a;
   height: 100%;
@@ -20,13 +21,17 @@
 }
 
 .user-data {
-  margin-top: 3px;
-  margin-left: 3px;
+
   display: flex;
 
   p {
     margin-top: 5px;
     margin-left: 15px;
+  }
+
+  img {
+    margin-top: 3px;
+    margin-left: 3px;
   }
 
 }
@@ -38,6 +43,9 @@
   color: $dark-green;
 }
 
+// .post-text {
+
+// }
 
 .post-img {
   box-shadow: inset 0 0 10px #000000;
@@ -52,7 +60,8 @@
 }
 
 .btn-panel {
-
+  padding: 0.050rem 0.9rem;
+  font-size: 0.8rem;
   background: #83A96B;
   color: white;
   border: 1px solid white;

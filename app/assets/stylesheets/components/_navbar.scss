@@ -1,12 +1,20 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: #0E623C;
+  display: flex;
 
+.dropdown-menu {
+  background-color: rgba(211, 197, 130, 0.64) !important;
+}
+.dropdown-item {
+      color: #f8f9fa !important;
+}
 
   h4 {
     color: $yell;
     // align-items: flex-end;
     font-family: 'Abel', sans-serif !important;
+
   }
 
 
@@ -14,6 +22,7 @@
 
 .middle-links {
   flex-grow: 0.5;
+
   ul {
     list-style-type: none;
     margin: 0;

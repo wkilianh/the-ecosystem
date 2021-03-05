@@ -1,7 +1,9 @@
 .avatar {
   width: 40px;
+  height: 40px;
   border-radius: 25%;
   border: 2px solid $yell;
+  object-fit: cover;
 }
 .avatar-large {
   width: 56px;
@@ -10,9 +12,9 @@
 .avatar-bordered {
   width: 30px;
   height: 30px;
-  border-radius: 50%;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  border: $yell 1px solid;
+  border-radius: 25%;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.4);
+  border: $yell 2px solid;
   object-fit: cover;
 
 }
