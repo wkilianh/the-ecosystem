@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
+  resources :replies, only: [:create]
+
   # not working: have a root user path, as the user has to be read from params
   # as :user do
   #   get 'profiles/:id', :to => 'profiles#show', :as => :user_root # Rails 3
