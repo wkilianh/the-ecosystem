@@ -1,41 +1,66 @@
-
-<div class="container w-50">
+<div class="container">
   <div class="post-box">
-
 
     <div id="post-headline">
       <span id="post-title"><h1><%= @post.title %></h1></span>
-
-      <span id="stars"><%= render "/shared/stars", post: @post %>
-
+      <span id="stars"><%= render "/shared/stars", rating: @post.ratings.first.avg %>
         <span id="views">(2453)</span>
       </span>
-
-
     </div><br>
-
+    
+  <div class="post-core">
     <% if @post.photos.attached? %>
-      <%= cl_image_tag @post.photos.last.key, height: 300, width: 450, crop: :fill %><br>
+      <%= cl_image_tag @post.photos.last.key, height: 300, width: 400, crop: :fill %><br>
     <% end %>
+    <div class="list-head">
+      <span><strong>Hack Expectations:</strong></span>
+      <div><br></div>
+      <div class="expectations"><span>CO2 Savings: </span><span><em><%= @post.expect_co2 %></em></span></div>
+      <div class="expectations"><span>Waste Reduction: </span><span><em><%= @post.expect_waste %></em></span></div>
+      <div class="expectations"><span>Resource Savings: </span><span><em><%= @post.expect_resources %></em></span></div>
+      <div class="expectations"><span>DIY Effort: </span><span><em><%= @post.expect_diyeffort %></em></span></div>
+      <div class="expectations"><span>Backfire Cost: </span><span><em><%= @post.expect_ecocost %></em></span></div>
+    </div>
+    <div class="single-ratings">
+      <div><strong>Goals Met?</strong></div><br>
+      <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first.co2 %></div>
+      <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first.waste %></div>
+      <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first.resources %></div>
+      <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first.diyeffort %></div>
+      <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first.ecocost %></div>
+
+    </div></span>
+  </div>
 
     <% if @post.user == current_user %>
       <div id="post-subline">
         <span><%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel" %></span>
-        <p>You last updated this post at <%= @post.created_at.strftime("%a, %b %e at %l:%M%p") %></p>
+        <p>You last updated this post at <%= @post.updated_at.strftime("%a, %b %e at %l:%M%p") %></p>
       </div>
-
+    <% elsif current_user.ratings.where(post_id: @post).exists? %>
+        <div id="post-subline">
+            <span><strong>You already rated this post at </strong><%= current_user.ratings.where(post_id: @post)[0].updated_at.strftime("%a, %b %e, %l:%M%p") %></span>
+            <span>
+              <p>Post created at <%= @post.updated_at.strftime("%a, %b %e, %l:%M%p") %> by </p><strong></strong><a href="<%= profile_path(@post.user) %>"><%= @post.user.nickname %><img src="<%= cl_image_path @post.user.prof_pic.key %>" class="avatar-post"/></a>
+            </span>
+        </div>
     <% end %>
   </div>
 
 </div>
 
 <div class="container w-50">
-  <div>
-    <%= render layout: "layouts/action_text/contents/content" do %>
-      <%= @post.rich_body %>
-    <% end %>
+  <div class="post-box">
+    <div>
+      <%= render layout: "layouts/action_text/contents/content" do %>
+        <%= @post.rich_body %>
+      <% end %>
+    </div>
   </div>
-  
+</div>
+
+<div class="container w-50">
+
   <br><br>
 
   <div id="comments">

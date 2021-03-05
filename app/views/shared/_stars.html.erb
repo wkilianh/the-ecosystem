@@ -1,3 +1,15 @@
 
+<% green = rating.round %>
+<% grey = 5 - green %>
+<span class="rating-post">
+  <% green.times do |x| %>
+    <i class="fas fa-star star-green"></i>
+  <% end %>
+  <% grey.times do |x| %>
+    <i class="fas fa-star star-grey"></i>
+  <% end %>
+</span>
 
-<% post.ratings %>
+
+
+
