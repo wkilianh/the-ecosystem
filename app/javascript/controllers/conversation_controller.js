@@ -5,7 +5,7 @@ import { Controller } from "stimulus";
 export default class extends Controller {
   static targets = [ 'conversationcon', 'sendcon'];
   refresh(event) { 
-
+    // initConversationCable();
     fetch("/conversations/"+event.currentTarget.dataset.id).then(function (response) {
     	// The call was successful!
     	return response.text();
