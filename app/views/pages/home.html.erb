@@ -28,7 +28,11 @@
           </div>
         </div>
       </div>
-        <div class="post-img col-4 post-img" style="background-image: url(<%= cl_image_path post.photos.last.key if post.photos.attached? %>);"></div>
+        <% if post.photos.attached? %>
+        <div class="post-img col-4 post-img" style="background-image: url(<%= cl_image_path post.photos.last.key %>);"></div>
+        <% else %>
+        <div class="post-img col-4 post-img" style="background-image: url(https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614952509/placeholder_avatar/pexels-pixabay-56875_cdviyq.jpg);"></div>
+        <% end %>
     </div>
  <% end %>
 </div>
