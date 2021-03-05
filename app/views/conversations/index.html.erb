@@ -31,8 +31,22 @@
     <div class="chat">
       <% if @conversations.count > 0 %>
 
-          <div class="conversation" data-conversation-target="conversationcon"></div>
-          <span class="sendfield" id="chat-text" style="width: 800px;" data-conversation-target="sendcon"></span>
+          <div class="conversation" data-conversation-target="conversationcon">
+            <div id="messages" data-conversation-id="<%= @conversations.last.id %>">
+                <div class="message-container" id="message-0"></div>
+                <% @conversations.last.messages.each do |message| %>
+                  <%= render "messages/message", message: message %>
+                <% end %>
+            </div>
+          </div>
+
+          <span class="sendfield" id="chat-text" style="width: 800px;" data-conversation-target="sendcon">
+            <span id="send">
+              <%= simple_form_for [ @conversations.last, @message ] , html: { autocomplete: 'off' } do |f| %>
+                <%= f.input :content, label: false, placeholder: "Message", remote: true %>
+              <% end %>
+            </span>
+          </span>
 
       <% else %>
         <div><h4>You dont have any conversations yet.</h4></div>
