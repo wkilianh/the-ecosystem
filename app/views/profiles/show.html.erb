@@ -1,14 +1,24 @@
-<h1>Profile Page</h1>
-<h1><%= @user.slogan %></h1>
-<% if @user.prof_pic.attached? %>
-  <%= cl_image_tag @user.prof_pic.key, height: 300 %><br>
-<% else %>
-  <%= image_tag "https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614812119/placeholder_avatar/1200px-Avatar_icon_green.svg_tire2w.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-<% end %>
-  <%= @user.rich_body %>
-<% if current_user == @user %>
-  <p>
-    <%= link_to "Edit profile", edit_profile_path %>
-  </p>
-<% end %>
+<div class="container w-70">
+  <div class="profile-box">
+    <h1>Your Profile</h1>
+    <h1><%= @user.slogan %></h1>
+    <% if @user.prof_pic.attached? %>
+      <%= cl_image_tag @user.prof_pic.key, height: 300 %><br>
+    <% else %>
+      <%= image_tag "https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614812119/placeholder_avatar/1200px-Avatar_icon_green.svg_tire2w.png", style: "height: 300px" %>
+    <% end %>
+
+    <% if  @user.rich_body.to_s == "" %>
+      <h1>Why don't you put a text about yourself here? Go EDIT!</h1>
+    <% else %>
+      <%= @user.rich_body %>
+    <% end %>
+
+    <% if current_user == @user %>
+      <p>
+        <%= link_to "Edit profile", edit_profile_path %>
+      </p>
+    <% end %>
+  </div>
+</div>
 

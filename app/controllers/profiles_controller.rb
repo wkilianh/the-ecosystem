@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
     # @user
     @user = User.find(params[:id])
     authorize @user
-    # authorize @profile, policy_class: ProfilePolicy
+    # authorize @profile, policy_class: ProfilePolicy # advanced authorization calling
     # authorize current_user, @user, :show?, policy_class: UserPolicy
   end
 
