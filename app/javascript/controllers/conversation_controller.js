@@ -21,9 +21,13 @@ export default class extends Controller {
       doc.querySelectorAll(".message-container").forEach(elm =>{
         if (elm.children[0] !== undefined){
           if(elm.children[0].children[0].children[0].innerHTML !== nickname){
+            elm.children[0].setAttribute("style","float:left")
             elm.children[0].style.float = "left"
+          } else {
+            elm.children[0].setAttribute("style","float:right;")
+            elm.children[0].style.float = "right"
           }
-        } 
+        }
       })
 
       return [messagesContainer, messagesSend]

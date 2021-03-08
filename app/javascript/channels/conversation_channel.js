@@ -10,9 +10,11 @@ const initConversationCable = () => {
     consumer.subscriptions.create({ channel: "ConversationChannel", id: id }, {
       received(data) {
         data = stringToHTML(data)
-        
+        // console.log()
         if (data.children[0].children[0].children[0].children[0].innerHTML !== nickname.innerText){
           data.children[0].children[0].setAttribute("style","float:left")
+        }else{
+          data.children[0].children[0].setAttribute("style","float:right")
         }
         messagesContainer.insertAdjacentHTML('beforeend', data.innerHTML);
         messagesContainer.lastElementChild.scrollIntoView()
