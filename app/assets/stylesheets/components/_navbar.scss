@@ -1,12 +1,14 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: #0E623C;
+  background: #83a96a;
+  // background: #0E623C;
   display: flex;
 
 
 
   h4 {
-    color: $yell;
+    color: $white;
+    // color: $yell;
     // align-items: flex-end;
     font-family: 'Abel', sans-serif !important;
 
@@ -30,7 +32,8 @@
     }
 
     a {
-      color: #ACF789;
+      color: $white;
+      // color: #ACF789;
       margin-left: 10px;
       margin-bottom: 3px;
       font-family: 'Abel', sans-serif;
@@ -60,8 +63,8 @@
 }
 
 .nav-link {
-
-    color: #ACF789 !important;
+    color: $white !important;
+    // color: #ACF789 !important;
     margin-left: 5px;
     margin-right: 5px;
 }
