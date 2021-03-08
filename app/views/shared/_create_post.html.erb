@@ -1,0 +1,27 @@
+<div class="post-box">
+  <%= simple_form_for @post do |f| %>
+    <div class="field">
+      <h3><%= "Title" %></h3>
+      <%= f.input :title, label: false %>
+
+      <h3><%= "Category" %></h3>
+      <%= f.input :category, collection: ["hack", "don't", "project"], label: false %>
+
+      <% if @post.photos.attached? %>
+        <h3><%= "Preview Picture" %></h3>
+        <%= cl_image_tag @post.photos.last.key, height: 200 %><br>
+      <% end %>
+
+      <h3><%= "Expectations of Your Post:" %></h3>
+      <%= f.input :expect_co2, collection: ['low', 'moderate', 'medium', 'high', 'very high'], label: "How high will be your Co2 savings?" %>
+      <%= f.input :expect_waste, collection: ['low', 'moderate', 'medium', 'high', 'very high'], label: "Your savings on waste?" %>
+      <%= f.input :expect_resources, collection: ['low', 'moderate', 'medium', 'high', 'very high'], label: "Your savings on resources?" %>
+      <%= f.input :expect_diyeffort, collection: ['low', 'moderate', 'medium', 'high', 'very high'], label: "How high do you estimate the effort to realise these goals? ('DIY effort')" %>
+      <%= f.input :expect_ecocost, collection: ['low', 'moderate', 'medium', 'high', 'very high'], label: "How high do you estimate counter effects (for ex. you might need resources to clean reusable packaging)?" %>
+      <%= f.input :photos, as: :file, label: false %>
+      <h3><%= "Post Text" %></h3>
+      <%= f.input :rich_body, as: :rich_text_area, label: false %>
+      <%= f.button :submit, "Send!", class: 'btn btn-large' %>
+    </div>
+  <% end %>
+</div>

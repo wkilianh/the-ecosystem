@@ -2,22 +2,7 @@
   <div class="post-box">
     <h1><strong>Edit your Post</h1></strong>
   </div>
-  <div class="post-box">
-    <%= simple_form_for @post do |f| %>
-      <div class="field">
-        <h3><%= "Title" %></h3>
-        <%= f.input :title, label: false %>
 
-          <% if @post.photos.attached? %>
-            <h3><%= "Preview Picture" %></h3>
-            <%= cl_image_tag @post.photos.last.key, height: 200 %><br>
-          <% end %>
+  <%= render "/shared/create_post" %>
 
-        <%= f.input :photos, as: :file, label: false %>
-        <h3><%= "Post Text" %></h3>
-        <%= f.input :rich_body, as: :rich_text_area, label: false %>
-        <%= f.button :submit, "Update Post", class: 'btn btn-panel' %>
-      </div>
-    <% end %>
-  </div>
 </div>

@@ -2,17 +2,7 @@
   <div class="post-box">
     <h1><strong>Write your Post</h1></strong>
   </div>
-  <div class="post-box">
-    <%= simple_form_for @post do |f| %>
-      <div class="field">
-        <h3><%= "Title" %></h3>
-        <%= f.input :title, label: false %>
-        <h3><%= "Preview Picture" %></h3>
-        <%= f.input :photos, as: :file, label: false %>
-        <h3><%= "Post Text" %></h3>
-        <%= f.input :rich_body, as: :rich_text_area, label: false %>
-        <%= f.button :submit, "Create Post", class: 'btn btn-panel' %>
-      </div>
-    <% end %>
-  </div>
+
+  <%= render "/shared/create_post" %>
+
 </div>

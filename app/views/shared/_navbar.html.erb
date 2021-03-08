@@ -28,7 +28,7 @@
         </li>
         <li class="nav-item dropdown">
           <% if current_user.prof_pic.attached? %>
-            <div style="position:relative"> 
+            <div style="position:relative">
             <div class="nav-badge badge">
               <%#=current_user.conversations_as_sender.count + current_user.conversations_as_receiver.count if user_signed_in? %>
             </div></div><%= cl_image_tag current_user.prof_pic.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
