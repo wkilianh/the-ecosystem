@@ -7,6 +7,15 @@ class Post < ApplicationRecord
   has_many_attached :photos
   has_rich_text :rich_body
 
+  validates :category, inclusion: { in: %w[hack don't projects] }
+
+  include PgSearch::Model
+  pg_search_scope :search,
+    against: [ :title, :topic, :category ],
+    using: {
+    tsearch: { prefix: true }
+    }
+
   # just for testing disabled everything TODO: uncomment if forms are there
   # validates :title, :topic, :category, presence: true
   validates :category, presence: true, inclusion: { in: ["hack", "don't", "project"] }

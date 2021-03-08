@@ -5,17 +5,16 @@
   </div>
   <div class="middle-links">
     <ul>
-      <li> <%= link_to "Hacks", search_path %> </li>
-      <li> <%= link_to "Don't", search_path %> </li>
-      <li> <%= link_to "Explore", search_path %> </li>
+      <li> <%= link_to "Best Rated", search_path %> </li>
+      <li> <%= link_to "Recommended", search_path %> </li>
       <li> <%= link_to "Info" %> </li>
     </ul>
   </div>
   <div class="search-log">
-    <form>
-      <input class="nav-search " type="search" placeholder="Search" aria-label="Search">
-    </form>
 
+    <%= form_tag posts_path, method: :get do %>
+      <%= text_field_tag :query, params[:query], class: "form-control nav-search", placeholder: "Find your solution!" %>
+    <% end %>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">

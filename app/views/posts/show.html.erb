@@ -139,6 +139,7 @@
     <% @post.comments.each do |comment|%>
       <%= render "comment", comment: comment %>
 
+
       <div style="display: none" id=<%= "comment#{comment.id}" %>>
         <%= simple_form_for @reply do |f| %>
           <%= f.input :content, label: false %>
@@ -149,6 +150,7 @@
           <%= f.submit "reply",class: "btn btn-panel" %>
         <% end %>
       </div>
+
 
       <% comment.replies.each do |reply| %>
       <% if user_signed_in? %>

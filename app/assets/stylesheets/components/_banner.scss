@@ -25,23 +25,11 @@
     font-family: 'Abel', sans-serif;
   }
 
-.search-input-group {
-    width: 600px;
-    border: 1px white solid;
-    border-radius: 5px;
-    background-color: #649d66;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
+
 .dropdownMenuButton {
   color: $light-green !important;
 }
-.search-input {
-  display: flex;
-  flex-grow: 1;
-}
+
 
 .filters {
   position: absolute;
