@@ -1,59 +1,68 @@
-<div data-controller="conversation">
-  <div class="wrapper">
-    <!-- Sidebar -->
-    <nav id="sidebar">
-      <div class="sidebar-header">
-        <h3>Conversations</h3>
-      </div>
-      <% if @conversations.count > 0 %>
-
-        <ul class="list-unstyled components">
-            <% @conversations.each do |conversation| %>
-              <% if conversation.sender == current_user %>
-                    <li data-action="click->conversation#refresh" data-id="<%= conversation.id %>"  >
-                        <%= link_to conversation.receiver.nickname, conversation_path(conversation), remote: true%>
-                        <%# ################# for unseen notifications ################# %>
-                        <%# receiver_unseen_msgs = conversation.messages.where(user: conversation.receiver, seen: false).count %>
-                    </li>
-              <% else %>
-                <li data-action="click->conversation#refresh" data-id="<%= conversation.id %>">
-                    <%= link_to conversation.sender.nickname, conversation_path(conversation), remote: true %>
-                    <%# ################# for unseen notifications ################# %>
-                    <%# sender_unseen_msgs = conversation.messages.where(user: conversation.sender, seen: false).count %>
-                </li>
-              <% end %>
-            <% end %>
-        </ul>
-
-      <% end %>
-    </nav>
-
-    <div class="chat">
-      <% if @conversations.count > 0 %>
-
-          <div class="conversation" data-conversation-target="conversationcon">
-            <div id="messages" data-conversation-id="<%= @conversations.last.id %>">
-                <div class="message-container" id="message-0"></div>
-                <% @conversations.last.messages.each do |message| %>
-                  <%= render "messages/message", message: message %>
-                <% end %>
-            </div>
+<div class="kontainer">
+  <div data-controller="conversation">
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <div id="sidebar-container">
+        <nav id="sidebar">
+          <div class="sidebar-header">
+            <h3>Conversations</h3>
           </div>
+          <% if @conversations.count > 0 %>
 
-          <span class="sendfield" id="chat-text" style="width: 800px;" data-conversation-target="sendcon">
-            <span id="send">
-              <%= simple_form_for [ @conversations.last, @message ] , html: { autocomplete: 'off' } do |f| %>
-                <%= f.input :content, label: false, placeholder: "Message", remote: true %>
-              <% end %>
+            <ul class="list-unstyled components">
+                <% @conversations.each do |conversation| %>
+                  <% if conversation.sender == current_user %>
+                        <li data-action="click->conversation#refresh" data-id="<%= conversation.id %>"  >
+                            <a href=<%= profile_path(conversation.receiver)%>><%= cl_image_tag conversation.receiver.prof_pic.key, class: "avatar" %></a>
+                            <%= link_to conversation.receiver.nickname, conversation_path(conversation), remote: true, class: "clickble-name" %>
+                            <div id="<%= conversation.receiver.nickname %>" class="chat-badge badge">
+                              <%#= conversation.messages.count %>
+                            </div>
+                        </li>
+                  <% else %>
+                    <li data-action="click->conversation#refresh" data-id="<%= conversation.id %>">
+                        <a href=<%= profile_path(conversation.sender)%>><%= cl_image_tag conversation.sender.prof_pic.key, class: "avatar" %></a>
+                        <%= link_to conversation.sender.nickname, conversation_path(conversation), remote: true, class: "clickble-name"%>
+                        <div id="<%= conversation.sender.nickname %>" class="chat-badge badge">
+                          <%#= conversation.messages.count %>
+                        </div>
+                    </li>
+                  <% end %>
+                <% end %>
+            </ul>
+
+          <% end %>
+        </nav>
+      </div>
+      <div id="nickname" style="display: none"><%= current_user.nickname %></div>
+      <div class="chat">
+        <% if @conversations.count > 0 %>
+
+            <div class="conversation" data-conversation-target="conversationcon">
+              <div id="messages" data-conversation-id="<%= @conversations.last.id %>">
+                  <div class="message-container" id="message-0"></div>
+                  <%# @conversations.last.messages.each do |message| %>
+                    <%#= render "messages/message", message: message %>
+                  <%# end %>
+              </div>
+            </div>
+
+            <span class="sendfield" id="chat-text"  data-conversation-target="sendcon">
+              <span id="send">
+                <%#= simple_form_for [ @conversations.last, @message ] , html: { autocomplete: 'off' } do |f| %>
+                  <%#= f.input :content, label: false, placeholder: "Message", remote: true %>
+                <%# end %>
+              </span>
             </span>
-          </span>
 
-      <% else %>
-        <div><h4>You dont have any conversations yet.</h4></div>
-      <% end %>
+        <% else %>
+          <div><h4>You dont have any conversations yet.</h4></div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
+
 
 <script>
   function clearText() {
@@ -67,7 +76,56 @@
     }
   }
   
+  
+  // left << this user's msg   other user's msg >> right
+  function display(){
+    nickname = document.getElementById('nickname').innerText
+    document.querySelectorAll(".message-container").forEach(elm =>{
+      if (elm.children[0] !== undefined){
+        if(elm.children[0].children[0].children[0].innerHTML !== nickname){
+          if (elm.children[0].style.float !== "right"){
+            elm.children[0].style.float = "left"
+          }
+          
+        }
+      } 
+    })
+    document.querySelectorAll('.clickble-name').forEach(x => {
+    x.addEventListener('click', function (e) {
+      document.querySelectorAll('.clickble-name').forEach (y => {
+        y.style.backgroundColor = ""
+      })
+      x.style.backgroundColor = "#73d58b"
+
+      user_unseen = document.querySelector(`#${x.text}`).innerText
+      document.querySelector(`#${x.text}`).innerText = "0"
+      document.querySelector(`#${x.text}`).style.display = "none";
+
+      if (document.querySelector(".nav-badge").innerText > user_unseen){
+        document.querySelector(".nav-badge").innerText -= user_unseen
+      } else {
+        document.querySelector(".nav-badge").innerText = "0"
+        document.querySelector(".nav-badge").style.display = "none";
+      }
+
+      if (document.querySelector(".msg-dropdown-badge").innerText > user_unseen){
+        document.querySelector(".msg-dropdown-badge").innerText -= user_unseen
+      } else {
+        document.querySelector(".msg-dropdown-badge").innerText = "0"
+        document.querySelector(".msg-dropdown-badge").style.display = "none";
+      }
+    });
+  })
+
+  }
+
   document.addEventListener('change', (event) => {
-  clearText()
-});
+    clearText()
+  });
+  <%# document.querySelector(".list-unstyled").addEventListener('click', (event) => {
+    display()
+  }); %>
+  
+display();
+  
 </script>

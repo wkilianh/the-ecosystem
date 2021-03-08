@@ -1,0 +1,146 @@
+#message{
+  background-color:none;
+  display: flex;
+  flex-direction: column;
+  width:fit-content;
+  height: fit-content;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  // right: 0px;
+  float: right;
+  position: relative;
+
+}
+
+.message-container{
+  height: fit-content;
+
+}
+
+.author{
+  color: white;
+}
+
+.message-container .meta-data{
+  font-size: smaller;
+}
+
+.message-container p{
+  font-weight: 900;
+  background-color: white;
+  border-radius: 20px;
+  padding:5px;
+  text-align: center;
+  // display: flex;
+}
+
+#message-0{
+  display: none;
+}
+
+.chat{
+  // background: #2c2424;
+  display: flex;
+  flex-grow: 1;
+  position:relative;
+  z-index: 1;
+  // padding: 20px;
+  flex-direction: column;
+  padding: 0;
+  margin: 20px;
+  // width: 850px;
+  height: 750px;
+  border-radius: 20px;
+  background-color: #2c2424;
+  padding: 20px;
+
+  // left: 400px
+}
+
+.conversation{
+  overflow-y: scroll;
+  height: 92%;
+  background-color: #2c2424;
+  // display: flex;
+  // padding-left: 20px;
+  border-radius: 20px;
+  // width: 850px;
+  // flex-grow: 1;
+}
+
+#messages{
+  // float: right;
+  position:relative;
+  display:flex;
+  flex-direction:column ;
+  // padding-left: 20px;
+  flex-grow: 1;
+}
+.sendfield{
+  bottom: 0px;
+  left: 20px;
+  position:absolute;
+  width: 900px;
+  // border-radius: 50;
+  // display: flex;
+  // flex-grow: 1;
+}
+
+#send .string{
+  border-radius: 20px;
+
+}
+
+.kontainer{
+  width: 1400px;
+  margin: auto;
+}
+
+
+@media only screen and (max-width: 1450px) {
+  .kontainer{
+    width:1000px;
+    display: block;
+  }
+  .string{
+    width:400;
+  }
+  .sendfield{
+    display: flex;
+    width:400;
+  }
+}
+
+
+@media only screen and (max-width: 1050) {
+  .kontainer{
+    width:400px;
+    display: block;
+  }
+  // .string{
+  //   width:400;
+  // }
+  // .sendfield{
+  //   display: flex;
+  //   width:400;
+  // }
+  .message-container{
+    display: flex;
+    width: fit-content;
+  }
+  #messages{
+    display: flex;
+    width: fit-content;
+  }
+  .conversation{
+    display: flex;
+    width: fit-content;
+  }
+  #chat{
+    display: flex;
+    width:fit-content;
+  }
+  
+  
+}

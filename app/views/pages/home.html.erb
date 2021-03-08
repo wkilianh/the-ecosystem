@@ -24,6 +24,9 @@
           </div>
         </div>
       </div>
+
+        
+        
         <% if post.photos.attached? %>
         <div class="post-img col-4 post-img" style="background-image: url(<%= cl_image_path post.photos.last.key %>);"></div>
         <% else %>

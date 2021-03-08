@@ -4,6 +4,7 @@ import { Controller } from "stimulus";
 
 export default class extends Controller {
   static targets = [ 'conversationcon', 'sendcon'];
+  static nickname = document.getElementById('nickname');
   refresh(event) { 
     // initConversationCable();
     fetch("/conversations/"+event.currentTarget.dataset.id).then(function (response) {
@@ -15,6 +16,16 @@ export default class extends Controller {
     	var doc = parser.parseFromString(html, 'text/html');
       var messagesContainer = doc.querySelector('#messages')
       var messagesSend = doc.querySelector('#send')
+
+      // left << other user's msg     this user's msg >> right
+      doc.querySelectorAll(".message-container").forEach(elm =>{
+        if (elm.children[0] !== undefined){
+          if(elm.children[0].children[0].children[0].innerHTML !== nickname){
+            elm.children[0].style.float = "left"
+          }
+        } 
+      })
+
       return [messagesContainer, messagesSend]
     }).then(function (res ){
 
