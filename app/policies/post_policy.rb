@@ -1,13 +1,13 @@
 class PostPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where(user: user)
+      scope.all
     end
   end
 
-  def index?
-    false
-  end
+  # def index?
+  #   true
+  # end
 
   def show?
     true

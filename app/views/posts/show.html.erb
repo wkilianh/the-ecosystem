@@ -15,16 +15,16 @@
         <%= image_tag "https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614952509/placeholder_avatar/pexels-pixabay-56875_cdviyq.jpg", style: "height: 300px" %>
       <% end %>
       <div class="list-head">
-        <span><strong>Hack Expectations:</strong></span>
+        <span><strong>Detail rating</strong></span><br>
         <div><br></div>
-        <div class="expectations"><span>CO2 Savings: </span><span><em><%= @post.expect_co2 %></em></span></div>
-        <div class="expectations"><span>Waste Reduction: </span><span><em><%= @post.expect_waste %></em></span></div>
-        <div class="expectations"><span>Resource Savings: </span><span><em><%= @post.expect_resources %></em></span></div>
-        <div class="expectations"><span>DIY Effort: </span><span><em><%= @post.expect_diyeffort %></em></span></div>
-        <div class="expectations"><span>Backfire Cost: </span><span><em><%= @post.expect_ecocost %></em></span></div>
+        <div class="expectations"><span>CO2 Savings: </span></div>
+        <div class="expectations"><span>Waste Reduction: </span></div>
+        <div class="expectations"><span>Resource Savings: </span></div>
+        <div class="expectations"><span>Ease of use: </span></div>
+        <div class="expectations"><span>Free of side-effects: </span></div>
       </div>
       <div class="single-ratings">
-        <div><strong>Goals Met?</strong></div><br>
+        <div><strong> </strong></div><br><br>
         <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.co2 : 0 %></div>
         <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.waste : 0 %></div>
         <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.resources : 0 %></div>
@@ -36,53 +36,64 @@
     <% if @post.user == current_user %>
       <div id="post-subline">
         <span><%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel" %></span>
-        <p>You last updated this post at <%= @post.updated_at.strftime("%a, %b %e at %l:%M%p") %></p>
+        <p>You last updated this post at <%= @post.updated_at.strftime("%a, %b %e at %l:%M%p") %></p1
       </div>
     <% elsif current_user != nil && current_user.ratings.where(post_id: @post).exists? %>
       <div id="post-subline">
-          <span><strong>You already rated this post at </strong><%= current_user.ratings.where(post_id: @post)[0].updated_at.strftime("%a, %b %e, %l:%M%p") %></span>
+          <span><strong>You rated this post at </strong><%= current_user.ratings.where(post_id: @post)[0].updated_at.strftime("%a, %b %e, %l:%M%p") %></span>
           <span>
-            <p>Post created at <%= @post.updated_at.strftime("%a, %b %e, %l:%M%p") %> by </p><strong></strong><a href="<%= profile_path(@post.user) %>"><%= @post.user.nickname %><img src="<%= cl_image_path @post.user.prof_pic.key %>" class="avatar-post"/></a>
-            <%= link_to '<i class="far fa-comments speech-bubbles"></i>'.html_safe, conversations_path(post_id: @post.id), method: :post %>
+            <p>created at <%= @post.updated_at.strftime("%b %e, %l:%M%p") %> by </p><strong></strong><a href="<%= profile_path(@post.user) %>"><%= @post.user.nickname %></a>
+            <%= link_to '<i class="far fa-envelope"></i>'.html_safe, conversations_path(post_id: @post.id), method: :post %>
           </span>
       </div>
     <% else %>
       <div id="post-subline">
-      <span class="btn btn-large" id="rating-button">RATE POST!</span>
+      <span class="btn btn-large", id="rating-button">RATE POST!</span>
           <span>
             <%# @conversation.receiver = @post.user %>
-            <p>Post created at <%= @post.updated_at.strftime("%a, %b %e, %l:%M%p") %> by </p><strong></strong><a href="<%= profile_path(@post.user) %>"> <%= @post.user.nickname %> <img src="<%= cl_image_path @post.user.prof_pic.key %>" class="avatar-post"/></a>
-            <%= link_to '<i class="far fa-comments speech-bubbles"></i>'.html_safe, conversations_path(post_id: @post.id), method: :post %>
+            <p>created at <%= @post.updated_at.strftime("%b %e, %l:%M%p") %> by </p><strong></strong><a href="<%= profile_path(@post.user) %>"> <%= @post.user.nickname %></a>
+<!--             <img src="<%#= cl_image_path @post.user.prof_pic.key %>" class="avatar-post"/> Claire proposed to take this out -->
+            <%= link_to '<i class="far fa-envelope"></i>'.html_safe, conversations_path(post_id: @post.id), method: :post %>
           </span>
       </div>
-      <div class="not-visible" id="rating-form">
 
-        <%# if @post.ratings.exists? && @post.ratings.where(user_id: current_user).exists? %>
-<!--         <div class="single-stars"><%# = render "/shared/stars", rating: @post.ratings.where(user_id: current_user.id).co2 %></div>
- -->
-
-
-        <span data-controller="rating">
-          <div class="rater" data-action="submit->rating#fetchStars">
-            <%= simple_form_for [ @post, @rating ] do |f| %>
-              <%= f.input :co2, collection: 1..5, as: :radio_buttons, id: 'fuck' %>
-              <%= f.input :waste, collection: 1..5, as: :radio_buttons %>
-              <%= f.input :resources, collection: 1..5, as: :radio_buttons %>
-              <%= f.input :diyeffort, collection: 1..5, as: :radio_buttons %>
-              <%= f.input :ecocost, collection: 1..5, as: :radio_buttons %>
-              <%= f.submit %>
-            <% end %>
-
-            <div data-rating-target="stars">
-            </div>
-
+      <div class="container not-visible" id="rating-form">
+        <div class="container rater-headline">
+          <strong>How do you think this hack works out?</strong>
+          <div id="ranges-headline">
           </div>
-        </span>
+        </div>
 
+        <div id="rater-detailled">
+          <div id="list-rater">
+            <div class="expectations"><span>CO2 Savings: </span></div>
+            <div class="expectations"><span>Waste Reduction: </span></div>
+            <div class="expectations"><span>Resource Savings: </span></div>
+            <div class="expectations"><span>Ease of use: </span></div>
+            <div class="expectations"><span>Free of side-effects: </span></div><br>
+            <div class="expectations"><span><h3>Your overall rating:</h3></span></div>
+          </div>
+          <div class="rater">
+            <%= simple_form_for [ @post, @rating ] do |f| %>
+              <%= f.input :co2, label: false, collection: 1..5, required: false %>
+              <%= f.input :waste, label: false, collection: 1..5, required: false %>
+              <%= f.input :resources, label: false, collection: 1..5, required: false %>
+              <%= f.input :diyeffort, label: false, collection: 1..5, required: false %>
+              <%= f.input :ecocost, label: false, collection: 1..5, required: false %><br>
+              <%= f.input :avg, label: false, collection: 1..5, required: false %>
+              <%= f.submit input_html: { class: "btn btn-large" }, label: "RATE!" %>
+          </div>
+        </div>
 
+        <div class="rater-headline">
+
+        </div>
+        <div>
+
+          <% end %> <!-- of the form  -->
+        </div>
       </div>
-
-    <% end %>
+    <% end %> <!-- of the condition .. so that rating section is available -->
   </div>
 </div>
 
@@ -127,23 +138,25 @@
 
     <% @post.comments.each do |comment|%>
       <%= render "comment", comment: comment %>
-      
+
+
       <div style="display: none" id=<%= "comment#{comment.id}" %>>
         <%= simple_form_for @reply do |f| %>
           <%= f.input :content, label: false %>
           <%= hidden_field_tag(:comment_id, comment.id) %>
           <% if user_signed_in? %>
-            <%= hidden_field_tag(:user_id, current_user.id) %> 
+            <%= hidden_field_tag(:user_id, current_user.id) %>
           <% end %>
           <%= f.submit "reply",class: "btn btn-panel" %>
         <% end %>
       </div>
 
+
       <% comment.replies.each do |reply| %>
       <% if user_signed_in? %>
         <%= render 'reply', reply: reply %>
       <% end %>
-      
+
       <% end %>
     <% end %>
   </div>
@@ -163,7 +176,7 @@ function reply(commentId) {
 </script>
 
 
-<%# 
+<%#
 <script>
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -174,7 +187,7 @@ var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
+// When the user clicks the button, open the modal
 btn.onclick = function() {
   modal.style.display = "block";
   page = document.getElementById('inject-page')
@@ -191,7 +204,7 @@ btn.onclick = function() {
         // Parse the text
         var doc = parser.parseFromString(html, "text/html");
 
-        // You can now even select part of that html as you would in the regular DOM 
+        // You can now even select part of that html as you would in the regular DOM
         // Example:
         // var docArticle = doc.querySelector('article').innerHTML;
         doc.children[0].children[1].children[0].remove()
@@ -227,8 +240,8 @@ window.onclick = function(event) {
       });
     }
   }
-  
-  
+
+
   // left << this user's msg   other user's msg >> right
   function display(){
     console.log("run")
@@ -239,9 +252,9 @@ window.onclick = function(event) {
           if (elm.children[0].style.float !== "right"){
             elm.children[0].style.float = "left"
           }
-          
+
         }
-      } 
+      }
     })
   }
 
@@ -250,5 +263,5 @@ window.onclick = function(event) {
   });
 
 display();
-  
+
 </script> %>
