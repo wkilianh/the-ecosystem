@@ -3,8 +3,7 @@
 
     <div id="post-headline">
       <span id="post-title"><h1><%= @post.title %></h1></span>
-      <% @post.ratings.first != nil ? rating = @post.ratings.first.avg : rating = 0 %>
-      <span id="stars"><%= render "/shared/stars", rating: rating %>
+      <span id="stars"><%= render "/shared/stars", rating: @post.rating_avg %>
         <span id="views">(<%= @post.ratings.count %>)</span>
       </span>
     </div><br>
@@ -26,11 +25,11 @@
       </div>
       <div class="single-ratings">
         <div><strong>Goals Met?</strong></div><br>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first != nil ? @post.ratings.first.co2 : 0 %></div>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first != nil ? @post.ratings.first.waste : 0 %></div>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first != nil ? @post.ratings.first.resources : 0 %></div>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first != nil ? @post.ratings.first.diyeffort : 0 %></div>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first != nil ? @post.ratings.first.ecocost : 0 %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.co2 : 0 %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.waste : 0 %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.resources : 0 %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.diyeffort : 0 %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.ecocost : 0 %></div>
       </div>
     </div>
 
@@ -48,11 +47,37 @@
       </div>
     <% else %>
       <div id="post-subline">
-      <span><%= link_to "RATE POST", edit_post_path(@post), class: "btn btn-panel" %></span>
+      <span class="btn btn-large" id="rating-button">RATE POST!</span>
           <span>
             <%# @conversation.receiver = @post.user %>
             <p>Post created at <%= @post.updated_at.strftime("%a, %b %e, %l:%M%p") %> by </p><strong></strong><a href="<%= profile_path(@post.user) %>"> <%= @post.user.nickname %> <img src="<%= cl_image_path @post.user.prof_pic.key %>" class="avatar-post"/></a><%= link_to '<i class="far fa-comments speech-bubbles"></i>'.html_safe, conversations_path(post_id: @post.id), method: :post %>
           </span>
+      </div>
+      <div class="not-visible" id="rating-form">
+
+        <%# if @post.ratings.exists? && @post.ratings.where(user_id: current_user).exists? %>
+<!--         <div class="single-stars"><%# = render "/shared/stars", rating: @post.ratings.where(user_id: current_user.id).co2 %></div>
+ -->
+
+
+        <span data-controller="rating">
+          <div class="rater" data-action="submit->rating#fetchStars">
+            <%= simple_form_for [ @post, @rating ] do |f| %>
+              <%= f.input :co2, collection: 1..5, as: :radio_buttons, id: 'fuck' %>
+              <%= f.input :waste, collection: 1..5, as: :radio_buttons %>
+              <%= f.input :resources, collection: 1..5, as: :radio_buttons %>
+              <%= f.input :diyeffort, collection: 1..5, as: :radio_buttons %>
+              <%= f.input :ecocost, collection: 1..5, as: :radio_buttons %>
+              <%= f.submit %>
+            <% end %>
+
+            <div data-rating-target="stars">
+            </div>
+
+          </div>
+        </span>
+
+
       </div>
 
     <% end %>
