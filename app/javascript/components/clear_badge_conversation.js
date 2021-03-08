@@ -3,15 +3,29 @@ const clearBadgeConversation = () => {
   var clickbleNames = document.querySelectorAll('.clickble-name')
   if (clickbleNames.length > 0){
     clickbleNames.forEach(x => {
-      console.log(user_unseen)
       x.addEventListener('click', function (e) {
-        clickbleNames.forEach (y => {
-          user_unseen = document.querySelector(`#${y.text}`).innerText
-          console.log(user_unseen)
+          var user_unseen = x.innerText
+          var user_useen_badge = document.getElementById(user_unseen)
+          if (user_useen_badge !== null){
+            console.log(user_unseen+" "+user_useen_badge.innerText)
+            var num = user_useen_badge.innerText
+            user_useen_badge.innerText = 0
+            user_useen_badge.style.display = "none"
+            var navBadge = document.querySelector(".nav-badge")
+            var msgDropdownBadge = document.querySelector(".msg-dropdown-badge")
+            if (num < msgDropdownBadge.innerText){
+              msgDropdownBadge.innerText -= num
+              navBadge.innerText -= num
+            } else {
+              msgDropdownBadge.innerText = 0
+              navBadge.innerText = 0
+              msgDropdownBadge.style.display = "none";
+              navBadge.style.display = "none";
+            }
+          }
       })
     })
-  })
-    
+  }  
 }
   //   if (document.querySelector(".nav-badge").innerText > user_unseen){
   //     document.querySelector(".nav-badge").innerText -= user_unseen

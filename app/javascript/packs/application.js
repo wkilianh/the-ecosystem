@@ -30,7 +30,7 @@ import { toggleForm } from '../components/rating_form';
 import { toggleUser } from '../components/toggle_user';
 import { clearText } from '../components/clear_text';
 import { msgDisplay } from '../components/msg_display';
-// import { clearBadgeConversation } from '../components/clear_badge_conversation';
+import { clearBadgeConversation } from '../components/clear_badge_conversation';
 import { initStarRating } from '../plugins/init_star_rating';
 
 
@@ -46,7 +46,7 @@ document.addEventListener('turbolinks:load', () => {
     toggleForm();
   };
 
-  // clearBadgeConversation()
+  clearBadgeConversation()
   toggleUser()
   clearText()
   msgDisplay()

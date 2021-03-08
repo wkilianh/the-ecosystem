@@ -6,8 +6,6 @@ const toggleUser = () => {
       x.addEventListener('click', function (e) {
         clickbleNames.forEach (y => {
           y.style.backgroundColor = ""
-          var user_unseen = document.querySelector(`#${y.text}`).innerText
-          console.log(user_unseen)
         })
         x.style.backgroundColor = "#73d58b"
       })
