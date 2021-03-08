@@ -1,11 +1,13 @@
 
 <div id="messages" data-conversation-id="<%= @conversation.id %>">
-  <div class="message-container" id="message-0"></div>
+  <div class="message-container" id="message-0" style="display: none"></div>
 
   <% @conversation.messages.each do |message| %>
     <%= render "messages/message", message: message %>
   <% end %>
 </div>
+
+
 
 <span id="send">
   <%= simple_form_for [ @conversation, @message ] , html: { autocomplete: 'off' } do |f| %>

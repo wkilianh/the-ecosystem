@@ -1,9 +1,17 @@
 .wrapper {
   display: flex;
   width: 100%;
-  height: 800px;
+  // height: 750px;
   margin: 0;
   margin-top: 13px;
+}
+
+#sidebar-container{
+  background: #2c2424;
+  height: 750px;
+  border-radius: 20px;
+  margin: 20px;
+  display: flex;
 }
 
 #sidebar {
@@ -13,24 +21,34 @@
   left: 0;
   // height: 90vh;
   z-index: 1;
-  overflow-y: scroll;
-  background: #7386D5;
+  background: #2c2424;
   color: #fff;
   transition: all 0.3s;
+  // padding: 20px;
+  margin: 20px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+
 }
 
 #sidebar .sidebar-header {
-    padding: 20px;
-    background: #6d7fcc;
+    padding: 10px;
+    background: #5c627c;
+    margin: 5px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 #sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
-    position:relative;
-    display: flex;
-    flex-direction: column;
-
+  margin-top: 15px;
+  padding: 20px 0;
+  position:relative;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
 }
 
 // #sidebar ul p {
@@ -39,10 +57,32 @@
 // }
 
 #sidebar ul li a {
-    padding: 10px;
-    font-size: 1.1em;
-    display: block;
+  padding: 10px;
+  font-size: 1.1em;
+  display: inline-block;
+  // text-align: center;
+  font-weight: 700;
+  // display: inline;
+  border-radius: 20px;
+  vertical-align: middle;
+  margin-left: 5px;
+  // flex-direction: column;
 }
+
+#sidebar ul li a.clickble-name{
+  display: inline-block;
+  height: 40px;
+  // margin-top: 30px;
+  line-height: 20px;
+}
+
+#sidebar ul li {
+  // display: flex;
+  // flex-direction: row;
+  position: relative;
+}
+
+
 #sidebar ul li a:hover {
     color: #7386D5;
     background: #fff;
@@ -64,28 +104,3 @@ a, a:hover, a:focus {
   // color: #73d58b;
 }
 
-.chat{
-  background: rgb(156, 151, 151);
-  display: flex;
-  flex-grow: 1;
-  position:relative;
-  z-index: 1;
-  padding: 20px;
-  flex-direction: column;
-  padding: 0;
-}
-
-.conversation{
-  overflow-y: scroll;
-  height: 92%;
-  background-color: #6D7FCC;
-}
-
-#messages{
-  padding-left: 20px;
-}
-.sendfield{
-  bottom: 0px;
-  left: 20px;
-  position:absolute;
-}
