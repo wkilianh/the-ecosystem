@@ -9,10 +9,11 @@ class Post < ApplicationRecord
 
   # just for testing disabled everything TODO: uncomment if forms are there
   # validates :title, :topic, :category, presence: true
-  # validates :category, inclusion: { in: ["hack", "don't", "project"] }
-  # validates :expect_co2, :expect_waste, :expect_resources,
-  #           :expect_diyeffort, :expect_ecocost, presence: true,
-  #           inclusion: { in: ["low", "moderate", "medium", "high", "very high"] }
+  validates :category, presence: true, inclusion: { in: ["hack", "don't", "project"] }
+  validates :expect_co2, :expect_waste, :expect_resources,
+            :expect_diyeffort, :expect_ecocost, presence: true,
+            inclusion: { in: ["low", "moderate", "medium", "high", "very high"] }
+
   def rating_avg
     if self.ratings.exists?
       self.ratings.last.avg

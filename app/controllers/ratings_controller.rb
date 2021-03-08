@@ -8,6 +8,7 @@ class RatingsController < ApplicationController
     @rating.user_id = current_user.id
     if @rating.save
       flash.alert = "Rating saved!"
+      redirect_to post_path(@post)
     else
       redirect_to post_path(@post)
       flash.alert = "Please don't leave blank fields!"

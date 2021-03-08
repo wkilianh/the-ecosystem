@@ -68,6 +68,12 @@
 }
 
 
+#list-rater {
+  font-size: 1.2em;
+  margin-left: 20px;
+}
+
+
 #post-title {
   text-align: left;
   max-width: 70%;
@@ -108,6 +114,16 @@
   font-size: 20px;
 }
 
+.tree-green {
+  color: transparent;
+  text-shadow: 0 0 0 $dark-green;
+}
+
+.tree-grey {
+  color: transparent;
+  text-shadow: 0 0 0 lightgrey;
+}
+
 .rating-post {
   display: inline;
 }
@@ -118,4 +134,34 @@
 
 .not-visible {
   display: none;
+}
+
+#rating-form {
+  width: 70%;
+}
+
+.rater-headline {
+  display: flex;
+  font-size: 1.5em;
+  justify-content: space-between;
+}
+
+.radio-buttons {
+  display: inline !important;
+}
+
+#rater-detailled {
+  display: flex;
+  justify-content: space-between;
+  line-height: 2.5em;
+}
+
+#rater-overall {
+  display: flex;
+}
+
+#ranges-headline {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
 }

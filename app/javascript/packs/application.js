@@ -26,6 +26,8 @@ require("channels")
 import "bootstrap";
 import {initConversationCable} from '../channels/conversation_channel';
 import { toggleForm } from '../components/rating_form';
+import { initStarRating } from '../plugins/init_star_rating';
+
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
@@ -36,6 +38,7 @@ document.addEventListener('turbolinks:load', () => {
   if (document.querySelector("#rating-form") !== null) {
     toggleForm();
   };
+  initStarRating();
 });
 
 require("trix")
