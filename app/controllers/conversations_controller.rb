@@ -21,13 +21,27 @@ class ConversationsController < ApplicationController
     @conversations = policy_scope(Conversation)
     @message = Message.new
     # authorize @message
+    last = @conversations.last
 
+    if current_user == last.sender
+      last.sender_notifications = 0
+    else
+      last.receiver_notifications = 0
+    end
+    last.save
   end
 
   def show
     @conversation = Conversation.find(params[:id])
     @message = Message.new
     authorize @conversation
+
+    if current_user == @conversation.sender 
+      @conversation.sender_notifications  = 0 
+    else 
+      @conversation.receiver_notifications = 0 
+    end 
+    @conversation.save
     # authorize @messages
     ################# for unseen notifications #################
     # if @conversation.sender == current_user

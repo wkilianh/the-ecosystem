@@ -26,7 +26,13 @@ require("channels")
 import "bootstrap";
 import {initConversationCable} from '../channels/conversation_channel';
 import { toggleForm } from '../components/rating_form';
+
+import { toggleUser } from '../components/toggle_user';
+import { clearText } from '../components/clear_text';
+import { msgDisplay } from '../components/msg_display';
+// import { clearBadgeConversation } from '../components/clear_badge_conversation';
 import { initStarRating } from '../plugins/init_star_rating';
+
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -35,10 +41,18 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initConversationCable()
+
   if (document.querySelector("#rating-form") !== null) {
     toggleForm();
   };
+
+  // clearBadgeConversation()
+  toggleUser()
+  clearText()
+  msgDisplay()
+
   initStarRating();
+
 });
 
 require("trix")
