@@ -3,38 +3,6 @@
       <h1><strong>Ups!</strong> You didn't post anything</h1>
       <%= link_to "Create post", new_post_path, class: "btn-panel" %>
     <% else %>
-      <% @posts.each do |post| %>
-      <div class="w-100 post-view">
-        <div class="col-8 post-resume">
-
-          <div class="post-content">
-            <div class="user-data">
-              <%= cl_image_tag current_user.prof_pic.key, class:"avatar-bordered" %>
-              <p>Posted by <%= current_user.nickname %> </p>
-              <ul class="rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </ul>
-            </div>
-            <div class="container post-text">
-            <h3>"<%= post.title %>"</h3>
-            <p>
-              <%= truncate(post.rich_body.to_plain_text.squish, length: 250)  %>
-            </p>
-            </div>
-            <div class="btn-panel-container">
-                <%= link_to "View", post_path(post), class:"btn-panel"%>
-                <%= link_to "Edit", edit_post_path(post), class:"btn-panel" %>
-                <%= link_to "Delete", post_path(post), method: :delete, class:"btn-panel" %>
-
-            </div>
-          </div>
-        </div>
-          <div class="post-img col-4 post-img" style="background-image: url(<%= cl_image_path post.photos.last.key if post.photos.attached? %>);"></div>
-      </div>
-      <% end %>
+      <%= render 'shared/postcards' %>
     <% end %>
 </div>

@@ -88,7 +88,7 @@
       <%= simple_form_for @reply do |f| %>
         <%= f.input :content, label: false %>
         <%= hidden_field_tag(:comment_id, comment.id) %>
-        <%= hidden_field_tag(:user_id, current_user.id) %>
+        <%= hidden_field_tag(:user_id, current_user) %>
         <%= f.submit "reply",class: "btn btn-panel" %>
       <% end %>
 

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show, :index]
 
   def new
     @post = Post.new
@@ -33,7 +33,19 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = policy_scope(Post)
+
+    if params[:query].present?
+     @posts = policy_scope(Post).search(params[:query])
+     else
+     @posts = policy_scope(Post)
+    end
+
+    if params[:Category] == "all"
+      @posts = policy_scope(Post)
+    else
+      @posts = @posts.where(category: params[:Category])
+    end
+
   end
 
   def show
