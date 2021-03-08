@@ -13,5 +13,12 @@ class Post < ApplicationRecord
   # validates :expect_co2, :expect_waste, :expect_resources,
   #           :expect_diyeffort, :expect_ecocost, presence: true,
   #           inclusion: { in: ["low", "moderate", "medium", "high", "very high"] }
+  def rating_avg
+    if self.ratings.exists?
+      self.ratings.last.avg
+    else
+      0
+    end
+  end
 
 end

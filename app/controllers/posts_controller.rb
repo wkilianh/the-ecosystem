@@ -37,6 +37,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @rating = Rating.new
     @reply = Reply.new
     @post = Post.find(params[:id])
     @comment = Comment.new
