@@ -4,4 +4,12 @@ class RatingPolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  def create?
+    @record.user != @user
+  end
+
+  def update?
+    create?
+  end
 end

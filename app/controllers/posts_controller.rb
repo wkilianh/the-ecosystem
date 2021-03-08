@@ -49,6 +49,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @rating = Rating.new
     @reply = Reply.new
     @post = Post.find(params[:id])
     @comment = Comment.new
@@ -69,7 +70,8 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:rich_body, :title, :photos)
+    params.require(:post).permit(:rich_body, :title, :photos, :expect_co2, :expect_waste,
+                                :expect_resources, :expect_diyeffort, :expect_ecocost, :category)
   end
 
 

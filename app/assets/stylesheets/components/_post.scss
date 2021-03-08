@@ -27,6 +27,7 @@
   width: 100%;
   display: inline-flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 20px;
   p {
     font-size: 20px;
@@ -62,6 +63,12 @@
 }
 
 .list-head {
+  font-size: 1.2em;
+  margin-left: 20px;
+}
+
+
+#list-rater {
   font-size: 1.2em;
   margin-left: 20px;
 }
@@ -107,10 +114,54 @@
   font-size: 20px;
 }
 
+.tree-green {
+  color: transparent;
+  text-shadow: 0 0 0 $dark-green;
+}
+
+.tree-grey {
+  color: transparent;
+  text-shadow: 0 0 0 lightgrey;
+}
+
 .rating-post {
   display: inline;
 }
 
 .speech-bubbles {
   font-size: 40px;
+}
+
+.not-visible {
+  display: none;
+}
+
+#rating-form {
+  width: 70%;
+}
+
+.rater-headline {
+  display: flex;
+  font-size: 1.5em;
+  justify-content: space-between;
+}
+
+.radio-buttons {
+  display: inline !important;
+}
+
+#rater-detailled {
+  display: flex;
+  justify-content: space-between;
+  line-height: 2.5em;
+}
+
+#rater-overall {
+  display: flex;
+}
+
+#ranges-headline {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
 }

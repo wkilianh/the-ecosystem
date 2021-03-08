@@ -27,13 +27,20 @@
         </li>
         <li class="nav-item dropdown">
           <% if current_user.prof_pic.attached? %>
-            <%= cl_image_tag current_user.prof_pic.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div style="position:relative">
+            <div class="nav-badge badge">
+              <%#=current_user.conversations_as_sender.count + current_user.conversations_as_receiver.count if user_signed_in? %>
+            </div></div><%= cl_image_tag current_user.prof_pic.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+
           <% else %>
             <%= image_tag "https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614812119/placeholder_avatar/1200px-Avatar_icon_green.svg_tire2w.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% end %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "My Profile", profile_path(current_user), class: "dropdown-item" %>
-            <%= link_to "Messages", conversations_path, class: "dropdown-item" %>
+            <div style="position:relative"><%= link_to "Messages", conversations_path, class: "dropdown-item" %>
+            <div class="msg-dropdown-badge badge">
+              <%#=current_user.conversations_as_sender.count + current_user.conversations_as_receiver.count if user_signed_in? %>
+            </div></div>
             <%= link_to "My Posts", posts_path, class: "dropdown-item" %>
             <%= link_to "Account Settings", edit_user_registration_path, class: "dropdown-item" %>
             <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>

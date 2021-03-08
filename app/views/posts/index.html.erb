@@ -3,6 +3,8 @@
       <h1><strong>Ups!</strong> You didn't post anything</h1>
       <%= link_to "Create post", new_post_path, class: "btn-panel" %>
     <% else %>
+
       <%= render 'shared/postcards' %>
+
     <% end %>
 </div>

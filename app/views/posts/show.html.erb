@@ -3,8 +3,7 @@
 
     <div id="post-headline">
       <span id="post-title"><h1><%= @post.title %></h1></span>
-      <% @post.ratings.first != nil ? rating = @post.ratings.first.avg : rating = 0 %>
-      <span id="stars"><%= render "/shared/stars", rating: rating %>
+      <span id="stars"><%= render "/shared/stars", rating: @post.rating_avg %>
         <span id="views">(<%= @post.ratings.count %>)</span>
       </span>
     </div><br>
@@ -16,48 +15,103 @@
         <%= image_tag "https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614952509/placeholder_avatar/pexels-pixabay-56875_cdviyq.jpg", style: "height: 300px" %>
       <% end %>
       <div class="list-head">
-        <span><strong>Hack Expectations:</strong></span>
+        <span><strong>Detail rating</strong></span><br>
         <div><br></div>
-        <div class="expectations"><span>CO2 Savings: </span><span><em><%= @post.expect_co2 %></em></span></div>
-        <div class="expectations"><span>Waste Reduction: </span><span><em><%= @post.expect_waste %></em></span></div>
-        <div class="expectations"><span>Resource Savings: </span><span><em><%= @post.expect_resources %></em></span></div>
-        <div class="expectations"><span>DIY Effort: </span><span><em><%= @post.expect_diyeffort %></em></span></div>
-        <div class="expectations"><span>Backfire Cost: </span><span><em><%= @post.expect_ecocost %></em></span></div>
+        <div class="expectations"><span>CO2 Savings: </span></div>
+        <div class="expectations"><span>Waste Reduction: </span></div>
+        <div class="expectations"><span>Resource Savings: </span></div>
+        <div class="expectations"><span>Ease of use: </span></div>
+        <div class="expectations"><span>Free of side-effects: </span></div>
       </div>
       <div class="single-ratings">
-        <div><strong>Goals Met?</strong></div><br>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first != nil ? @post.ratings.first.co2 : 0 %></div>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first != nil ? @post.ratings.first.waste : 0 %></div>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first != nil ? @post.ratings.first.resources : 0 %></div>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first != nil ? @post.ratings.first.diyeffort : 0 %></div>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.first != nil ? @post.ratings.first.ecocost : 0 %></div>
+        <div><strong> </strong></div><br><br>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.co2 : 0 %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.waste : 0 %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.resources : 0 %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.diyeffort : 0 %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.ecocost : 0 %></div>
       </div>
     </div>
 
     <% if @post.user == current_user %>
       <div id="post-subline">
         <span><%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel" %></span>
-        <p>You last updated this post at <%= @post.updated_at.strftime("%a, %b %e at %l:%M%p") %></p>
+        <p>You last updated this post at <%= @post.updated_at.strftime("%a, %b %e at %l:%M%p") %></p1
       </div>
     <% elsif current_user != nil && current_user.ratings.where(post_id: @post).exists? %>
       <div id="post-subline">
-          <span><strong>You already rated this post at </strong><%= current_user.ratings.where(post_id: @post)[0].updated_at.strftime("%a, %b %e, %l:%M%p") %></span>
+          <span><strong>You rated this post at </strong><%= current_user.ratings.where(post_id: @post)[0].updated_at.strftime("%a, %b %e, %l:%M%p") %></span>
           <span>
-            <p>Post created at <%= @post.updated_at.strftime("%a, %b %e, %l:%M%p") %> by </p><strong></strong><a href="<%= profile_path(@post.user) %>"><%= @post.user.nickname %><img src="<%= cl_image_path @post.user.prof_pic.key %>" class="avatar-post"/></a><%= link_to '<i class="far fa-comments speech-bubbles"></i>'.html_safe, conversations_path(post_id: @post.id), method: :post %>
+            <p>created at <%= @post.updated_at.strftime("%b %e, %l:%M%p") %> by </p><strong></strong><a href="<%= profile_path(@post.user) %>"><%= @post.user.nickname %></a>
+            <%= link_to '<i class="far fa-envelope"></i>'.html_safe, conversations_path(post_id: @post.id), method: :post %>
           </span>
       </div>
     <% else %>
       <div id="post-subline">
-      <span><%= link_to "RATE POST", edit_post_path(@post), class: "btn btn-panel" %></span>
+      <span class="btn btn-large", id="rating-button">RATE POST!</span>
           <span>
             <%# @conversation.receiver = @post.user %>
-            <p>Post created at <%= @post.updated_at.strftime("%a, %b %e, %l:%M%p") %> by </p><strong></strong><a href="<%= profile_path(@post.user) %>"> <%= @post.user.nickname %> <img src="<%= cl_image_path @post.user.prof_pic.key %>" class="avatar-post"/></a><%= link_to '<i class="far fa-comments speech-bubbles"></i>'.html_safe, conversations_path(post_id: @post.id), method: :post %>
+            <p>created at <%= @post.updated_at.strftime("%b %e, %l:%M%p") %> by </p><strong></strong><a href="<%= profile_path(@post.user) %>"> <%= @post.user.nickname %></a>
+<!--             <img src="<%#= cl_image_path @post.user.prof_pic.key %>" class="avatar-post"/> Claire proposed to take this out -->
+            <%= link_to '<i class="far fa-envelope"></i>'.html_safe, conversations_path(post_id: @post.id), method: :post %>
           </span>
       </div>
 
-    <% end %>
+      <div class="container not-visible" id="rating-form">
+        <div class="container rater-headline">
+          <strong>How do you think this hack works out?</strong>
+          <div id="ranges-headline">
+          </div>
+        </div>
+
+        <div id="rater-detailled">
+          <div id="list-rater">
+            <div class="expectations"><span>CO2 Savings: </span></div>
+            <div class="expectations"><span>Waste Reduction: </span></div>
+            <div class="expectations"><span>Resource Savings: </span></div>
+            <div class="expectations"><span>Ease of use: </span></div>
+            <div class="expectations"><span>Free of side-effects: </span></div><br>
+            <div class="expectations"><span><h3>Your overall rating:</h3></span></div>
+          </div>
+          <div class="rater">
+            <%= simple_form_for [ @post, @rating ] do |f| %>
+              <%= f.input :co2, label: false, collection: 1..5, required: false %>
+              <%= f.input :waste, label: false, collection: 1..5, required: false %>
+              <%= f.input :resources, label: false, collection: 1..5, required: false %>
+              <%= f.input :diyeffort, label: false, collection: 1..5, required: false %>
+              <%= f.input :ecocost, label: false, collection: 1..5, required: false %><br>
+              <%= f.input :avg, label: false, collection: 1..5, required: false %>
+              <%= f.submit input_html: { class: "btn btn-large" }, label: "RATE!" %>
+          </div>
+        </div>
+
+        <div class="rater-headline">
+
+        </div>
+        <div>
+
+          <% end %> <!-- of the form  -->
+        </div>
+      </div>
+    <% end %> <!-- of the condition .. so that rating section is available -->
   </div>
 </div>
+
+
+<%# <!-- Trigger/Open The Modal -->
+<button id="myBtn">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal" style="background:none;">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span >
+    <div id="inject-page"></div>
+  </div>
+
+</div> %>
+
 
 <div class="container w-50">
   <div class="post-box">
@@ -85,17 +139,129 @@
     <% @post.comments.each do |comment|%>
       <%= render "comment", comment: comment %>
 
-      <%= simple_form_for @reply do |f| %>
-        <%= f.input :content, label: false %>
-        <%= hidden_field_tag(:comment_id, comment.id) %>
-        <%= hidden_field_tag(:user_id, current_user) %>
-        <%= f.submit "reply",class: "btn btn-panel" %>
-      <% end %>
+
+      <div style="display: none" id=<%= "comment#{comment.id}" %>>
+        <%= simple_form_for @reply do |f| %>
+          <%= f.input :content, label: false %>
+          <%= hidden_field_tag(:comment_id, comment.id) %>
+          <% if user_signed_in? %>
+            <%= hidden_field_tag(:user_id, current_user.id) %>
+          <% end %>
+          <%= f.submit "reply",class: "btn btn-panel" %>
+        <% end %>
+      </div>
+
 
       <% comment.replies.each do |reply| %>
+      <% if user_signed_in? %>
         <%= render 'reply', reply: reply %>
+      <% end %>
+
       <% end %>
     <% end %>
   </div>
 
 </div>
+
+<script>
+function reply(commentId) {
+  var x = document.getElementById(commentId);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+</script>
+
+
+<%#
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+  page = document.getElementById('inject-page')
+
+  fetch('/conversations/')
+    .then(function(response) {
+        // When the page is loaded convert it to text
+        return response.text()
+    })
+    .then(function(html) {
+        // Initialize the DOM parser
+        var parser = new DOMParser();
+
+        // Parse the text
+        var doc = parser.parseFromString(html, "text/html");
+
+        // You can now even select part of that html as you would in the regular DOM
+        // Example:
+        // var docArticle = doc.querySelector('article').innerHTML;
+        doc.children[0].children[1].children[0].remove()
+        data = doc.children[0].children[1]
+        page.innerHTML = ""
+        page.insertAdjacentHTML('beforeend', data.innerHTML)
+    })
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+
+
+<script>
+  function clearText() {
+    var sentMsg = document.querySelector('.form-control')
+    if (sentMsg){
+      sentMsg.addEventListener('keyup', function (e) {
+        if (e.key === 'Enter') {
+          sentMsg.value = ""
+        }
+      });
+    }
+  }
+
+
+  // left << this user's msg   other user's msg >> right
+  function display(){
+    console.log("run")
+    nickname = document.getElementById('nickname').innerText
+    document.querySelectorAll(".message-container").forEach(elm =>{
+      if (elm.children[0] !== undefined){
+        if(elm.children[0].children[0].children[0].innerHTML !== nickname){
+          if (elm.children[0].style.float !== "right"){
+            elm.children[0].style.float = "left"
+          }
+
+        }
+      }
+    })
+  }
+
+  document.addEventListener('change', (event) => {
+    clearText()
+  });
+
+display();
+
+</script> %>
