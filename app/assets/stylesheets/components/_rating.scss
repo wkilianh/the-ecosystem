@@ -1,0 +1,37 @@
+.br-theme-css-stars .br-widget a:after {
+  content: "\1F333" !important;
+  color: transparent !important;
+  text-shadow: 0 0 0 #d2d2d2 !important;
+/*  letter-spacing: 1em;*/
+  margin: 1em !important;
+/*  color: #d2d2d2;*/
+}
+
+.br-theme-css-stars .br-widget a.br-active:after {
+/*  color: #EDB867;*/
+  color: transparent !important;
+  text-shadow: 0 0 0 $dark-green !important;
+}
+
+.br-theme-css-stars .br-widget a.br-selected:after {
+/*  color: #EDB867;*/
+  color: transparent !important;
+  text-shadow: 0 0 0 $dark-green !important;
+}
+
+@media print {
+  .br-theme-css-stars .br-widget a:after {
+    content: "\1F333" !important;
+    color: black;
+  /*  letter-spacing: 1em;*/
+    margin: 1em;
+  }
+
+  .br-theme-css-stars .br-widget a.br-active:after,
+  .br-theme-css-stars .br-widget a.br-selected:after {
+    content: "\1F333" !important;
+    color: black !important;
+  /*  letter-spacing: 1em;*/
+    margin: 1em !important;
+  }
+}
