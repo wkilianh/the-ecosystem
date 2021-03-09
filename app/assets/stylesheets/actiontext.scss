@@ -4,7 +4,7 @@
 // inclusion directly in any other asset bundle and remove this file.
 //
 //= require trix/dist/trix
-@import "trix/dist/trix";
+// @import "trix/dist/trix";
 // find the css in node_modules/trix/dist/trix.css (hidden in sublime text)
 // We need to override trix.css’s image gallery styles to accommodate the
 // <action-text-attachment> element we wrap around attachments. Otherwise,
@@ -39,6 +39,8 @@
 
 trix-editor {
   &.form-control {
+    min-height: 300px;
     height: auto;
+
   }
 }

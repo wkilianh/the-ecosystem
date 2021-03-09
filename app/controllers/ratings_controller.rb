@@ -3,7 +3,7 @@ class RatingsController < ApplicationController
     @post = Post.find(params[:post_id])
     @rating = Rating.new(rating_params)
     authorize @rating
-    @rating.avg = @rating.calc_avg
+#    @rating.avg = @rating.calc_avg
     @rating.post_id = params[:post_id]
     @rating.user_id = current_user.id
     if @rating.save
@@ -19,7 +19,7 @@ class RatingsController < ApplicationController
   private
 
   def rating_params
-    params.require(:rating).permit(:co2, :waste, :resources, :diyeffort, :ecocost)
+    params.require(:rating).permit(:co2, :waste, :resources, :diyeffort, :ecocost, :avg)
   end
 
 end

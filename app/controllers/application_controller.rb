@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :level, :prof_pic, :conversation_channel])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:nickname, :level, :prof_pic, :conversation_channel])
   end
 
   private

@@ -22,17 +22,28 @@ class Post < ApplicationRecord
             :expect_diyeffort, :expect_ecocost, presence: true,
             inclusion: { in: ["low", "moderate", "medium", "high", "very high"] }
 
-  def rating_avg
-    if self.ratings.exists?
-      self.ratings.last.avg
-    else
-      0
-    end
-  end
+  # def rating_avg
+  #   if self.ratings.exists?
+  #     self.ratings.last.avg
+  #   else
+  #     0
+  #   end
+  # end
 
   def current_rating
-    ratings = Rating.all.where(post_id: self.id)
-
+    if self.ratings.exists?
+      ratings = Rating.all.where(post_id: self.id)
+      rating_co2 = ratings.sum("co2") / ratings.count
+      rating_waste = ratings.sum("waste") / ratings.count
+      rating_resources = ratings.sum("resources") / ratings.count
+      rating_diyeffort = ratings.sum("diyeffort") / ratings.count
+      rating_ecocost = ratings.sum("ecocost") / ratings.count
+      rating_avg = ratings.sum("avg") / ratings.count
+      { co2: rating_co2, waste: rating_waste, resources: rating_resources,
+       diyeffort: rating_diyeffort, ecocost: rating_ecocost, avg: rating_avg }
+    else
+      { co2: 0, waste: 0, resources: 0, diyeffort: 0, ecocost: 0, avg: 0}
+    end
   end
 
 end
