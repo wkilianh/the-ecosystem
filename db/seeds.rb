@@ -9,19 +9,43 @@
 require 'open-uri'
 require 'faker'
 
+
 def add_users # creates 6 users
-  (1..6).each do |x|
-    puts "creating user #{x}"
-    user = User.new(email: "kilian#{x}@gmail.com",
-                    password: "123456",
-                    nickname: "kilian#{x}",
-                    level: ["starter", "intermediate", "pro", "expert"].sample,
-                    slogan: "I know the REAL hacks!")
-    user.prof_pic.attach(io: File.open("db/seed_prof-pics/prof_pic#{x}.jpg"), filename: "#{x}.jpg", content_type: 'image/png')
-    user.save!
-    puts "created user #{x}"
-  end
+  # (1..6).each do |x|
+    user_url = 'https://spreadsheets.google.com/feeds/list/1DuS3EFnttDtC0NFTsVtEvDpeTp3-hySvuFlaJAsrqwA/1/public/full?alt=json'
+    user_seed_url = open(user_url).read
+    user_seed_json = JSON.parse(user_seed_url)
+
+    user_seed_json['feed']['entry'].each do |seed|
+      puts "creating user #{seed['gsx$id']['$t']}"
+
+      user = User.new(email: seed['gsx$email']['$t'],
+                      password: seed['gsx$password']['$t'],
+                      nickname: seed['gsx$nickname']['$t'],
+                      level: seed['gsx$level']['$t'],
+                      slogan: seed['gsx$slogan']['$t']
+                      )
+      # old user seed!
+      # user = User.new(email: "kilian#{x}@gmail.com",
+      #                 password: "123456",
+      #                 nickname: "kilian#{x}",
+      #                 level: ["starter", "intermediate", "pro", "expert"].sample,
+      #                 slogan: "I know the REAL hacks!")
+      # user.prof_pic.attach(io: File.open("db/seed_prof-pics/prof_pic#{x}.jpg"), filename: "#{x}.jpg", content_type: 'image/png')
+
+# https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1615239541/profile_pics_seeds/45390147_zvvpp7.png
+      user.prof_pic.attach(io: URI.open("#{seed['gsx$cloudinary']['$t']}"), filename: "#{seed['gsx$nickname']['$t']}.jpg", content_type: 'image/png')
+
+      # user.prof_pic.attach(io: File.open("#{seed['gsx$img']['$t']}"), filename: "#{seed['gsx$nickname']['$t']}.jpg", content_type: 'image/png')
+
+      user.save!
+      puts "created user #{seed['gsx$id']['$t']}"
+    end
+  # end
 end
+
+
+
 
 def add_posts # creates 6 posts
   (1..6).each do |x|
@@ -114,3 +138,8 @@ add_conversation
 add_messages
 add_rich_text_to_posts
 add_ratings
+
+
+# https://docs.google.com/spreadsheets/d/e/2PACX-1vQdQ6L6PXg-5MprKVkr_w_Oze5X731yIU5fJR66zT5-Idvdgcjt1OpxgHmE3msKeRVlNObsxLOng0fV/pubhtml?gid=0&single=true
+# https://docs.google.com/spreadsheets/d/1DuS3EFnttDtC0NFTsVtEvDpeTp3-hySvuFlaJAsrqwA/edit?usp=sharing
+# https://spreadsheets.google.com/feeds/cells/1DuS3EFnttDtC0NFTsVtEvDpeTp3-hySvuFlaJAsrqwA/1/public/full?alt=json

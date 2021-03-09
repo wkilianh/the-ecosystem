@@ -7,8 +7,6 @@ class Post < ApplicationRecord
   has_many_attached :photos
   has_rich_text :rich_body
 
-  validates :category, inclusion: { in: %w[hack don't projects] }
-
   include PgSearch::Model
   pg_search_scope :search,
     against: [ :title, :topic, :category ],
@@ -30,6 +28,11 @@ class Post < ApplicationRecord
     else
       0
     end
+  end
+
+  def current_rating
+    ratings = Rating.all.where(post_id: self.id)
+
   end
 
 end
