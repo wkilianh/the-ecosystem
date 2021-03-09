@@ -3,24 +3,47 @@
     border: 1px white solid;
     border-radius: 5px;
     background-color: #649d66;
-    position: relative;
     display: flex;
-}
 
 
-.search-input {
-  flex-grow: 1;
 }
 
-.banner-search {
-  border:none;
+.search-input{
+  display: flex;
+  input {
+    border: none;
+    background-color: $bar-green;
+    color: white;
+    flex-grow: 1;
+    padding-right: 0;
+  }
+  form {
+    display: flex;
+  }
+
 }
+
 .categories{
 
-
-
+  display: flex;
+  #search-field{
+    color: $white;
+    background: $bar-green;
+    border: none;
+  }
 
 }
 
+.submit-btn{
+  display: flex;
 
+ .search-bar-submit{
+  color: $white;
+ }
 
+}
+.cat-sub{
+  display: flex;
+  justify-content: flex-end;
+
+}
