@@ -136,7 +136,7 @@
       <%= f.submit "Leave a comment",class: "btn btn-panel" %>
     <% end %>
 
-    <% @post.comments.each do |comment|%>
+    <% @post.comments.reverse.each do |comment|%>
       <%= render "comment", comment: comment %>
 
 
@@ -152,7 +152,7 @@
       </div>
 
 
-      <% comment.replies.each do |reply| %>
+      <% comment.replies.reverse.each do |reply| %>
       <% if user_signed_in? %>
         <%= render 'reply', reply: reply %>
       <% end %>
