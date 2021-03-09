@@ -19,8 +19,12 @@
 
     <% if user_signed_in? %>
       <div id="nickname" style="display: none"><%= current_user.nickname %></div>
+      <% current_uri = request.env['PATH_INFO'] %>
+      <% if current_uri.split('/')[1] != "conversations" %>
+        <% current_user.update(conversation_channel: 0)  %>
+      <% end %>
     <% end %>
-
+    
 
     <%= yield %>
   </body>

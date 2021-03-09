@@ -20,9 +20,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :level, :prof_pic])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :level, :prof_pic, :conversation_channel])
   end
-
 
   private
 

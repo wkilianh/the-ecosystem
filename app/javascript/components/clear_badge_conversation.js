@@ -7,13 +7,12 @@ const clearBadgeConversation = () => {
           var user_unseen = x.innerText
           var user_useen_badge = document.getElementById(user_unseen)
           if (user_useen_badge !== null){
-            console.log(user_unseen+" "+user_useen_badge.innerText)
             var num = user_useen_badge.innerText
             user_useen_badge.innerText = 0
             user_useen_badge.style.display = "none"
             var navBadge = document.querySelector(".nav-badge")
             var msgDropdownBadge = document.querySelector(".msg-dropdown-badge")
-            if (num < msgDropdownBadge.innerText){
+            if (num < msgDropdownBadge.innerText.replace(/ /g,'')){
               msgDropdownBadge.innerText -= num
               navBadge.innerText -= num
             } else {
@@ -27,32 +26,5 @@ const clearBadgeConversation = () => {
     })
   }  
 }
-  //   if (document.querySelector(".nav-badge").innerText > user_unseen){
-  //     document.querySelector(".nav-badge").innerText -= user_unseen
-  //   } else {
-  //     document.querySelector(".nav-badge").innerText = "0"
-  //     document.querySelector(".nav-badge").style.display = "none";
-  //   }
-  // }
-  
-
-      // user_unseen = document.querySelector(`#${x.text}`).innerText
-      // document.querySelector(`#${x.text}`).innerText = "0"
-      // document.querySelector(`#${x.text}`).style.display = "none";
-
-      // if (document.querySelector(".nav-badge").innerText > user_unseen){
-      //   document.querySelector(".nav-badge").innerText -= user_unseen
-      // } else {
-      //   document.querySelector(".nav-badge").innerText = "0"
-      //   document.querySelector(".nav-badge").style.display = "none";
-      // }
-
-      // if (document.querySelector(".msg-dropdown-badge").innerText > user_unseen){
-      //   document.querySelector(".msg-dropdown-badge").innerText -= user_unseen
-      // } else {
-      //   document.querySelector(".msg-dropdown-badge").innerText = "0"
-      //   document.querySelector(".msg-dropdown-badge").style.display = "none";
-      // }
-
 
 export {clearBadgeConversation}

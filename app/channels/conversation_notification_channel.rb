@@ -1,8 +1,9 @@
 class ConversationNotificationChannel < ApplicationCable::Channel
   def subscribed
     # stream_from "some_channel"
-    conversation = Conversation.find(params[:id])
-    stream_for conversation
+    # conversation = Conversation.find(params[:id])
+    # if conversation.sender == current_user
+      stream_for current_user
   end
 
   def unsubscribed
