@@ -35,7 +35,7 @@
 
     <% if @post.user == current_user %>
       <div id="post-subline">
-        <span><%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel" %></span>
+        <span><%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel" %><%= link_to "DELETE", post_path(@post), method: :delete, class: "btn btn-panel" %></span>
         <p>You last updated this post at <%= @post.updated_at.strftime("%a, %b %e at %l:%M%p") %></p1> <!-- check here -->
       </div>
     <% elsif current_user != nil && current_user.ratings.where(post_id: @post).exists? %>
