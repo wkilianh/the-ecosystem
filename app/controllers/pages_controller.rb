@@ -5,20 +5,9 @@ class PagesController < ApplicationController
     @posts = Post.all
   end
 
-  def index
-    # @posts = Post.all
-    if params[:query].present?
-     @posts = policy_scope(Post).search(params[:query])
-     else
-     @posts = policy_scope(Post)
-    end
+  # def index
+  #   # @posts = Post.all
+  # end
 
-    if params[:Category] == "all"
-      @posts = policy_scope(Post)
-    else
-      @posts = @posts.where(category: params[:Category])
-    end
-
-  end
 
 end

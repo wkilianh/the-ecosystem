@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show, :index]
+  skip_before_action :authenticate_user!, only: [:show, :index, :search]
 
   def new
     @post = Post.new
@@ -34,6 +34,52 @@ class PostsController < ApplicationController
 
   def index
     @posts = policy_scope(Post)
+  end
+
+  def search
+
+    @posts = Post.all
+
+
+    if params[:query].present?
+      @posts = Post.search_post(params[:query])
+    else
+      @posts = Post.all.order(created_at: :desc)
+    end
+
+    authorize @posts
+    return @posts
+
+
+    if params[:Category] == "all"
+      @posts = Post.all
+    else
+      @posts = Post.all.where(category: params[:Category])
+    end
+
+
+    # if params[:query] == "Rating"
+    #    @posts = Post.all.order(rating_avg: :desc)
+
+    # elsif params[:query] == "Views"
+    #    @posts = Post.all.order(views_count: :desc)
+
+    # elsif params[:query] == "CO2"
+    #    @posts = Post.all.order(expect_co2: :desc)
+
+    # elsif params[:query] == "Waste reduction"
+    #    @posts = Post.all.order(expect_waste: :desc)
+
+    # elsif params[:query] == "Resource saving"
+    #    @posts = Post.all.order(expect_resources: :desc)
+
+    # elsif params[:query] == "Ease of use"
+    #    @posts = Post.all.order(expect_diyeffort: :desc)
+
+    # elsif params[:query] == "Free of side-effects"
+    #    @posts = Post.all.order(expect_ecocost: :desc)
+    # end
+
   end
 
   def show

@@ -8,8 +8,8 @@ class Post < ApplicationRecord
   has_rich_text :rich_body
 
   include PgSearch::Model
-  pg_search_scope :search,
-    against: [ :title, :topic, :category ],
+  pg_search_scope :search_post,
+    against: [ :title, :topic, :category, :expect_co2 ],
     using: {
     tsearch: { prefix: true }
     }

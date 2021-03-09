@@ -1,6 +1,7 @@
 class PostPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
+      # scope.all
       scope.where(user: user)
     end
   end
@@ -10,6 +11,10 @@ class PostPolicy < ApplicationPolicy
   # end
 
   def show?
+    true
+  end
+
+  def search?
     true
   end
 
