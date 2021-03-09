@@ -2,8 +2,8 @@
   <div class="post-box">
 
     <div id="post-headline">
-      <span id="post-title"><h1><%= @post.title %></h1></span>
-      <span id="stars"><%= render "/shared/stars", rating: @post.rating_avg %>
+      <span id="post-title"><h1><strong><%= @post.title %></h1></strong></span>
+      <span id="stars"><%= render "/shared/stars", rating: @post.current_rating[:avg] %>
         <span id="views">(<%= @post.ratings.count %>)</span>
       </span>
     </div><br>
@@ -15,7 +15,7 @@
         <%= image_tag "https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614952509/placeholder_avatar/pexels-pixabay-56875_cdviyq.jpg", style: "height: 300px" %>
       <% end %>
       <div class="list-head">
-        <span><strong>Detail rating</strong></span><br>
+        <span><strong><%= @post.ratings.count == 0 ? "This post has no ratings yet.." : "Detail rating" %></strong></span><br>
         <div><br></div>
         <div class="expectations"><span>CO2 Savings: </span></div>
         <div class="expectations"><span>Waste Reduction: </span></div>
@@ -25,18 +25,18 @@
       </div>
       <div class="single-ratings">
         <div><strong> </strong></div><br><br>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.co2 : 0 %></div>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.waste : 0 %></div>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.resources : 0 %></div>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.diyeffort : 0 %></div>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.ecocost : 0 %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.current_rating[:co2] %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.current_rating[:waste] %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.current_rating[:resources] %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.current_rating[:diyeffort] %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.current_rating[:ecocost] %></div>
       </div>
     </div>
 
     <% if @post.user == current_user %>
       <div id="post-subline">
         <span><%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel" %></span>
-        <p>You last updated this post at <%= @post.updated_at.strftime("%a, %b %e at %l:%M%p") %></p1
+        <p>You last updated this post at <%= @post.updated_at.strftime("%a, %b %e at %l:%M%p") %></p1> <!-- check here -->
       </div>
     <% elsif current_user != nil && current_user.ratings.where(post_id: @post).exists? %>
       <div id="post-subline">
@@ -59,7 +59,7 @@
 
       <div class="container not-visible" id="rating-form">
         <div class="container rater-headline">
-          <strong>How do you think this hack works out?</strong>
+          <strong>How do you think this hack performs?</strong>
           <div id="ranges-headline">
           </div>
         </div>
@@ -81,7 +81,7 @@
               <%= f.input :diyeffort, label: false, collection: 1..5, required: false %>
               <%= f.input :ecocost, label: false, collection: 1..5, required: false %><br>
               <%= f.input :avg, label: false, collection: 1..5, required: false %>
-              <%= f.submit input_html: { class: "btn btn-large" }, label: "RATE!" %>
+              <%= f.button :submit, "RATE!", class: "btn btn-large" %>
           </div>
         </div>
 
@@ -95,7 +95,7 @@
       </div>
     <% end %> <!-- of the condition .. so that rating section is available -->
   </div>
-</div>
+
 
 
 <%# <!-- Trigger/Open The Modal -->
@@ -113,54 +113,55 @@
 </div> %>
 
 
-<div class="container w-50">
-  <div class="post-box">
+  <div class="post-box post-body">
     <div>
       <%= render layout: "layouts/action_text/contents/content" do %>
         <%= @post.rich_body %>
       <% end %>
     </div>
   </div>
-</div>
-
-<div class="container w-50">
-
-  <br><br>
-
-  <div id="comments">
-
-    <div><h4>Comments</h4></div>
-
-    <%= simple_form_for [@post, @comment] do |f| %>
-      <%= f.input :content, label: false %>
-      <%= f.submit "Leave a comment",class: "btn btn-panel" %>
-    <% end %>
-
-    <% @post.comments.each do |comment|%>
-      <%= render "comment", comment: comment %>
 
 
-      <div style="display: none" id=<%= "comment#{comment.id}" %>>
-        <%= simple_form_for @reply do |f| %>
-          <%= f.input :content, label: false %>
-          <%= hidden_field_tag(:comment_id, comment.id) %>
-          <% if user_signed_in? %>
-            <%= hidden_field_tag(:user_id, current_user.id) %>
+  <div class="container w-50">
+
+    <br><br>
+
+    <div id="comments">
+
+      <div><h4>Comments</h4></div>
+
+      <%= simple_form_for [@post, @comment] do |f| %>
+        <%= f.input :content, label: false %>
+        <%= f.submit "Leave a comment",class: "btn btn-panel" %>
+      <% end %>
+
+      <% @post.comments.reverse.each do |comment|%>
+        <%= render "comment", comment: comment %>
+
+
+        <div style="display: none" id=<%= "comment#{comment.id}" %>>
+          <%= simple_form_for @reply do |f| %>
+            <%= f.input :content, label: false %>
+            <%= hidden_field_tag(:comment_id, comment.id) %>
+            <% if user_signed_in? %>
+              <%= hidden_field_tag(:user_id, current_user.id) %>
+            <% end %>
+            <%= f.submit "reply",class: "btn btn-panel" %>
           <% end %>
-          <%= f.submit "reply",class: "btn btn-panel" %>
-        <% end %>
-      </div>
+        </div>
 
 
-      <% comment.replies.each do |reply| %>
+
+      <% comment.replies.reverse.each do |reply| %>
       <% if user_signed_in? %>
         <%= render 'reply', reply: reply %>
       <% end %>
 
-      <% end %>
-    <% end %>
-  </div>
 
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <script>

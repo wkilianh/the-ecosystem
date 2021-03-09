@@ -25,44 +25,43 @@ def add_users # creates 6 users
                       level: seed['gsx$level']['$t'],
                       slogan: seed['gsx$slogan']['$t']
                       )
-      # old user seed!
-      # user = User.new(email: "kilian#{x}@gmail.com",
-      #                 password: "123456",
-      #                 nickname: "kilian#{x}",
-      #                 level: ["starter", "intermediate", "pro", "expert"].sample,
-      #                 slogan: "I know the REAL hacks!")
-      # user.prof_pic.attach(io: File.open("db/seed_prof-pics/prof_pic#{x}.jpg"), filename: "#{x}.jpg", content_type: 'image/png')
 
-# https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1615239541/profile_pics_seeds/45390147_zvvpp7.png
       user.prof_pic.attach(io: URI.open("#{seed['gsx$cloudinary']['$t']}"), filename: "#{seed['gsx$nickname']['$t']}.jpg", content_type: 'image/png')
-
-      # user.prof_pic.attach(io: File.open("#{seed['gsx$img']['$t']}"), filename: "#{seed['gsx$nickname']['$t']}.jpg", content_type: 'image/png')
-
       user.save!
       puts "created user #{seed['gsx$id']['$t']}"
     end
   # end
 end
 
-
-
-
 def add_posts # creates 6 posts
-  (1..6).each do |x|
-    puts "creating post #{x}"
-    post = Post.new(user_id: x,
-                    category: ["hack", "don't", "project"].sample,
-                    title: "Post No. #{x}, Title",
-                    topic: ["household", "energy", "diy"].sample,
-                    expect_co2: ["low", "moderate", "medium", "high", "very high"].sample,
-                    expect_waste: ["low", "moderate", "medium", "high", "very high"].sample,
-                    expect_resources: ["low", "moderate", "medium", "high", "very high"].sample,
-                    expect_diyeffort: ["low", "moderate", "medium", "high", "very high"].sample,
-                    expect_ecocost: ["low", "moderate", "medium", "high", "very high"].sample)
-    post.photos.attach(io: File.open("db/seed_post-images/post#{x}.jpg"), filename: "#{x}.jpg", content_type: 'image/png')
-    # post.photos.attach(io: File.open("db/seed_post-images/post#{x}a.jpg"), filename: "#{x}a.jpg", content_type: 'image/png')
-    post.save!
-    puts "created post #{x}"
+
+  post_url = 'https://spreadsheets.google.com/feeds/list/1eKkAGViq5gdT65DnxMpYdGRBi97dVDc_WoQN5LBrclQ/1/public/full?alt=json'
+  post_seed_url = open(post_url).read
+  post_seed_json = JSON.parse(post_seed_url)
+
+
+
+  post_seed_json['feed']['entry'].each do |post|
+    puts "creating post #{post['gsx$id']['$t']}"
+
+    newpost = Post.new(user_id: post['gsx$userid']['$t'].to_i,
+                    category: post['gsx$category']['$t'],
+                    title: post['gsx$title']['$t'],
+                    topic: post['gsx$topic']['$t'],
+                    expect_co2: post['gsx$expectco2']['$t'],
+                    expect_waste: post['gsx$expectwaste']['$t'],
+                    expect_resources: post['gsx$expectresources']['$t'],
+                    expect_diyeffort: post['gsx$expectdiyeffort']['$t'],
+                    expect_ecocost: post['gsx$expectecocost']['$t'],
+                    rich_body: post['gsx$richtext']['$t']
+                    )
+
+    newpost.photos.attach(io: URI.open("#{post['gsx$cloudinary']['$t']}"), filename: "#{post['gsx$id']['$t']}.jpg", content_type: 'image/png')
+
+    newpost.save!
+    puts "created post #{post['gsx$id']['$t']}"
+
+
   end
 end
 
@@ -136,10 +135,6 @@ add_comments
 add_replies
 add_conversation
 add_messages
-add_rich_text_to_posts
-add_ratings
+# add_rich_text_to_posts
+# add_ratings
 
-
-# https://docs.google.com/spreadsheets/d/e/2PACX-1vQdQ6L6PXg-5MprKVkr_w_Oze5X731yIU5fJR66zT5-Idvdgcjt1OpxgHmE3msKeRVlNObsxLOng0fV/pubhtml?gid=0&single=true
-# https://docs.google.com/spreadsheets/d/1DuS3EFnttDtC0NFTsVtEvDpeTp3-hySvuFlaJAsrqwA/edit?usp=sharing
-# https://spreadsheets.google.com/feeds/cells/1DuS3EFnttDtC0NFTsVtEvDpeTp3-hySvuFlaJAsrqwA/1/public/full?alt=json

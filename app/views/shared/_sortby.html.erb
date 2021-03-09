@@ -1,12 +1,12 @@
 <div class="filters">
   <ul class="w-100">
     <li class="filter-btn">Sort by:</li>
-    <li class="filter-btn"> <%= link_to "Rating", search_path %> </li>
-    <li class="filter-btn"> <%= link_to "Views", search_path %> </li>
-    <li class="filter-btn"> <%= link_to "CO2", search_path %> </li>
-    <li class="filter-btn"> <%= link_to "Waste reduction" %> </li>
-    <li class="filter-btn"> <%= link_to "Resource saving" %> </li>
-    <li class="filter-btn"> <%= link_to "Ease of use" %> </li>
-    <li class="filter-btn"> <%= link_to "Free of side-effects" %> </li>
+    <li class="filter-btn"> <%= link_to "Rating", search_path(query:"sort_by_avg_rating") %> </li>
+    <li class="filter-btn"> <%= link_to "Views", search_path(query:"sort_by_views_count") %> </li>
+    <li class="filter-btn"> <%= link_to "CO2", search_path(query:"CO_2_sort_by_rating") %> </li>
+    <li class="filter-btn"> <%= link_to "Waste reduction", search_path(query:"waste_sort_by_rating") %> </li>
+    <li class="filter-btn"> <%= link_to "Resource saving", search_path(query:"resource_sort_by_rating") %> </li>
+    <li class="filter-btn"> <%= link_to "Ease of use", search_path(query:"diy_sort_by_rating") %> </li>
+    <li class="filter-btn"> <%= link_to "Free of side-effects", search_path(query:"cost_sort_by_rating") %> </li>
   </ul>
 </div>

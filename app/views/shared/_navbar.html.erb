@@ -12,7 +12,7 @@
   </div>
   <div class="search-log">
 
-    <%= form_tag posts_path, method: :get do %>
+    <%= form_tag search_path, method: :get do %>
       <%= text_field_tag :query, params[:query], class: "form-control nav-search", placeholder: "Find your solution!" %>
     <% end %>
 
@@ -35,10 +35,15 @@
         </li>
         <li class="nav-item dropdown">
           <% if current_user.prof_pic.attached? %>
+
             <div style="position:relative"> 
-            <% if sum > 0 %>
-              <div class="nav-badge badge"><%= sum %></div>
-            <% end %>
+
+              <% if sum > 0 %>
+                <div class="nav-badge badge"><%= sum %></div>
+              <% else %>
+                <div class="nav-badge badge" style="display: none;">0</div>
+              <% end %>
+
 
             </div><%= cl_image_tag current_user.prof_pic.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
 
@@ -49,10 +54,13 @@
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "My Profile", profile_path(current_user), class: "dropdown-item" %>
             <div style="position:relative"><%= link_to "Messages", conversations_path, class: "dropdown-item" %>
+              
               <% if sum > 0 %>
                 <div class="msg-dropdown-badge badge"><%= sum %></div>
+              <% else %>
+                <div class="msg-dropdown-badge badge" style="display: none;">0</div>
               <% end %>
-            
+
             </div>
             <%= link_to "My Posts", posts_path, class: "dropdown-item" %>
             <%= link_to "Account Settings", edit_user_registration_path, class: "dropdown-item" %>

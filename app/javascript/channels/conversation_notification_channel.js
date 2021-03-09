@@ -1,39 +1,55 @@
-// import consumer from "./consumer";
+import consumer from "./consumer";
 
-// const initConversationNotificationCable = () => {
-//   const navBadge = document.querySelector('.nav-badge');
-//   const msgDropdownBadge = document.querySelector('.msg-dropdown-badge')
-//   const nickname = document.getElementById('nickname');
-//   const clickbleNames = document.querySelectorAll('.clickble-name')
-
-//   if (nickname){
+const initConversationNotificationCable = () => {
+  const stringToHTML = (str) => {
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(str, 'text/html');
+    return doc.body;
+  };
+  if (nickname){
+    const navBadge = document.querySelector('.nav-badge');
+    const msgDropdownBadge = document.querySelector('.msg-dropdown-badge')
+    const nickname = document.getElementById('nickname');
+    // const audio = new Audio('/message.mp3');
+    fetch('/conversations').then(function(response) {
+      return response.text();
+      }).then(function(string) {
+          let nicknames = []
+          stringToHTML(string).querySelectorAll('.clickble-name').forEach(elm => {
+            nicknames.push(document.getElementById(elm.innerText))
+            console.log(document.getElementById(elm.innerText))
+          })
+          
+          fetch('/conversations', { headers: { accept: 'application/json' } })
+            .then(response => response.json())
+            .then((jsonData) => {
+              jsonData.conversations.forEach(element => {
+                consumer.subscriptions.create({ channel: "ConversationNotificationChannel", id: element.id}, {
+                  received(data) {
+                    if (data !== nickname.innerText){
+                      // audio.play();
+                      msgDropdownBadge.innerText = parseInt(msgDropdownBadge.innerText.replace(/ /g,'')) + 1
+                      navBadge.innerText = parseInt(navBadge.innerText.replace(/ /g,'')) + 1
+                      msgDropdownBadge.setAttribute("style","display: block")
+                      navBadge.setAttribute("style","display: block")  
+                        nicknames.forEach( elm => {
+                          if (elm != null && elm.id == data){
+                            elm.innerText = parseInt(elm.innerText) + 1
+                            elm.style.display = "block"
+                          }
+                        })
+                    }
+                  },
+                });
+              });
+            })
+          });
     
-//   }
+    
+  }
   
-//   // if (messagesContainer) {
-//   //   messagesContainer.lastElementChild.scrollIntoView();
-//   //   const id = messagesContainer.dataset.conversationId;
-//   //   consumer.subscriptions.create({ channel: "ConversationNotificationChannel", id: id }, {
-//   //     received(data) {
-//   //       data = stringToHTML(data)
-//   //       // console.log()
-//   //       if (data.children[0].children[0].children[0].children[0].innerHTML !== nickname.innerText){
-//   //         data.children[0].children[0].setAttribute("style","float:left")
-//   //       }else{
-//   //         data.children[0].children[0].setAttribute("style","float:right")
-//   //       }
-//   //       console.log(nickname.innerText,data.children[0].children[0].children[0].children[0].innerHTML)
-//   //       messagesContainer.insertAdjacentHTML('beforeend', data.innerHTML);
-//   //       messagesContainer.lastElementChild.scrollIntoView()
-//   //     },
-//   //   });
-//   // }
 
-//   const stringToHTML = (str) => {
-//     var parser = new DOMParser();
-//     var doc = parser.parseFromString(str, 'text/html');
-//     return doc.body;
-//   };
-// }
 
-// export { initConversationNotificationCable };
+
+}
+export { initConversationNotificationCable };

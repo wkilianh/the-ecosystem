@@ -39,6 +39,18 @@
 
 trix-editor {
   &.form-control {
+    min-height: 300px;
     height: auto;
+
   }
+}
+
+.trix-content h1 {
+  font-size: 1.5em;
+  line-height: 1.2em;
+  // font-style: italic;
+}
+
+.trix-content {
+  font-size: 1.1em;
 }
