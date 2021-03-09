@@ -20,19 +20,20 @@ class ConversationsController < ApplicationController
   def index
     @conversations = policy_scope(Conversation)
     @message = Message.new
-    # authorize @message
-    last = @conversations.last
-
-    if current_user == last.sender
-      last.sender_notifications = 0
-    else
-      last.receiver_notifications = 0
-    end
-    last.save
+    # # authorize @message
+    # lastConv = @conversations[@conversations.count -1]
+    # current_user.update(conversation_channel: lastConv.id)
+    # if current_user == lastConv.sender
+    #   lastConv.sender_notifications = 0
+    # else
+    #   lastConv.receiver_notifications = 0
+    # end
+    # lastConv.save
   end
 
   def show
     @conversation = Conversation.find(params[:id])
+    current_user.update(conversation_channel: @conversation.id)
     @message = Message.new
     authorize @conversation
 

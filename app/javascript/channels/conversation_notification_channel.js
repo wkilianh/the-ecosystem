@@ -4,9 +4,10 @@
 //   const navBadge = document.querySelector('.nav-badge');
 //   const msgDropdownBadge = document.querySelector('.msg-dropdown-badge')
 //   const nickname = document.getElementById('nickname');
+//   const clickbleNames = document.querySelectorAll('.clickble-name')
 
 //   if (nickname){
-
+    
 //   }
   
 //   // if (messagesContainer) {

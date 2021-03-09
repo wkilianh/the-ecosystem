@@ -37,9 +37,7 @@
           <% if current_user.prof_pic.attached? %>
             <div style="position:relative"> 
             <% if sum > 0 %>
-              <div class="nav-badge badge">
-                <%= sum %>
-              </div>
+              <div class="nav-badge badge"><%= sum %></div>
             <% end %>
 
             </div><%= cl_image_tag current_user.prof_pic.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -52,9 +50,7 @@
             <%= link_to "My Profile", profile_path(current_user), class: "dropdown-item" %>
             <div style="position:relative"><%= link_to "Messages", conversations_path, class: "dropdown-item" %>
               <% if sum > 0 %>
-                <div class="msg-dropdown-badge badge">
-                  <%= sum %>
-                </div>
+                <div class="msg-dropdown-badge badge"><%= sum %></div>
               <% end %>
             
             </div>

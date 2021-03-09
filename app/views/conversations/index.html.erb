@@ -16,9 +16,7 @@
                             <a href=<%= profile_path(conversation.receiver)%>><%= cl_image_tag conversation.receiver.prof_pic.key, class: "avatar" %></a>
                             <%= link_to conversation.receiver.nickname, conversation_path(conversation), remote: true, class: "clickble-name" %>
                             <% if conversation.sender_notifications > 0 %>
-                              <div id="<%= conversation.receiver.nickname %>" class="chat-badge badge">
-                                <%= conversation.sender_notifications %>
-                              </div>
+                              <div id="<%= conversation.receiver.nickname %>" class="chat-badge badge"><%= conversation.sender_notifications %></div>
                             <% end %>
 
                         </li>
@@ -28,9 +26,7 @@
                         <%= link_to conversation.sender.nickname, conversation_path(conversation), remote: true, class: "clickble-name"%>
 
                         <% if conversation.receiver_notifications > 0 %>
-                          <div id="<%= conversation.sender.nickname %>" class="chat-badge badge">
-                            <%= conversation.receiver_notifications  %>
-                          </div>
+                          <div id="<%= conversation.sender.nickname %>" class="chat-badge badge"><%= conversation.receiver_notifications  %></div>
                         <% end %>
                     </li>
                   <% end %>
@@ -47,17 +43,17 @@
             <div class="conversation" data-conversation-target="conversationcon">
               <div id="messages" data-conversation-id="<%= @conversations.last.id %>">
                   <div class="message-container" id="message-0"></div>
-                  <% @conversations.last.messages.each do |message| %>
-                    <%= render "messages/message", message: message %>
-                  <% end %>
+                  <%# @conversations.last.messages.each do |message| %>
+                    <%#= render "messages/message", message: message %>
+                  <%# end %>
               </div>
             </div>
 
             <span class="sendfield" id="chat-text"  data-conversation-target="sendcon">
               <span id="send">
-                <%= simple_form_for [ @conversations.last, @message ] , html: { autocomplete: 'off' } do |f| %>
-                  <%= f.input :content, label: false, placeholder: "Message", remote: true %>
-                <% end %>
+                <%#= simple_form_for [ @conversations.last, @message ] , html: { autocomplete: 'off' } do |f| %>
+                  <%#= f.input :content, label: false, placeholder: "Message", remote: true %>
+                <%# end %>
               </span>
             </span>
 
