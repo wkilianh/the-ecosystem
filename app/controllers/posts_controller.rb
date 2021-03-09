@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show, :index]
+  skip_before_action :authenticate_user!, only: [:show, :index, :search]
 
   def new
     @post = Post.new
@@ -34,6 +34,55 @@ class PostsController < ApplicationController
 
   def index
     @posts = policy_scope(Post)
+  end
+
+  def search
+
+    @posts = Post.all
+
+    if params[:category] == "all"
+
+      @posts = Post.all
+    else
+      @posts = Post.where(category: params[:category])
+    end
+
+    if params[:query].present?
+
+      if params[:query] == "CO_2_sort_by_rating"
+        @posts = Post.all.joins(:ratings).order("ratings.co2 DESC")
+
+      elsif params[:query] == "waste_sort_by_rating"
+        @posts = Post.all.joins(:ratings).order("ratings.waste DESC")
+
+      elsif params[:query] == "resource_sort_by_rating"
+        @posts = Post.all.joins(:ratings).order("ratings.resources DESC")
+
+      elsif params[:query] == "diy_sort_by_rating"
+        @posts = Post.all.joins(:ratings).order("ratings.diyeffort DESC")
+
+      elsif params[:query] == "cost_sort_by_rating"
+        @posts = Post.all.joins(:ratings).order("ratings.ecocost DESC")
+
+      elsif params[:query] == "sort_by_views_count"
+        @posts = @posts.order(views_count: :desc)
+
+      elsif params[:query] == "sort_by_avg_rating"
+        @posts = @posts.order(rating_avg: :desc)
+
+      else
+        @posts = Post.search_post(params[:query])
+
+      end
+
+    else
+      @posts = Post.all.order(created_at: :desc)
+
+    end
+
+    authorize @posts
+    return @posts
+
   end
 
   def show

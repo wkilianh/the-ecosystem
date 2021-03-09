@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # devise_for :users
   devise_for :users, controllers: { registrations: "registrations" }
   root to: 'pages#home'
-  get '/search', to: 'pages#index'
+  get '/search', to: 'posts#search'
   post '/comments/:comment_id/replies', to: 'replies#create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :profiles, only: [:show, :edit, :update]

@@ -6,7 +6,7 @@
           <div class="user-data">
             <%= cl_image_tag post.user.prof_pic.key, class:"avatar-bordered" %>
             <p>Posted by <%= post.user.nickname %> </p>
-            <span class="rating" id="stars"><%= render "/shared/stars", rating: post.rating_avg %>
+            <span class="rating" id="stars"><%= render "/shared/stars", rating: post.current_rating[:avg] %>
               <span id="views">(<%= post.ratings.count %>)</span>
             </span>
           </div>
