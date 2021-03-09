@@ -12,7 +12,7 @@
   </div>
   <div class="search-log">
 
-    <%= form_tag posts_path, method: :get do %>
+    <%= form_tag search_path, method: :get do %>
       <%= text_field_tag :query, params[:query], class: "form-control nav-search", placeholder: "Find your solution!" %>
     <% end %>
 
@@ -35,7 +35,7 @@
         </li>
         <li class="nav-item dropdown">
           <% if current_user.prof_pic.attached? %>
-            <div style="position:relative"> 
+            <div style="position:relative">
             <% if sum > 0 %>
               <div class="nav-badge badge"><%= sum %></div>
             <% end %>
@@ -52,7 +52,7 @@
               <% if sum > 0 %>
                 <div class="msg-dropdown-badge badge"><%= sum %></div>
               <% end %>
-            
+
             </div>
             <%= link_to "My Posts", posts_path, class: "dropdown-item" %>
             <%= link_to "Account Settings", edit_user_registration_path, class: "dropdown-item" %>
