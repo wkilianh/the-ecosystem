@@ -25,6 +25,7 @@ require("channels")
 // External imports
 import "bootstrap";
 import {initConversationCable} from '../channels/conversation_channel';
+import {initConversationNotificationCable} from '../channels/conversation_notification_channel';
 import { toggleForm } from '../components/rating_form';
 
 import { toggleUser } from '../components/toggle_user';
@@ -40,17 +41,18 @@ import { initStarRating } from '../plugins/init_star_rating';
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  initConversationNotificationCable();
   initConversationCable()
 
   if (document.querySelector("#rating-form") !== null) {
     toggleForm();
   };
 
-  clearBadgeConversation()
-  toggleUser()
-  clearText()
-  msgDisplay()
-
+  clearBadgeConversation();
+  toggleUser();
+  clearText();
+  msgDisplay();
+  
   initStarRating();
 
 });

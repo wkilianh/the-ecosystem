@@ -9,17 +9,17 @@ class MessagesController < ApplicationController
     if current_user == @conversation.sender && @conversation.receiver.conversation_channel != @conversation.id
       @conversation.receiver_notifications += 1
       @conversation.save
-      # ConversationNotificationChannel.broadcast_to(
-      #   @conversation.receiver,
-      #   "{id:#{@conversation.id},nickname: #{@conversation.sender.nickname}}"
-      # )
+      ConversationNotificationChannel.broadcast_to(
+        @conversation,
+        "#{@conversation.sender.nickname}"
+      )
     elsif current_user == @conversation.receiver && @conversation.sender.conversation_channel != @conversation.id
       @conversation.sender_notifications += 1
       @conversation.save
-      # ConversationNotificationChannel.broadcast_to(
-      #   @conversation.sender,
-      #   "{id:#{@conversation.id},nickname: #{@conversation.receiver.nickname}}"
-      # )
+      ConversationNotificationChannel.broadcast_to(
+        @conversation,
+        "#{@conversation.receiver.nickname}"
+      )
     end
     # @conversation.save
     
