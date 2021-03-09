@@ -33,19 +33,7 @@ class PostsController < ApplicationController
   end
 
   def index
-
-    if params[:query].present?
-     @posts = policy_scope(Post).search(params[:query])
-     else
-     @posts = policy_scope(Post)
-    end
-
-    if params[:Category] == "all"
-      @posts = policy_scope(Post)
-    else
-      @posts = @posts.where(category: params[:Category])
-    end
-
+    @posts = policy_scope(Post)
   end
 
   def show
