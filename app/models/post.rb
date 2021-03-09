@@ -9,7 +9,7 @@ class Post < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search_post,
-    against: [ :title, :topic, :category, :expect_co2 ],
+    against: [ :title, :topic, :category ],
     using: {
     tsearch: { prefix: true }
     }

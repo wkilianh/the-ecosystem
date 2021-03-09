@@ -40,45 +40,48 @@ class PostsController < ApplicationController
 
     @posts = Post.all
 
+    if params[:category] == "all"
+
+      @posts = Post.all
+    else
+      @posts = Post.where(category: params[:category])
+    end
 
     if params[:query].present?
-      @posts = Post.search_post(params[:query])
+
+      if params[:query] == "CO_2_sort_by_rating"
+        @posts = Post.all.joins(:ratings).order("ratings.co2 DESC")
+
+      elsif params[:query] == "waste_sort_by_rating"
+        @posts = Post.all.joins(:ratings).order("ratings.waste DESC")
+
+      elsif params[:query] == "resource_sort_by_rating"
+        @posts = Post.all.joins(:ratings).order("ratings.resources DESC")
+
+      elsif params[:query] == "diy_sort_by_rating"
+        @posts = Post.all.joins(:ratings).order("ratings.diyeffort DESC")
+
+      elsif params[:query] == "cost_sort_by_rating"
+        @posts = Post.all.joins(:ratings).order("ratings.ecocost DESC")
+
+      elsif params[:query] == "sort_by_views_count"
+        @posts = @posts.order(views_count: :desc)
+
+      elsif params[:query] == "sort_by_avg_rating"
+        @posts = @posts.order(rating_avg: :desc)
+
+      else
+        @posts = Post.search_post(params[:query])
+
+      end
+
     else
       @posts = Post.all.order(created_at: :desc)
+
     end
 
     authorize @posts
     return @posts
-
-
-    if params[:Category] == "all"
-      @posts = Post.all
-    else
-      @posts = Post.all.where(category: params[:Category])
-    end
-
-
-    # if params[:query] == "Rating"
-    #    @posts = Post.all.order(rating_avg: :desc)
-
-    # elsif params[:query] == "Views"
-    #    @posts = Post.all.order(views_count: :desc)
-
-    # elsif params[:query] == "CO2"
-    #    @posts = Post.all.order(expect_co2: :desc)
-
-    # elsif params[:query] == "Waste reduction"
-    #    @posts = Post.all.order(expect_waste: :desc)
-
-    # elsif params[:query] == "Resource saving"
-    #    @posts = Post.all.order(expect_resources: :desc)
-
-    # elsif params[:query] == "Ease of use"
-    #    @posts = Post.all.order(expect_diyeffort: :desc)
-
-    # elsif params[:query] == "Free of side-effects"
-    #    @posts = Post.all.order(expect_ecocost: :desc)
-    # end
 
   end
 

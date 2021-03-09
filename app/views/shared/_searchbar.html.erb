@@ -5,7 +5,7 @@
     </div>
     <div class="cat-sub col-4">
       <div class= "categories">
-        <%= select_tag "Category", options_for_select(%w[all hack don't project], \
+        <%= select_tag "category", options_for_select(%w[all hack don't project], \
         selected: params[:category]), id: "search-field" %>
       </div>
       <div class= "submit-btn">
