@@ -3,7 +3,7 @@
 
     <div id="post-headline">
       <span id="post-title"><h1><%= @post.title %></h1></span>
-      <span id="stars"><%= render "/shared/stars", rating: @post.rating_avg %>
+      <span id="stars"><%= render "/shared/stars", rating: @post.current_rating[:avg] %>
         <span id="views">(<%= @post.ratings.count %>)</span>
       </span>
     </div><br>
@@ -25,11 +25,11 @@
       </div>
       <div class="single-ratings">
         <div><strong> </strong></div><br><br>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.co2 : 0 %></div>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.waste : 0 %></div>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.resources : 0 %></div>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.diyeffort : 0 %></div>
-        <div class="single-stars"><%= render "/shared/stars", rating: @post.ratings.exists? ? @post.ratings.first.ecocost : 0 %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.current_rating[:co2] %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.current_rating[:waste] %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.current_rating[:resources] %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.current_rating[:diyeffort] %></div>
+        <div class="single-stars"><%= render "/shared/stars", rating: @post.current_rating[:ecocost] %></div>
       </div>
     </div>
 
@@ -113,7 +113,7 @@
 </div> %>
 
 
-<div class="container w-50">
+<!-- <div class="container w-50"> -->
   <div class="post-box">
     <div>
       <%= render layout: "layouts/action_text/contents/content" do %>
@@ -121,7 +121,7 @@
       <% end %>
     </div>
   </div>
-</div>
+<!-- </div> -->
 
 <div class="container w-50">
 
