@@ -113,6 +113,17 @@
 
 .search-log {
   display: flex;
+  input {
+    outline:none;
+    width: 300px;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background-color: $bar-green;
+    color: white;
+    flex-grow: 1;
+    padding-right: 0;
+  }
 }
 
 .sticky {
