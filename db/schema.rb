@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_08_203737) do
+ActiveRecord::Schema.define(version: 2021_03_10_200550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,11 @@ ActiveRecord::Schema.define(version: 2021_03_08_203737) do
     t.float "rating_avg"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "rating_co2"
+    t.float "rating_waste"
+    t.float "rating_resources"
+    t.float "rating_diyeffort"
+    t.float "rating_ecocost"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
