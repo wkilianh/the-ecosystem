@@ -47,4 +47,10 @@ class Post < ApplicationRecord
     end
   end
 
+  def ratings_co2
+    rating_co2 = ratings.sum("co2") / ratings.count
+  end
+
+  # post.rating_co2 Post.all.sort()
+
 end

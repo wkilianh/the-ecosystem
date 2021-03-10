@@ -97,9 +97,9 @@ def add_comments # creates 12 comments, 2 on each post
   counter = 6
   (1..6).each do |x|
     Comment.create!(post_id: x, user_id: counter,
-                    content: "Comment #{x} to Post #{x} from user #{x}: #{Faker::ChuckNorris.fact}")
+                    content: "#{Faker::ChuckNorris.fact}")
     Comment.create!(post_id: x, user_id: counter,
-                    content: "Comment #{x + 1} to Post #{x} from user #{x}: #{Faker::ChuckNorris.fact}")
+                    content: "#{Faker::ChuckNorris.fact}")
   counter -= 1
   puts "created comments for post #{x}"
   end
