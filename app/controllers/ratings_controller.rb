@@ -8,6 +8,7 @@ class RatingsController < ApplicationController
     @rating.user_id = current_user.id
     if @rating.save
       flash.alert = "Rating saved!"
+      @post.update_rating # saving current average to columns in Post
       redirect_to post_path(@post)
     else
       redirect_to post_path(@post)

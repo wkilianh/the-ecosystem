@@ -30,11 +30,11 @@ class Post < ApplicationRecord
   #   end
   # end
 
-  def current_rating
+  def current_rating # redundant to update_rating but removal would mean changing code in views
     if self.ratings.exists?
       ratings = Rating.all.where(post_id: self.id)
-      rating_co2 = ratings.sum("co2") / ratings.count
       # access these with like @post.current_rating[:co2]
+      rating_co2 = ratings.sum("co2") / ratings.count
       rating_waste = ratings.sum("waste") / ratings.count
       rating_resources = ratings.sum("resources") / ratings.count
       rating_diyeffort = ratings.sum("diyeffort") / ratings.count
@@ -47,10 +47,17 @@ class Post < ApplicationRecord
     end
   end
 
-  def ratings_co2
-    rating_co2 = ratings.sum("co2") / ratings.count
+  def update_rating
+      ratings = Rating.all.where(post_id: self.id)
+      # access these with like @post.current_rating[:co2]
+      co2 = ratings.sum("co2") / ratings.count
+      waste = ratings.sum("waste") / ratings.count
+      resources = ratings.sum("resources") / ratings.count
+      diyeffort = ratings.sum("diyeffort") / ratings.count
+      ecocost = ratings.sum("ecocost") / ratings.count
+      avg = ratings.sum("avg") / ratings.count
+      self.update(rating_co2: co2, rating_waste: waste, rating_resources: resources,
+                  rating_diyeffort: diyeffort, rating_ecocost: ecocost, rating_avg: avg)
   end
-
-  # post.rating_co2 Post.all.sort()
 
 end
