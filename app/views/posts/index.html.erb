@@ -1,6 +1,11 @@
 <div class="container">
+  <div class="post-box">
+    <div>
+      <h1><strong>My Posts</strong></h1>
+    </div>
+  </div>
   <% if @posts.length == 0 %>
-      <h1><strong>Ups!</strong> You didn't post anything</h1>
+      <h1><strong>Ups..</strong> You didn't post anything, yet!</h1>
       <%= link_to "Create post", new_post_path, class: "btn-panel" %>
     <% else %>
 

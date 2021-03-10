@@ -2,8 +2,9 @@
       display: flex;
     position: relative;
     /* border: 1px solid grey; */
-    border-radius: 5px;
+    border-radius: 10px;
     // box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 1px 3px rgba(0,0,0,0.2);
     height: 200px;
     margin-top: 30px;
 }
@@ -24,7 +25,8 @@
 .post-headline {
   width: 65%;
   line-height: 1;
-  margin-top: 0.4em;
+  margin-top: 1.3em;
+  margin-left: 0.8em;
   h3 {
     line-height: 1;
   }
@@ -50,7 +52,7 @@
 .rating {
   position: absolute;
   right: 2px;
-  top: 0px;
+  top: 10px;
 }
 
 .rating .rating-post {
@@ -105,4 +107,8 @@
 
 #rating-form {
   margin-top: 35px;
+}
+
+#views {
+  color: grey !important;
 }
