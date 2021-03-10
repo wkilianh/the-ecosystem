@@ -1,16 +1,24 @@
 .search-input-group {
-    width: 600px;
+    // width: 600px;
+    width: 80%;
     border: 1px white solid;
     border-radius: 5px;
     background-color: #649d66;
     display: flex;
+}
 
-
+.search-cont {
+  display: flex;
+  justify-content: center;
 }
 
 .search-input{
   display: flex;
   input {
+    outline:none;
+    width: 300px;
+    -webkit-appearance: none;
+    appearance: none;
     border: none;
     background-color: $bar-green;
     color: white;

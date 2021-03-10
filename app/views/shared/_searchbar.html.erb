@@ -1,16 +1,18 @@
-<div class="search-input-group">
-    <div class="search-input col-8">
-      <%= form_tag search_path, method: :get do %>
-      <%= text_field_tag :query, params[:query], placeholder: "Find a post" %>
-    </div>
-    <div class="cat-sub col-4">
-      <div class= "categories">
-        <%= select_tag "category", options_for_select(%w[all hack don't project], \
-        selected: params[:category]), id: "search-field" %>
+<div class="search-cont">
+  <div class="search-input-group">
+      <div class="search-input col-8">
+        <%= form_tag search_path, method: :get do %>
+        <%= text_field_tag :query, params[:query], placeholder: "Find a post" %>
       </div>
-      <div class= "submit-btn">
-        <%= submit_tag "Go", class: "search-bar-submit btn" %>
-        <% end %>
+      <div class="cat-sub col-4">
+        <div class= "categories">
+          <%= select_tag "category", options_for_select(%w[all hack don't project], \
+          selected: params[:category]), id: "search-field" %>
+        </div>
+        <div class= "submit-btn">
+          <%= submit_tag "Go", class: "search-bar-submit btn" %>
+          <% end %>
+        </div>
       </div>
-    </div>
+  </div>
 </div>
