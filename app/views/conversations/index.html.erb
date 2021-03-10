@@ -48,11 +48,11 @@
         <% if @conversations.count > 0 %>
 
             <div class="conversation" data-conversation-target="conversationcon">
-        
+              <%#= render 'conversation', {conversation: @conversations.last}%>
             </div>
-
+              
             <span class="sendfield" id="chat-text"  data-conversation-target="sendcon">
-
+              <%#= render 'send', {conversation: @conversations.last, message: @message }%>
             </span>
 
         <% else %>
