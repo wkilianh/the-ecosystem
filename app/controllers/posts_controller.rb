@@ -49,31 +49,31 @@ class PostsController < ApplicationController
 
     if params[:query].present?
 
-      if params[:query] == "CO_2_sort_by_rating"
-        @posts = Post.all.joins(:ratings).order("ratings.co2 DESC")
+      # if params[:query] == "CO_2_sort_by_rating"
+      #   @posts = Post.all.joins(:ratings).order("ratings.co2 DESC")
 
-      elsif params[:query] == "waste_sort_by_rating"
-        @posts = Post.all.joins(:ratings).order("ratings.waste DESC")
+      # elsif params[:query] == "waste_sort_by_rating"
+      #   @posts = Post.all.joins(:ratings).order("ratings.waste DESC")
 
-      elsif params[:query] == "resource_sort_by_rating"
-        @posts = Post.all.joins(:ratings).order("ratings.resources DESC")
+      # elsif params[:query] == "resource_sort_by_rating"
+      #   @posts = Post.all.joins(:ratings).order("ratings.resources DESC")
 
-      elsif params[:query] == "diy_sort_by_rating"
-        @posts = Post.all.joins(:ratings).order("ratings.diyeffort DESC")
+      # elsif params[:query] == "diy_sort_by_rating"
+      #   @posts = Post.all.joins(:ratings).order("ratings.diyeffort DESC")
 
-      elsif params[:query] == "cost_sort_by_rating"
-        @posts = Post.all.joins(:ratings).order("ratings.ecocost DESC")
+      # elsif params[:query] == "cost_sort_by_rating"
+      #   @posts = Post.all.joins(:ratings).order("ratings.ecocost DESC")
 
-      elsif params[:query] == "sort_by_views_count"
-        @posts = @posts.order(views_count: :desc)
+      # elsif params[:query] == "sort_by_views_count"
+      #   @posts = @posts.order(views_count: :desc)
 
-      elsif params[:query] == "sort_by_avg_rating"
-        @posts = @posts.order(rating_avg: :desc)
+      # elsif params[:query] == "sort_by_avg_rating"
+      #   @posts = @posts.order(rating_avg: :desc)
 
-      else
+      # else
         @posts = Post.search_post(params[:query])
 
-      end
+      # end
 
     else
       @posts = Post.all.order(created_at: :desc)

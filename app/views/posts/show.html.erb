@@ -124,7 +124,7 @@
   </div>
 
 
-  <div class="container w-50">
+  <div class="container w-100">
 
     <br><br>
 
@@ -134,7 +134,9 @@
 
       <%= simple_form_for [@post, @comment] do |f| %>
         <%= f.input :content, label: false %>
-        <%= f.submit "Leave a comment",class: "btn btn-panel" %>
+        <div style="display: flex; justify-content: flex-end;">
+          <%= f.submit "Leave a comment",class: "btn btn-panel" %>
+        </div>
       <% end %>
 
       <% @post.comments.reverse.each do |comment|%>
