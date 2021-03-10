@@ -2,13 +2,15 @@
   <span>
     <div class="navbar-brand">
       <%= link_to root_path do %>
-      <%= image_tag("logo.png") %>
-      <h4>The Ecosystem  |</h4>
+        <%= image_tag("logo.png") %>
+        <h4>The Ecosystem |</h4>
       <% end %>
     </div>
     <span>
-      <%= link_to "about us", root_path, class: "middle-links", id: "about-us" %>
-       <span>&#x1F4A1;</span>
+      <strong>
+        <%= link_to "about us", root_path, id: "about-us" %>
+      </strong>
+      <span>&#x1F4A1;</span>
     </span>
   </span>
 
@@ -21,13 +23,21 @@
         <%= text_field_tag :query, params[:query], class: "form-control nav-search", placeholder: "Find your solution!" %>
       <% end %>
 
-      <div class="middle-links">
-        <ul>
-          <li> <%= link_to "Best Rated", search_path %> </li>
-          <li> <%= link_to "Recommended", search_path %> </li>
-        </ul>
+      <div class="middle-links nav-item dropdown">
+
+          <%= link_to "Options", search_path, class: "dropdown-toggle", id: "searchDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
+
+          <div class="dropdown-menu dropdown-menu-right drop-nav" aria-labelledby="searchDropdown">
+            <%= link_to "Option1", profile_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Option2", conversations_path, class: "dropdown-item" %>
+          </div>
+
       </div>
     </div>
+
+      <%= link_to new_post_path do %>
+      <i class="fas fa-file-medical create-post nav-item"></i>
+      <% end %>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
@@ -41,11 +51,12 @@
         <% convs_receiver.each do |conv| %>
           <% sum += conv.receiver_notifications %>
         <% end %>
-        <li class="create-post bar">|</li>
-        <li><i class="fas fa-file-medical create-post"></i></li>
-        <li class="nav-item">
-          <%= link_to "Post!", new_post_path, class: "nav-link" %>
-        </li>
+
+
+<!--        Searhc drop was here before <li class="create-post bar">|</li> -->
+
+
+
         <li class="nav-item dropdown">
           <% if current_user.prof_pic.attached? %>
 
@@ -58,13 +69,14 @@
               <% end %>
 
 
-            </div><%= cl_image_tag current_user.prof_pic.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-
+            </div>
+            <%= cl_image_tag current_user.prof_pic.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
 
           <% else %>
             <%= image_tag "https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614812119/placeholder_avatar/1200px-Avatar_icon_green.svg_tire2w.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% end %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+          <div class="dropdown-menu dropdown-menu-right  drop-nav" aria-labelledby="navbarDropdown">
             <%= link_to "My Profile", profile_path(current_user), class: "dropdown-item" %>
             <div style="position:relative"><%= link_to "Messages", conversations_path, class: "dropdown-item" %>
 

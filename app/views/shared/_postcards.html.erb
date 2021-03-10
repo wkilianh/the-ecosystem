@@ -21,7 +21,7 @@
 
             <span class="user-info">
               <p><%= post.user == current_user ? "You" : post.user.nickname %> - <%= post.updated_at.strftime("%b %e, %l:%M%p") %></p>
-              <%= cl_image_tag post.user.prof_pic.key, class:"avatar-bordered" %>
+              <%= cl_image_tag post.user.prof_pic.key, class:"avatar-card" %>
             </span>
 
 
