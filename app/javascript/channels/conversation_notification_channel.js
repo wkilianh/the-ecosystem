@@ -6,6 +6,7 @@ const initConversationNotificationCable = () => {
     var doc = parser.parseFromString(str, 'text/html');
     return doc.body;
   };
+
   const nickname = document.getElementById('nickname');
   if (nickname !== null){
     const navBadge = document.querySelector('.nav-badge');
@@ -29,6 +30,7 @@ const initConversationNotificationCable = () => {
                   received(data) {
                     if (data !== nickname.innerText){
                       audio.play();
+
                       msgDropdownBadge.innerText = parseInt(msgDropdownBadge.innerText.replace(/ /g,'')) + 1
                       navBadge.innerText = parseInt(navBadge.innerText.replace(/ /g,'')) + 1
                       msgDropdownBadge.setAttribute("style","display: block")
@@ -45,8 +47,6 @@ const initConversationNotificationCable = () => {
               });
             })
           });
-    
-    
   }
   
 

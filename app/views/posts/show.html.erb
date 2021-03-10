@@ -12,7 +12,7 @@
       <% if @post.photos.attached? %>
         <%= cl_image_tag @post.photos.last.key, height: 300, width: 400, crop: :fill %><br>
       <% else %>
-        <%= image_tag "https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614952509/placeholder_avatar/pexels-pixabay-56875_cdviyq.jpg", style: "height: 300px" %>
+        <%= image_tag "https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614952509/placeholder_post/pexels-pixabay-56875_cdviyq.jpg", style: "height: 300px" %>
       <% end %>
       <div class="list-head">
         <span><strong><%= @post.ratings.count == 0 ? "This post has no ratings yet.." : "Detail rating" %></strong></span><br>
@@ -35,7 +35,9 @@
 
     <% if @post.user == current_user %>
       <div id="post-subline">
-        <span><%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel" %></span>
+
+        <span><%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel" %><%= link_to "DELETE", post_path(@post), method: :delete, class: "btn btn-panel" %></span>
+
         <p>You last updated this post at <%= @post.updated_at.strftime("%a, %b %e at %l:%M%p") %></p1> <!-- check here -->
       </div>
     <% elsif current_user != nil && current_user.ratings.where(post_id: @post).exists? %>

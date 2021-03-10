@@ -1,35 +1,41 @@
   <% @posts.each do |post| %>
-    <div class="w-100 post-view">
-      <div class="col-8 post-resume">
+    <%= link_to(post_path(post)) do %>
+      <div class="w-100 post-view">
+        <div class="col-8 post-resume">
 
-        <div class="post-content">
-          <div class="user-data">
-            <%= cl_image_tag post.user.prof_pic.key, class:"avatar-bordered" %>
-            <p>Posted by <%= post.user.nickname %> </p>
-            <span class="rating" id="stars"><%= render "/shared/stars", rating: post.current_rating[:avg] %>
-              <span id="views">(<%= post.ratings.count %>)</span>
+          <div class="post-content">
+
+            <div class="post-top">
+              <span class="post-headline">
+                <h3><%= post.title %></h3>
+              </span>
+              <span class="rating" id="stars"><%= render "/shared/stars", rating: post.current_rating[:avg] %>
+                <span id="views">(<%= post.ratings.count %>)</span>
+              </span>
+            </div>
+
+
+            <div class="container post-text">
+              <p><%= truncate(post.rich_body.to_plain_text.squish, length: 250)  %></p>
+            </div>
+
+            <span class="user-info">
+              <p><%= post.user == current_user ? "You" : post.user.nickname %> - <%= post.updated_at.strftime("%b %e, %l:%M%p") %></p>
+              <%= cl_image_tag post.user.prof_pic.key, class:"avatar-bordered" %>
             </span>
-          </div>
-          <div class="container post-text">
-          <h3>"<%= post.title %>"</h3>
-          <p>
-            <%= truncate(post.rich_body.to_plain_text.squish, length: 250)  %>
-          </p>
-          </div>
-          <div class="btn-panel-container">
-              <%= link_to "View", post_path(post), class:"btn-panel"%>
 
-              <% if current_user == post.user %>
-                <%= link_to "Edit", edit_post_path(post), class:"btn-panel" %>
-                <%= link_to "Delete", post_path(post), method: :delete, class:"btn-panel" %>
-              <% end %>
+
+
           </div>
+
         </div>
+
+          <% if post.photos.attached? %>
+          <div class="post-img col-4 post-img" style="background-image: url(<%= cl_image_path post.photos.last.key %>);"></div>
+          <% else %>
+          <div class="post-img col-4 post-img" style="background-image: url(https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614952509/post_seeds/pexels-pixabay-56875_cdviyq.jpg);"></div>
+          <% end %>
+
       </div>
-        <% if post.photos.attached? %>
-        <div class="post-img col-4 post-img" style="background-image: url(<%= cl_image_path post.photos.last.key %>);"></div>
-        <% else %>
-        <div class="post-img col-4 post-img" style="background-image: url(https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614952509/placeholder_avatar/pexels-pixabay-56875_cdviyq.jpg);"></div>
-        <% end %>
-    </div>
+    <% end %>
  <% end %>

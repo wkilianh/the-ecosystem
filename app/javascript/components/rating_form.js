@@ -3,7 +3,7 @@
 
 export { toggleForm };
 const toggleForm = () => {
-  // console.log('Hi!');
+  console.log('Hi!');
   const ratingForm = document.querySelector("#rating-form");
   const ratingButton = document.querySelector("#rating-button");
 
