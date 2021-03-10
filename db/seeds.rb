@@ -137,12 +137,12 @@ end
 
 
 
-# add_users
-# add_posts
-# add_comments
-# add_replies
-# add_conversation
-# add_messages
+add_users
+add_posts
+add_comments
+add_replies
+add_conversation
+add_messages
 
 add_ratings
 

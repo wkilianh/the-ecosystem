@@ -7,7 +7,7 @@
 }
 
 #sidebar-container{
-  background: #2c2424;
+  background: #83A96A ;
   height: 750px;
   border-radius: 20px;
   margin: 20px;
@@ -21,7 +21,7 @@
   left: 0;
   // height: 90vh;
   z-index: 1;
-  background: #2c2424;
+  background: #649D66;
   color: #fff;
   transition: all 0.3s;
   // padding: 20px;
@@ -29,12 +29,12 @@
   height: 700px;
   display: flex;
   flex-direction: column;
-
+  border-radius: 20px;
 }
 
 #sidebar .sidebar-header {
     padding: 10px;
-    background: #5c627c;
+    background: #F6D743;
     margin: 5px;
     border-radius: 20px;
     display: flex;
