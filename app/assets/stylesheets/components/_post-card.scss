@@ -33,7 +33,6 @@
 }
 
 .post-top {
-
   display: flex;
   align-items: flex-start;
 
@@ -70,12 +69,16 @@
 
 .user-info {
   display: flex;
+  align-items: center;
   position: absolute;
   right: 2px;
-  bottom: 0px;
-
+  bottom: 3px;
   p {
-  margin-right: 15px;
+    margin-right: 10px;
+    margin-bottom: 2px;
+  }
+  img {
+    margin-bottom: 5px;
   }
 }
 

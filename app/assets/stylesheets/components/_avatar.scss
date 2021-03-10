@@ -13,10 +13,9 @@
   width: 30px;
   height: 30px;
   border-radius: 25%;
-  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25);
   border: $yell 2px solid;
   object-fit: cover;
-
 }
 .avatar-square {
   width: 40px;
@@ -31,3 +30,13 @@
   border: 2px solid $yell;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
+
+.avatar-card {
+  width: 30px;
+  height: 30px;
+  border-radius: 25%;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.18);
+  border: $yell 2px solid;
+  object-fit: cover;
+}
+

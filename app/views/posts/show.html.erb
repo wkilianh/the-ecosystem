@@ -34,28 +34,28 @@
     </div>
 
     <% if @post.user == current_user %>
-      <div id="post-subline">
+      <div class="post-subline">
 
-        <span><%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel" %><%= link_to "DELETE", post_path(@post), method: :delete, class: "btn btn-panel" %></span>
+        <span><%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel btn-post" %><%= link_to "DELETE", post_path(@post), method: :delete, class: "btn btn-panel btn-post" %></span>
 
         <p>You last updated this post at <%= @post.updated_at.strftime("%a, %b %e at %l:%M%p") %></p1> <!-- check here -->
       </div>
     <% elsif current_user != nil && current_user.ratings.where(post_id: @post).exists? %>
-      <div id="post-subline">
+      <div class="post-subline">
           <span><strong>You rated this post at </strong><%= current_user.ratings.where(post_id: @post)[0].updated_at.strftime("%a, %b %e, %l:%M%p") %></span>
-          <span>
-            <p>created at <%= @post.updated_at.strftime("%b %e, %l:%M%p") %> by </p><strong></strong><a href="<%= profile_path(@post.user) %>"><%= @post.user.nickname %></a>
-            <%= link_to '<i class="far fa-envelope"></i>'.html_safe, conversations_path(post_id: @post.id), method: :post %>
+          <span id="user-data">
+            <p>created at <%= @post.updated_at.strftime("%b %e, %l:%M%p") %> by </p><a href="<%= profile_path(@post.user) %>"><%= @post.user.nickname %></a>
+            <%= link_to '<i class="far fa-envelope messages-link"></i>'.html_safe, conversations_path(post_id: @post.id), method: :post %>
           </span>
       </div>
     <% else %>
       <div id="post-subline">
       <span class="btn btn-large", id="rating-button">RATE POST!</span>
-          <span>
+          <span id="user-data">
             <%# @conversation.receiver = @post.user %>
-            <p>created at <%= @post.updated_at.strftime("%b %e, %l:%M%p") %> by </p><strong></strong><a href="<%= profile_path(@post.user) %>"> <%= @post.user.nickname %></a>
+            <p>created at <%= @post.updated_at.strftime("%b %e, %l:%M%p") %> by </p><a href="<%= profile_path(@post.user) %>"> <%= @post.user.nickname %></a>
 <!--             <img src="<%#= cl_image_path @post.user.prof_pic.key %>" class="avatar-post"/> Claire proposed to take this out -->
-            <%= link_to '<i class="far fa-envelope"></i>'.html_safe, conversations_path(post_id: @post.id), method: :post %>
+            <%= link_to '<i class="far fa-envelope messages-link"></i>'.html_safe, conversations_path(post_id: @post.id), method: :post %>
           </span>
       </div>
 

@@ -15,6 +15,7 @@ const initConversationCable = () => {
           data.children[0].children[0].setAttribute("style","float:left")
         }else{
           data.children[0].children[0].setAttribute("style","float:right")
+          data.children[0].children[0].children[1].style.backgroundColor = '#F6D743'
         }
         messagesContainer.insertAdjacentHTML('beforeend', data.innerHTML);
         messagesContainer.lastElementChild.scrollIntoView()
