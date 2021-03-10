@@ -5,26 +5,34 @@
     <% else %>
       <h1><%= @user.nickname %>'s Profile</h1>
     <% end %>
-    <h1><%= @user.slogan %></h1>
-    <% if @user.prof_pic.attached? %>
-      <%= cl_image_tag @user.prof_pic.key, height: 300 %><br>
-    <% else %>
-      <%= image_tag "https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614812119/placeholder_avatar/1200px-Avatar_icon_green.svg_tire2w.png", style: "height: 300px" %>
-    <% end %>
+    <br>
+    <div style="">
+      <% if @user.prof_pic.attached? %>
+        <%= cl_image_tag @user.prof_pic.key, height: 300 %><br>
+      <% else %>
+        <%= image_tag "https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614812119/placeholder_avatar/1200px-Avatar_icon_green.svg_tire2w.png", style: "height: 300px" %>
+      <% end %>
+      <div style="margin-top:5px ;padding: 5px; background: no-repeat center ; display:flex; margin-left:10px; background-size: cover; border-radius: 20px; opacity:0.7; background-image: url('<%= asset_path("banner.png") %>'); height:fit-content; width:fit-content">
+        <h1 style="color:#F6D743"><strong><%= @user.slogan %></strong></h1>
+      </div>
+    </div>
+    <br>
 
-    <% if  @user.rich_body.to_s == "" && current_user == @user %>
-      <h1>Hey, why don't you put a text about yourself here?</h1>
-    <% elsif @user.rich_body.to_s == "" %>
-      <h1>Sorry, this user does not have a profile text yet..</h1>
-    <% else %>
-      <%= @user.rich_body %>
-    <% end %>
+    <div>
+      <% if  @user.rich_body.to_s == "" && current_user == @user %>
+        <h1>Hey, why don't you put a text about yourself here?</h1>
+      <% elsif @user.rich_body.to_s == "" %>
+        <h1>Sorry, this user does not have a profile text yet..</h1>
+      <% else %>
+        <%= @user.rich_body %>
+      <% end %>
 
-    <% if current_user == @user %>
-      <p>
-        <%= link_to "Edit profile", edit_profile_path, class: "btn btn-panel" %>
-      </p>
-    <% end %>
+      <% if current_user == @user %>
+        <p>
+          <%= link_to "Edit profile", edit_profile_path, class: "btn btn-panel" %>
+        </p>
+      <% end %>
+    </div>
   </div>
 </div>
 

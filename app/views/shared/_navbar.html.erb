@@ -1,20 +1,33 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon nav-content sticky">
-  <div class="navbar-brand">
-    <%= link_to image_tag("logo.png"), root_path %>
-    <h4>The Ecosystem</h4>
-  </div>
-  <div class="middle-links">
-    <ul>
-      <li> <%= link_to "Best Rated", search_path %> </li>
-      <li> <%= link_to "Recommended", search_path %> </li>
-      <li> <%= link_to "Info" %> </li>
-    </ul>
-  </div>
-  <div class="search-log">
+  <span>
+    <div class="navbar-brand">
+      <%= link_to root_path do %>
+      <%= image_tag("logo.png") %>
+      <h4>The Ecosystem  |</h4>
+      <% end %>
+    </div>
+    <span>
+      <%= link_to "about us", root_path, class: "middle-links", id: "about-us" %>
+       <span>&#x1F4A1;</span>
+    </span>
+  </span>
 
-    <%= form_tag search_path, method: :get do %>
-      <%= text_field_tag :query, params[:query], class: "form-control nav-search", placeholder: "Find your solution!" %>
-    <% end %>
+
+
+
+  <div class="search-log">
+    <div id="searches">
+      <%= form_tag search_path, method: :get do %>
+        <%= text_field_tag :query, params[:query], class: "form-control nav-search", placeholder: "Find your solution!" %>
+      <% end %>
+
+      <div class="middle-links">
+        <ul>
+          <li> <%= link_to "Best Rated", search_path %> </li>
+          <li> <%= link_to "Recommended", search_path %> </li>
+        </ul>
+      </div>
+    </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
@@ -28,15 +41,15 @@
         <% convs_receiver.each do |conv| %>
           <% sum += conv.receiver_notifications %>
         <% end %>
+        <li class="create-post bar">|</li>
+        <li><i class="fas fa-file-medical create-post"></i></li>
         <li class="nav-item">
-
-          <%= link_to "Create post", new_post_path, class: " nav-link" %>
-
+          <%= link_to "Post!", new_post_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <% if current_user.prof_pic.attached? %>
 
-            <div style="position:relative"> 
+            <div style="position:relative">
 
               <% if sum > 0 %>
                 <div class="nav-badge badge"><%= sum %></div>
@@ -54,7 +67,7 @@
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "My Profile", profile_path(current_user), class: "dropdown-item" %>
             <div style="position:relative"><%= link_to "Messages", conversations_path, class: "dropdown-item" %>
-              
+
               <% if sum > 0 %>
                 <div class="msg-dropdown-badge badge"><%= sum %></div>
               <% else %>
