@@ -17,6 +17,10 @@
 
     <%= render 'shared/flashes' %>
 
+    <audio hidden="true" class="audios" id="message-audio" controls preload="none"> 
+      <source src="/audios/message.mp3" type="audio/mpeg">
+    </audio>
+
     <% if user_signed_in? %>
       <div id="nickname" style="display: none"><%= current_user.nickname %></div>
       <% current_uri = request.env['PATH_INFO'] %>

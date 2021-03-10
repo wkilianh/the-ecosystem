@@ -6,18 +6,20 @@ const initConversationNotificationCable = () => {
     var doc = parser.parseFromString(str, 'text/html');
     return doc.body;
   };
-  if (nickname){
+
+  const nickname = document.getElementById('nickname');
+  if (nickname !== null){
     const navBadge = document.querySelector('.nav-badge');
     const msgDropdownBadge = document.querySelector('.msg-dropdown-badge')
-    const nickname = document.getElementById('nickname');
-    // const audio = new Audio('/message.mp3');
+    var audio = document.querySelector('.audios')
+    audio.volume = 0.2;
+
     fetch('/conversations').then(function(response) {
       return response.text();
       }).then(function(string) {
           let nicknames = []
           stringToHTML(string).querySelectorAll('.clickble-name').forEach(elm => {
             nicknames.push(document.getElementById(elm.innerText))
-            console.log(document.getElementById(elm.innerText))
           })
           
           fetch('/conversations', { headers: { accept: 'application/json' } })
@@ -27,7 +29,8 @@ const initConversationNotificationCable = () => {
                 consumer.subscriptions.create({ channel: "ConversationNotificationChannel", id: element.id}, {
                   received(data) {
                     if (data !== nickname.innerText){
-                      // audio.play();
+                      audio.play();
+
                       msgDropdownBadge.innerText = parseInt(msgDropdownBadge.innerText.replace(/ /g,'')) + 1
                       navBadge.innerText = parseInt(navBadge.innerText.replace(/ /g,'')) + 1
                       msgDropdownBadge.setAttribute("style","display: block")
@@ -44,8 +47,6 @@ const initConversationNotificationCable = () => {
               });
             })
           });
-    
-    
   }
   
 

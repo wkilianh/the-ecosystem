@@ -1,5 +1,5 @@
 const toggleUser = () => {
-  const nickname = document.getElementById('nickname').innerText
+  // const nickname = document.getElementById('nickname').innerText
   var clickbleNames = document.querySelectorAll('.clickble-name')
   if (clickbleNames.length > 0){
     clickbleNames.forEach(x => {
