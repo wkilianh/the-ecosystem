@@ -4,8 +4,30 @@
   margin-bottom: 8px;
   background: white;
   padding: 8px 16px;
+  padding-bottom: 23px;
   border: 1px solid rgb(235,235,235);
-  margin: 10px
+  margin: 10px;
+  position: relative;
+  border-radius: 7px;
+
+  img {
+    position: absolute;
+    top: 0;
+    margin-top: 23px;
+
+
+  }
+
+  .btn {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+  }
+
+}
+
+textarea.form-control {
+    border-radius: 7px;
 }
 
 .comment .comment-content {
@@ -14,7 +36,7 @@
 }
 
 .comment p {
-  margin: 0;
+  margin: 15px 30px 15px 30px;
   line-height: 1.4;
 }
 
