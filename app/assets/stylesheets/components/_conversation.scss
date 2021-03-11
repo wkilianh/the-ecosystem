@@ -57,7 +57,7 @@
   padding: 0;
   margin: 20px;
   // width: 850px;
-  height: 750px;
+  height: 660px;
   border-radius: 10px;
   background-color: #83A96A;
   padding: 20px;
@@ -67,7 +67,7 @@
 
 .conversation{
   overflow-y: scroll;
-  height: 92%;
+  height: 90%;
   background-color: #83A96A;
   // display: flex;
   // padding-left: 20px;
@@ -109,6 +109,9 @@
 .kontainer{
   width: 1400px;
   margin: auto;
+  margin-left: 350px;
+  height: fit-content;
+
 }
 
 

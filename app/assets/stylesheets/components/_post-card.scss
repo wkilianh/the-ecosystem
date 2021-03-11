@@ -25,11 +25,10 @@
 .post-headline {
   width: 65%;
   line-height: 1;
-  margin-top: 1em;
+  margin-top: 1.3em;
   margin-left: 0.8em;
   h3 {
-    // line-height: 20px;
-    height: 60px;
+    line-height: 1;
   }
 }
 
@@ -81,6 +80,36 @@
   img {
     margin-bottom: 5px;
   }
+}
+
+
+
+.btn-panel-container {
+  position: absolute;
+  display: flex;
+  bottom: 10px;
+  right: 0;
+}
+
+.btn-panel {
+  padding: 0.050rem 0.9rem;
+  background: #83A96B;
+  color: white;
+  border: 1px solid white;
+  border-radius: 7px;
+  margin-right: 3px;
+}
+
+.btn-large {
+  padding: 0.2rem 0.9rem;
+  font-size: 1rem;
+  background: #83A96B;
+  color: white;
+  border: 1px solid white;
+  border-radius: 3px;
+  margin-right: 3px;
+  display: block;
+  font-size: 1.35rem;
 }
 
 #rating-form {

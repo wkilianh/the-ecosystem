@@ -18,7 +18,7 @@ const initConversationCable = () => {
           data.children[0].children[0].children[1].style.backgroundColor = '#F6D743'
         }
         messagesContainer.insertAdjacentHTML('beforeend', data.innerHTML);
-        messagesContainer.lastElementChild.scrollIntoView()
+        // messagesContainer.lastElementChild.scrollIntoView()
       },
     });
   }
