@@ -21,6 +21,7 @@
       <%= f.input :expect_resources, collection: ['low', 'moderate', 'medium', 'high', 'very high'], label: "Your savings on resources?" %>
       <%= f.input :expect_diyeffort, collection: ['low', 'moderate', 'medium', 'high', 'very high'], label: "How high do you estimate the effort to realise these goals? ('DIY effort')" %>
       <%= f.input :expect_ecocost, collection: ['low', 'moderate', 'medium', 'high', 'very high'], label: "How high do you estimate counter effects (for ex. you might need resources to clean reusable packaging)?" %>
+      <h3><%= "Gallery Image" %></h3>
       <%= f.input :photos, as: :file, label: false %>
       <h3><%= "Post Text" %></h3>
       <%= f.input :rich_body, as: :rich_text_area, label: false %>
