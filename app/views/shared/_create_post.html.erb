@@ -7,7 +7,7 @@
       <h3><%= "Category" %></h3>
       <%= f.input :category, collection: ["hack", "don't", "project"], label: false %>
 
-      <h3><%= "Topic" %></h3>
+      <h3><%= "Topics (what is this post about?)" %></h3>
       <%= f.input :topic, label: false %>
 
       <% if @post.photos.attached? %>
@@ -15,7 +15,7 @@
         <%= cl_image_tag @post.photos.last.key, height: 200 %><br>
       <% end %>
 
-      <h3><%= "Expectations of Your Post:" %></h3>
+      <h3><%= "Expectations of Your Idea:" %></h3>
       <%= f.input :expect_co2, collection: ['low', 'moderate', 'medium', 'high', 'very high'], label: "How high will be your Co2 savings?" %>
       <%= f.input :expect_waste, collection: ['low', 'moderate', 'medium', 'high', 'very high'], label: "Your savings on waste?" %>
       <%= f.input :expect_resources, collection: ['low', 'moderate', 'medium', 'high', 'very high'], label: "Your savings on resources?" %>

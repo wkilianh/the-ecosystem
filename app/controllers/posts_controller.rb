@@ -33,7 +33,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = policy_scope(Post)
+    @posts = policy_scope(Post).order(created_at: :desc)
   end
 
   def search
