@@ -36,7 +36,7 @@
     <% if @post.user == current_user %>
       <div class="post-subline">
 
-        <span><%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel btn-post" %><%= link_to "DELETE", post_path(@post), method: :delete, data: {confirm: "Really delete the post?"}, class: "btn btn-panel btn-post" %></span>
+        <span><%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel" %><%= link_to "DELETE", post_path(@post), method: :delete, data: {confirm: "Really delete the post?"}, class: "btn btn-panel btn-post" %></span>
         <span class="user-data">
           <p>You last updated this post at <%= @post.updated_at.strftime("%a, %b %e at %l:%M%p") %></p1> <!-- check here -->
         </span>
@@ -51,7 +51,7 @@
       </div>
     <% else %>
       <div class="post-subline">
-        <span class="btn btn-panel btn-post", id="rating-button">RATE POST!</span>
+        <span class="btn btn-panel", id="rating-button">RATE POST!</span>
         <span class="user-data">
           <%# @conversation.receiver = @post.user %>
           <p>created at <%= @post.updated_at.strftime("%b %e, %l:%M%p") %> by </p><a href="<%= profile_path(@post.user) %>"> <%= @post.user.nickname %></a>
@@ -83,7 +83,7 @@
               <%= f.input :diyeffort, label: false, collection: 1..5, required: false %>
               <%= f.input :ecocost, label: false, collection: 1..5, required: false %><br>
               <%= f.input :avg, label: false, collection: 1..5, required: false %>
-              <%= f.button :submit, "RATE!", class: "btn btn-large" %>
+              <%= f.button :submit, "RATE!", class: "btn btn-panel" %>
           </div>
         </div>
 
