@@ -23,19 +23,13 @@
               <p><%= post.user == current_user ? "You" : post.user.nickname %> - <%= post.updated_at.strftime("%b %e, %l:%M%p") %></p>
               <%= cl_image_tag post.user.prof_pic.key, class:"avatar-card" %>
             </span>
-
-
-
           </div>
-
         </div>
-
           <% if post.photos.attached? %>
-          <div class="post-img col-4 post-img" style="background-image: url(<%= cl_image_path post.photos.last.key %>);"></div>
+            <div class="post-img col-4 post-img" style="background-image: url(<%= cl_image_path post.photos.last.key %>);"></div>
           <% else %>
-          <div class="post-img col-4 post-img" style="background-image: url(https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614952509/post_seeds/pexels-pixabay-56875_cdviyq.jpg);"></div>
+            <div class="post-img col-4 post-img" style="background-image: url(https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614952509/post_seeds/pexels-pixabay-56875_cdviyq.jpg);"></div>
           <% end %>
-
       </div>
     <% end %>
  <% end %>

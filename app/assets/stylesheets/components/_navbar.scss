@@ -3,6 +3,8 @@
   // background: #83a96a;
   background: #0E623C;
   display: flex;
+  position: absolute;
+  top: 0;
 
   h4 {
     color: $white;
@@ -55,6 +57,11 @@
 
 }
 
+.merge-bar {
+  margin-left: 0;
+  border-radius: 0 5px 5px 0;
+}
+
 .drop-nav {
   background-color: $white;
   border-radius: 7px;
@@ -101,7 +108,7 @@
     line-height: 1.5;
     // color: white;
     border: 0px solid #ced4da;
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px;
 
 }
 
@@ -115,7 +122,7 @@
     appearance: none;
     border: none;
     background-color: $beige;
-    color: white;
+    // color: white;
     flex-grow: 1;
     padding-right: 0;
   }
@@ -124,7 +131,7 @@
 .sticky {
   position: fixed;
   z-index: 7;
-  top: 0;
+  // top: 0;
   width: 100%;
 }
 
