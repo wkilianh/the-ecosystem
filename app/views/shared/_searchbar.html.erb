@@ -6,15 +6,15 @@
       </div>
       <div class="cat-sub col-5">
         <div class= "drop-list">
-          <%= select_tag "category", options_for_select(%w[All Hack Don't Project], \
+          <%= select_tag "category", options_for_select(%w[all hack don't project], \
           selected: params[:category]), id: "search-field", :include_blank => "Category" %>
         </div>
          <div class= "drop-list">
-          <%= select_tag(:ratings, options_for_select(["all", "Rating", "Views", "co2", "Waste", "Resources", "Ease", "Side-effects"], \
-          selected: params[:ratings]), id: "search-field", :include_blank => "Sort by")%>
+          <%= select_tag :ratings, options_for_select([["overall rating", "rating_avg"], ["co2","rating_co2"], ["waste","rating_waste"], ["resources","rating_resources"], ["DIY effort","rating_diyeffort"], ["eco cost","rating_ecocost"]], \
+          selected: params[:ratings]), id: "search-field", :include_blank => "Sort by"%>
         </div>
         <div class= "submit-btn">
-          <%= submit_tag "Go", class: "search-bar-submit btn" %>
+          <%= submit_tag "Go", class: "search-bar-submit btn", reset: true %>
         </div>
         <% end %>
       </div>
