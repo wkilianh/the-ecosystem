@@ -42,19 +42,21 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
-  p {
-    font-size: 20px;
-    margin-bottom: 0px;
-    display: inline;
-  }
-  a {
-    font-size: 20px;
-    color: $bar-green;
-    font-weight: bold;
-  }
-  a:hover {
-  color: $dark-green;
-  transition: color 0.1s;
+  .user-data {
+    p {
+      font-size: 20px;
+      margin-bottom: 0px;
+      display: inline;
+    }
+    a {
+      font-size: 20px;
+      color: $bar-green;
+      font-weight: bold;
+    }
+    a:hover {
+    color: $dark-green;
+    transition: color 0.1s;
+    }
   }
 }
 
@@ -72,7 +74,7 @@
   }
 }
 
-#user-data {
+.user-data {
   display: flex;
   p {
     margin-right: 5px;
@@ -195,4 +197,8 @@
   display: flex;
   justify-content: space-between;
   width: 30%;
+}
+
+.attachment__caption {
+  display: none;
 }
