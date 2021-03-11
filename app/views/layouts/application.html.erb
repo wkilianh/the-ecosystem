@@ -14,26 +14,31 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
+    <div class="app-flex-column">
+      <div class="nav-app">
+        <%= render 'shared/navbar' %>
+      </div>
+      <div class="content-app">
+        <%= render 'shared/flashes' %>
 
-    <%= render 'shared/flashes' %>
+        <audio hidden="true" class="audios" id="message-audio" controls preload="none">
+          <source src="/audios/message.mp3" type="audio/mpeg">
+        </audio>
 
-    <audio hidden="true" class="audios" id="message-audio" controls preload="none">
-      <source src="/audios/message.mp3" type="audio/mpeg">
-    </audio>
-
-    <% if user_signed_in? %>
-      <div id="nickname" style="display: none"><%= current_user.nickname %></div>
-      <% current_uri = request.env['PATH_INFO'] %>
-      <% if current_uri.split('/')[1] != "conversations" %>
-        <% current_user.update(conversation_channel: 0)  %>
-      <% end %>
-    <% end %>
+        <% if user_signed_in? %>
+          <div id="nickname" style="display: none"><%= current_user.nickname %></div>
+          <% current_uri = request.env['PATH_INFO'] %>
+          <% if current_uri.split('/')[1] != "conversations" %>
+            <% current_user.update(conversation_channel: 0)  %>
+          <% end %>
+        <% end %>
 
 
-    <%= yield %>
-
-    <br>
-    <%= render 'shared/footer' %>
+        <%= yield %>
+      </div>
+      <div class="footer-app">
+        <%= render 'shared/footer' %>
+      </div>
+    </div>
   </body>
 </html>
