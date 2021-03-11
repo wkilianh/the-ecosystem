@@ -7,7 +7,7 @@
 
             <div class="post-top">
               <span class="post-headline">
-                <h3><%= post.title %></h3>
+                <h3><%= post.title.truncate(70) %></h3>
               </span>
               <span class="rating" id="stars"><%= render "/shared/stars", rating: post.current_rating[:avg] %>
                 <span id="views">(<%= post.ratings.count %>)</span>
