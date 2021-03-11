@@ -1,1 +1,51 @@
-_footer.scss
+.footer-container {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  background-color: $bar-green;
+  // margin-top: 300px;
+  height: 150px;
+  width: 100%;
+
+}
+
+.footer-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.full-pg-footer {
+  height: 75vh;
+}
+.full-pg-footer-myposts {
+  height: 69vh;
+}
+
+.social {
+  border-top: 1px solid #FCF6DA;
+  text-align: center;
+
+  i {
+    color: $light-yellow-bkg;
+    font-size: 25px;
+    transition: color 0.3s;
+    margin: 10px;
+    padding-top: 10px;
+
+  }
+
+  i:hover {
+    color: $yellow;
+  }
+}
+
+.footer-bottom {
+  color: $light-yellow-bkg;
+  background-color: $dark-green;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+}
