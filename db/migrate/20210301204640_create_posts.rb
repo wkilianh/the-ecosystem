@@ -11,7 +11,7 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       t.string :expect_resources
       t.string :expect_diyeffort
       t.string :expect_ecocost
-      t.float :rating_avg
+      t.float :rating_avg, default: 0
       t.timestamps
     end
   end
