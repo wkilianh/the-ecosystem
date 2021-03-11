@@ -19,7 +19,7 @@
 .btn-panel {
   padding: 0.2rem 0.9rem;
   font-size: 1rem;
-  background: #83A96B;
+  background: $dark-green;
   // background: #83A96B;
   color: $yell;
   // border: 1px solid white;
@@ -33,6 +33,10 @@
   // }
   }
 
+.btn-panel:hover {
+  color: $beige;
+  transition: 0.2s
+}
 
 .btn-large {
   padding: 0.2rem 0.9rem;
