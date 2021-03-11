@@ -25,13 +25,22 @@
 
       <div class="middle-links nav-item dropdown">
 
-          <%= link_to "Options", search_path, class: "dropdown-toggle", id: "searchDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
+          <%= link_to "Top Posts", search_path, class: "dropdown-toggle", id: "searchDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
 
           <div class="dropdown-menu dropdown-menu-right drop-nav" aria-labelledby="searchDropdown">
 
-            <%= link_to "Option1", root_path, class: "dropdown-item" %>
-            <%= link_to "Option2", root_path, class: "dropdown-item" %>
+
+
+            <%= link_to "Top Rated", search_path(:query => "", :category => "", :ratings => "rating_avg"), class: "dropdown-item" %>
+            <%= link_to "Saving Co2", search_path(:query => "", :category => "", :ratings => "rating_co2"), class: "dropdown-item" %>
+            <%= link_to "Saving Resources", search_path(:query => "", :category => "", :ratings => "rating_resources"), class: "dropdown-item" %>
+            <%= link_to "Saving Waste", search_path(:query => "", :category => "", :ratings => "rating_waste"), class: "dropdown-item" %>
+            <%= link_to "Low Effort", search_path(:query => "", :category => "", :ratings => "rating_diyeffort"), class: "dropdown-item" %>
+            <%= link_to "Low Ecocost", search_path(:query => "", :category => "", :ratings => "rating_ecocost"), class: "dropdown-item" %>
+            <%= link_to "Latest", search_path(:query => "", :category => "", :ratings => "created_at"), class: "dropdown-item" %>
           </div>
+
+
 
       </div>
     </div>
