@@ -36,7 +36,7 @@
     <% if @post.user == current_user %>
       <div class="post-subline">
 
-        <span><%= link_to "Edit Post", edit_post_path(@post), class: "btn btn-large edit-buttons" %><%= link_to "Delete!", post_path(@post), method: :delete, data: {confirm: "Really delete the post?"}, class: "btn btn-large edit-buttons" %></span>
+        <span><%= link_to "Edit Post", edit_post_path(@post), class: "btn btn-large edit-buttons" %><%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Really delete the post?"}, class: "btn btn-large edit-buttons" %></span>
         <span class="user-data">
           <p>You last updated this post at <%= @post.updated_at.strftime("%a, %b %e at %l:%M%p") %></p1> <!-- check here -->
         </span>
