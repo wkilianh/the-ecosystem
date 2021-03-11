@@ -30,16 +30,16 @@ class Post < ApplicationRecord
   #   end
   # end
 
-  def current_rating
+  def current_rating # redundant to update_rating but removal would mean changing code in views
     if self.ratings.exists?
       ratings = Rating.all.where(post_id: self.id)
-      rating_co2 = ratings.sum("co2") / ratings.count
       # access these with like @post.current_rating[:co2]
-      rating_waste = ratings.sum("waste") / ratings.count
-      rating_resources = ratings.sum("resources") / ratings.count
-      rating_diyeffort = ratings.sum("diyeffort") / ratings.count
-      rating_ecocost = ratings.sum("ecocost") / ratings.count
-      rating_avg = ratings.sum("avg") / ratings.count
+      rating_co2 = ratings.sum("co2") / ratings.count.to_f
+      rating_waste = ratings.sum("waste") / ratings.count.to_f
+      rating_resources = ratings.sum("resources") / ratings.count.to_f
+      rating_diyeffort = ratings.sum("diyeffort") / ratings.count.to_f
+      rating_ecocost = ratings.sum("ecocost") / ratings.count.to_f
+      rating_avg = ratings.sum("avg") / ratings.count.to_f
       { co2: rating_co2, waste: rating_waste, resources: rating_resources,
        diyeffort: rating_diyeffort, ecocost: rating_ecocost, avg: rating_avg }
     else
@@ -47,10 +47,17 @@ class Post < ApplicationRecord
     end
   end
 
-  def ratings_co2
-    rating_co2 = ratings.sum("co2") / ratings.count
+  def update_rating
+      ratings = Rating.all.where(post_id: self.id)
+      # access these with like @post.current_rating[:co2]
+      co2 = ratings.sum("co2") / ratings.count.to_f
+      waste = ratings.sum("waste") / ratings.count.to_f
+      resources = ratings.sum("resources") / ratings.count.to_f
+      diyeffort = ratings.sum("diyeffort") / ratings.count.to_f
+      ecocost = ratings.sum("ecocost") / ratings.count.to_f
+      avg = ratings.sum("avg") / ratings.count.to_f
+      self.update(rating_co2: co2, rating_waste: waste, rating_resources: resources,
+                  rating_diyeffort: diyeffort, rating_ecocost: ecocost, rating_avg: avg)
   end
-
-  # post.rating_co2 Post.all.sort()
 
 end

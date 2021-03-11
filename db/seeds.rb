@@ -87,6 +87,7 @@ def add_ratings
       rating.save!
       puts "created rating #{x} for post #{post.id}"
     end
+  post.update_rating
   end
 end
 
