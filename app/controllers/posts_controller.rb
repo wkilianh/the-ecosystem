@@ -26,9 +26,12 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     authorize @post
-    @post.update(post_params)
-    redirect_to posts_path
-    flash.alert = "Post updated!"
+    if @post.update(post_params)
+      redirect_to posts_path
+      flash.alert = "Post updated!"
+    else
+      render :new
+    end
 
   end
 
