@@ -3,7 +3,7 @@
   color: transparent !important;
   text-shadow: 0 0 0 #d2d2d2 !important;
 /*  letter-spacing: 1em;*/
-  margin: 1em !important;
+  margin: 0em !important;
 /*  color: #d2d2d2;*/
 }
 
@@ -32,13 +32,14 @@
     content: "\1F333" !important;
     color: black !important;
   /*  letter-spacing: 1em;*/
-    margin: 1em !important;
+    // margin: 1em !important;
   }
 }
 
 .br-widget a {
-  margin: 0 0.45em; // distance between trees
+  // margin: 0 0.45em; // distance between trees
   // line-height: 0.7;
+
 }
 
 .simple_form .new_rating {
@@ -49,4 +50,14 @@
 .br-theme-css-stars .br-widget {
     height: 17px !important;
     white-space: nowrap;
+}
+
+.br-theme-css-stars .br-widget a {
+  text-decoration: none;
+  float: none !important;
+  // height: 18px;
+  // width: 18px;
+  /* float: left; */
+  // font-size: 23px;
+  // margin-right: 5px;
 }

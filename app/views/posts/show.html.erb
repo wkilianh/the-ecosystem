@@ -36,7 +36,7 @@
     <% if @post.user == current_user %>
       <div class="post-subline">
 
-        <span><%= link_to "EDIT POST", edit_post_path(@post), class: "btn btn-panel" %><%= link_to "DELETE", post_path(@post), method: :delete, data: {confirm: "Really delete the post?"}, class: "btn btn-panel btn-post" %></span>
+        <span><%= link_to "Edit Post", edit_post_path(@post), class: "btn btn-large edit-buttons" %><%= link_to "Delete!", post_path(@post), method: :delete, data: {confirm: "Really delete the post?"}, class: "btn btn-large edit-buttons" %></span>
         <span class="user-data">
           <p>You last updated this post at <%= @post.updated_at.strftime("%a, %b %e at %l:%M%p") %></p1> <!-- check here -->
         </span>
@@ -51,7 +51,7 @@
       </div>
     <% else %>
       <div class="post-subline">
-        <span class="btn btn-panel", id="rating-button">RATE POST!</span>
+        <span class="btn btn-large", id="rating-button">Rate Post!</span>
         <span class="user-data">
           <%# @conversation.receiver = @post.user %>
           <p>created at <%= @post.updated_at.strftime("%b %e, %l:%M%p") %> by </p><a href="<%= profile_path(@post.user) %>"> <%= @post.user.nickname %></a>
@@ -75,7 +75,7 @@
             <div class="expectations"><span>Free of side-effects: </span></div><br>
             <div class="expectations"><span><h3>Your overall rating:</h3></span></div>
           </div>
-          <div class="rater">
+          <div id="rater-form">
             <%= simple_form_for [ @post, @rating ] do |f| %>
               <%= f.input :co2, label: false, collection: 1..5, required: false %>
               <%= f.input :waste, label: false, collection: 1..5, required: false %>
@@ -83,7 +83,7 @@
               <%= f.input :diyeffort, label: false, collection: 1..5, required: false %>
               <%= f.input :ecocost, label: false, collection: 1..5, required: false %><br>
               <%= f.input :avg, label: false, collection: 1..5, required: false %>
-              <%= f.button :submit, "RATE!", class: "btn btn-panel" %>
+              <%= f.button :submit, "RATE!", class: "btn btn-large btn-rate" %>
           </div>
         </div>
 
@@ -135,7 +135,7 @@
       <%= simple_form_for [@post, @comment] do |f| %>
         <%= f.input :content, label: false %>
         <div style="display: flex; justify-content: flex-end;">
-          <%= f.submit "Leave a comment",class: "btn btn-panel" %>
+          <%= f.submit "Leave a comment",class: "btn btn-large" %>
         </div>
       <% end %>
 

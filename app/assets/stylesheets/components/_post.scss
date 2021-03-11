@@ -42,6 +42,9 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
+  .btn-large {
+    margin-right: 12px;
+  }
   .user-data {
     p {
       font-size: 20px;
@@ -187,6 +190,14 @@
   display: flex;
   justify-content: space-between;
   line-height: 1.5;
+}
+
+#rater-form {
+  text-align: right;
+  .btn-large {
+    text-align: right;
+    margin-top: 30px;
+  }
 }
 
 #rater-overall {
