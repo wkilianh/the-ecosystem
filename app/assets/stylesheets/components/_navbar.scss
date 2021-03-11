@@ -50,7 +50,7 @@
   font-family: 'Abel', sans-serif;
 
     a:hover {
-      color: #ffffff;
+      color: black;
       box-shadow: #dddddd;
       text-decoration: none;
     }
@@ -110,6 +110,11 @@
     border: 0px solid #ced4da;
     border-radius: 5px 0 0 5px;
 
+}
+.dropdown-item {
+  a:hover {
+    color: black;
+  }
 }
 
 
