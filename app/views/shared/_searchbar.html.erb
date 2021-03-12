@@ -10,7 +10,7 @@
           selected: params[:category]), id: "search-field", :include_blank => "Category" %>
         </div>
          <div class= "drop-list">
-          <%= select_tag :ratings, options_for_select([["overall rating", "rating_avg"], ["co2","rating_co2"], ["waste","rating_waste"], ["resources","rating_resources"], ["DIY effort","rating_diyeffort"], ["eco cost","rating_ecocost"]], \
+          <%= select_tag :ratings, options_for_select([["overall rating", "rating_avg"], ["co2","rating_co2"], ["waste","rating_waste"], ["resources","rating_resources"], ["DIY effort","rating_diyeffort"], ["eco cost","rating_ecocost"],["Latest","created_at"]], \
           selected: params[:ratings]), id: "search-field", :include_blank => "Sort by"%>
         </div>
         <div class= "submit-btn">
