@@ -11,9 +11,13 @@
 }
 
 .post-view:hover {
-  transform: scale(1.007);
-  margin-left: 6px;
-  box-shadow: 0 5px 5px 0 rgba(0,0,0,0.2);
+  // transform: scale(1.007);
+  // margin-left: 6px;
+  // box-shadow: 0 5px 5px 0 rgba(0,0,0,0.2);
+  box-shadow: rgba(0, 0, 0, 0.22) 2px 6px 7px;
+  transform: translate3d(0px, -1px, 0px);
+
+
 }
 
 .post-resume {
