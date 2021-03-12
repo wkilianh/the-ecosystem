@@ -11,8 +11,6 @@ const initConversationNotificationCable = () => {
   if (nickname !== null){
     const navBadge = document.querySelector('.nav-badge');
     const msgDropdownBadge = document.querySelector('.msg-dropdown-badge')
-    // var audio = document.querySelector('.audios')
-    // audio.volume = 0.2;
 
     fetch('/conversations').then(function(response) {
       return response.text();
@@ -29,7 +27,6 @@ const initConversationNotificationCable = () => {
                 consumer.subscriptions.create({ channel: "ConversationNotificationChannel", id: element.id}, {
                   received(data) {
                     if (data !== nickname.innerText){
-                      // audio.play();
 
                       msgDropdownBadge.innerText = parseInt(msgDropdownBadge.innerText.replace(/ /g,'')) + 1
                       navBadge.innerText = parseInt(navBadge.innerText.replace(/ /g,'')) + 1

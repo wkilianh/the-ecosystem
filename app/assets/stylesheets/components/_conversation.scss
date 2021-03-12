@@ -61,7 +61,7 @@
   border-radius: 10px;
   background-color: #83A96A;
   padding: 20px;
-
+  margin-top: 100px;
   // left: 400px
 }
 
@@ -109,7 +109,7 @@
 .kontainer{
   width: 1400px;
   margin: auto;
-  margin-left: 350px;
+  margin-left: 340px;
   height: fit-content;
 
 }
@@ -154,10 +154,10 @@
     display: flex;
     width: fit-content;
   }
-  #chat{
-    display: flex;
-    width:fit-content;
-  }
+  // #chat{
+  //   display: flex;
+  //   width:fit-content;
+  // }
   
   
 }
