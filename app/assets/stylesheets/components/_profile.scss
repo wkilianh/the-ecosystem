@@ -1,14 +1,55 @@
-.profile-box {
+.about-me-box {
   background-color: white;
   padding: 20px;
   margin-bottom: 50px;
   margin-top: 50px;
   border-radius: 12px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  h1  {
-  font-size: 30px;
-  img {
-    border: 4px solid yellow;
+  padding: 40px;
+
+  a {
+   margin-top: 40px;
   }
-  }
+
+}
+
+
+.user-card {
+  display: flex;
+
+}
+
+
+.pf-title {
+
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  color: white;
+  padding: 20px;
+  width: 400px;
+  height: 250px;
+  background-color: rgba( 14, 98, 60, 0.7);
+  border-radius: 7px;
+  p  {
+  margin-top: 20px;
+  font-size: 20px;
+  text-align: center;
+ }
+}
+
+
+.user-pic {
+
+  position: absolute;
+  top: 50px;
+  right: 100px;
+  border-radius: 25%;
+  border: 2px solid yellow;
+  box-shadow: 3px 3px 3px;
+
+}
+
+.pf-info {
+
 }

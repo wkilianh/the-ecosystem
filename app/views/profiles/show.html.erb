@@ -1,24 +1,37 @@
-<div class="container w-70">
-  <div class="profile-box">
-    <% if current_user == @user %>
-      <h1>Your Profile</h1>
-    <% else %>
-      <h1><%= @user.nickname %>'s Profile</h1>
-    <% end %>
-    <br>
-    <div style="">
+<div class="banner">
+
+  <div class="user-card">
+
+    <div class="pf-title">
+      <% if current_user == @user %>
+
+        <h1><%= current_user.nickname.capitalize %></h1>
+        <p>"<%= current_user.slogan.capitalize %>"</p>
+
+      <% else %>
+        <h1><%= @user.nickname %>'s Profile</h1>
+        <p><%= @user.slogan %></p>
+      <% end %>
+    </div>
+
+    <div>
       <% if @user.prof_pic.attached? %>
-        <%= cl_image_tag @user.prof_pic.key, height: 300 %><br>
+        <%= cl_image_tag @user.prof_pic.key, class:"user-pic", height: 300 %><br>
       <% else %>
         <%= image_tag "https://res.cloudinary.com/ddclrx1ajasdf/image/upload/v1614812119/placeholder_avatar/1200px-Avatar_icon_green.svg_tire2w.png", style: "height: 300px" %>
       <% end %>
-      <div style="margin-top:5px ;padding: 5px; background: no-repeat center ; display:flex; margin-left:10px; background-size: cover; border-radius: 20px; opacity:0.7; background-image: url('<%= asset_path("banner.png") %>'); height:fit-content; width:fit-content">
-        <h1 style="color:#F6D743"><strong><%= @user.slogan %></strong></h1>
-      </div>
     </div>
-    <br>
 
-    <div>
+  </div>
+
+</div>
+
+
+
+
+  <div class="container about-me-box">
+
+    <div class="pf-info">
       <% if  @user.rich_body.to_s == "" && current_user == @user %>
         <h1>Hey, why don't you put a text about yourself here?</h1>
       <% elsif @user.rich_body.to_s == "" %>
@@ -26,13 +39,21 @@
       <% else %>
         <%= @user.rich_body %>
       <% end %>
-
-      <% if current_user == @user %>
-        <p>
-          <%= link_to "Edit profile", edit_profile_path, class: "btn btn-panel" %>
-        </p>
-      <% end %>
     </div>
+
+    <% if current_user == @user %>
+
+        <%= link_to "Edit profile", edit_profile_path, class: "btn btn-panel" %>
+
+    <% end %>
+
+
+
+
   </div>
-</div>
+
+
+
+
+
 
