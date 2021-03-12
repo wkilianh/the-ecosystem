@@ -7,6 +7,13 @@
     box-shadow: 2px 1px 3px rgba(0,0,0,0.2);
     height: 200px;
     margin-top: 30px;
+    transition: 0.2s;
+}
+
+.post-view:hover {
+  transform: scale(1.007);
+  margin-left: 6px;
+  box-shadow: 0 5px 5px 0 rgba(0,0,0,0.2);
 }
 
 .post-resume {
