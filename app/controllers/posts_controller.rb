@@ -42,7 +42,6 @@ class PostsController < ApplicationController
   def search
 
     @posts = Post.all
-
     if params[:query].present?
       @posts = Post.search_post(params[:query])
     end
@@ -52,11 +51,9 @@ class PostsController < ApplicationController
       @posts = @posts.where(category: params[:category])
     end
 
-    if params[:ratings].present?
-      @posts = @posts.order(params[:ratings] => "desc")
+    if params[:ratings].present? # .order does not work with pg_search, .reorder though does the job
+      @posts = @posts.reorder(params[:ratings] => "desc") # see AR doc / stackoverflow
     end
-
-
     authorize @posts
     return @posts
 
@@ -87,6 +84,5 @@ class PostsController < ApplicationController
     params.require(:post).permit(:rich_body, :title, :photos, :expect_co2, :expect_waste,
                                 :expect_resources, :expect_diyeffort, :expect_ecocost, :category, :topic)
   end
-
 
 end
