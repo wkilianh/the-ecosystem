@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
   def create
     comment = Comment.new(comment_params)
-    comment.user =  current_user
+    comment.user = current_user
     comment.post = Post.find(params[:post_id])
     authorize comment
     if comment.save!
