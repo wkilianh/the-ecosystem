@@ -45,15 +45,14 @@ class PostsController < ApplicationController
     if params[:query].present?
       @posts = Post.search_post(params[:query])
     end
-    #raise
+
     # here we filter on category if category is supplied
     if params[:category].present? && params[:category] != "all"
       @posts = @posts.where(category: params[:category])
     end
 
-    if params[:ratings].present? # .order does not work with pg_search, result list is unchangeable
-      @posts = @posts.reorder(params[:ratings] => "desc") # try to fix it with sort_by
-      # @posts = @posts.sort_by(&:created_at) # with this authorization does not work "#{params[:ratings]}"
+    if params[:ratings].present? # .order does not work with pg_search, .reorder though does the job
+      @posts = @posts.reorder(params[:ratings] => "desc") # see AR doc / stackoverflow
     end
     authorize @posts
     return @posts
